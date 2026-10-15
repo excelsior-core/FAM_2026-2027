@@ -1,0 +1,2704 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="emerald">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>«конспекты» ФПМ — Лекции и материалы</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="emerald"] {
+      --bg-base: #050d0c;
+      --bg-surface: rgba(12, 27, 25, 0.86);
+      --bg-elevated: rgba(17, 38, 35, 0.92);
+      --bg-input: rgba(7, 18, 16, 0.9);
+      --border-col: rgba(29, 66, 60, 0.85);
+      --text-primary: #f0fdf4;
+      --text-secondary: #94a3b8;
+      --accent: #10b981;
+      --accent-hover: #059669;
+      --accent-soft: rgba(16, 185, 129, 0.14);
+      --warn-bg: rgba(245, 158, 11, 0.10);
+      --warn-border: rgba(245, 158, 11, 0.35);
+      --warn-text: #fbbf24;
+      --glow-1: rgba(16, 185, 129, 0.16);
+      --glow-2: rgba(56, 189, 248, 0.11);
+      --card-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.65);
+    }
+    [data-theme="dark"] {
+      --bg-base: #070b14;
+      --bg-surface: rgba(15, 23, 42, 0.86);
+      --bg-elevated: rgba(30, 41, 59, 0.9);
+      --bg-input: rgba(10, 15, 29, 0.92);
+      --border-col: rgba(51, 65, 85, 0.8);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --warn-bg: rgba(245, 158, 11, 0.10);
+      --warn-border: rgba(245, 158, 11, 0.35);
+      --warn-text: #fbbf24;
+      --glow-1: rgba(56, 189, 248, 0.15);
+      --glow-2: rgba(139, 92, 246, 0.12);
+      --card-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+    }
+    [data-theme="light"] {
+      --bg-base: #f1f5f9;
+      --bg-surface: rgba(255, 255, 255, 0.92);
+      --bg-elevated: #f8fafc;
+      --bg-input: #f1f5f9;
+      --border-col: #cbd5e1;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --accent: #059669;
+      --accent-hover: #047857;
+      --accent-soft: rgba(5, 150, 105, 0.12);
+      --warn-bg: rgba(245, 158, 11, 0.12);
+      --warn-border: rgba(217, 119, 6, 0.35);
+      --warn-text: #b45309;
+      --glow-1: rgba(16, 185, 129, 0.12);
+      --glow-2: rgba(59, 130, 246, 0.09);
+      --card-shadow: 0 18px 40px -15px rgba(15, 23, 42, 0.12);
+    }
+    [data-theme="sepia"] {
+      --bg-base: #f3ead6;
+      --bg-surface: rgba(251, 246, 232, 0.94);
+      --bg-elevated: #efe5ce;
+      --bg-input: #ebe0c5;
+      --border-col: #d5c5a3;
+      --text-primary: #291f14;
+      --text-secondary: #6e5a44;
+      --accent: #b45309;
+      --accent-hover: #92400e;
+      --accent-soft: rgba(180, 83, 9, 0.13);
+      --warn-bg: rgba(180, 83, 9, 0.11);
+      --warn-border: rgba(180, 83, 9, 0.35);
+      --warn-text: #92400e;
+      --glow-1: rgba(217, 119, 6, 0.12);
+      --glow-2: rgba(180, 83, 9, 0.08);
+      --card-shadow: 0 18px 40px -15px rgba(41, 31, 20, 0.14);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-base);
+      background-image:
+        radial-gradient(circle at 15% 15%, var(--glow-1), transparent 38%),
+        radial-gradient(circle at 85% 12%, var(--glow-2), transparent 35%),
+        radial-gradient(circle at 50% 90%, var(--glow-1), transparent 45%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      margin: 0;
+      min-height: 100vh;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    .surface-card {
+      background-color: var(--bg-surface);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-col);
+      box-shadow: var(--card-shadow);
+    }
+    .surface-elevated {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border-col);
+    }
+    .surface-input {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-col);
+      color: var(--text-primary);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .surface-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+    .ai-disclaimer-banner {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+    }
+    .top-rainbow {
+      position: relative;
+      overflow: hidden;
+    }
+    .top-rainbow::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #10b981, #38bdf8, #8b5cf6, #f59e0b);
+    }
+    .theme-pill {
+      padding: 4px 10px;
+      font-size: 12px;
+      border-radius: 7px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+      background: transparent;
+      font-weight: 500;
+    }
+    .theme-pill.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .lecture-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .lecture-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .btn-primary-glow {
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      box-shadow: 0 8px 24px -6px var(--accent-soft);
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .btn-primary-glow:hover {
+      filter: brightness(1.07);
+      transform: translateY(-1px);
+    }
+    .hashtag-chip {
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .hashtag-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .hashtag-chip.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .viewer-iframe {
+      width: 100%;
+      height: calc(100vh - 140px);
+      border: none;
+      background: var(--bg-base);
+    }
+    .viewer-fullscreen {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 90 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      height: 100vh !important;
+      width: 100vw !important;
+    }
+    .viewer-fullscreen .viewer-iframe {
+      height: calc(100vh - 76px) !important;
+      border-radius: 0 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ENCRYPTED VAULT CATALOG DATA -->
+  <script id="encrypted-vault-json" type="application/json">{"v": 2, "iter": 100000, "showHint": true, "vaultIv": "IVioiUDgyG3Pl9JG", "vaultCt": "/wQLlgBy0zKZczwlqf4g8mnLdSCHDs6U85kGVUFLlyhH1rSKrNmMNBJ270Wk57RpK2y5QObeSVfE9f9KYrbQZcQjyqufD8hedkMRKByY2l6V74k1+6wUe7Wj76Q2Rl85lKDx97VN53ph68ecSLee/AF9n4zBEaSFC2ul9tn/O4rxUNMExMrypthTW9econnUa/WiUazne/XwVtwt8oXoCaOMG3rMPg7VtR9BmCRx7MhRDcyyEZH9YAtYa1vp95SqHxH3Dxb9WjDHI/uhQerOfSgWL6xhJEcEyqK+i1GLtTFieqigz4kS++8CYuk/iCE5yaM520jJAVAR97aAPf5waeB/Q2YEaw98wX2eDMOpkuPsBDrxSJ+YmU2NRbJdfSo2zwby0YH5z6AD5emlyp00OGf9J8ZgMC1/9q64FP5w6sQDR8T/G7gtcVlwJOsKdRE/gWQADNxnNpP2z2RQkmfBSh6rItbEvCILrAq8VbQm1AJLEmeJ9NOaYd+4QJtzntbOLPXwWTJhSTCyNFxMNz8Nmhx1rgpvyjN/6Bq3F4Xn7k70liSyBcMi5SFpQ+8DMyA8J1LIm2VdeZpVBjWBhIGrri2DxQCdmjYvCSvi4zODpYhfmM3eX8bbwZusUkV714YvzzZcceXx3eWtfFWhnD84CwSRMvC+tBLnClEvsQU3quw9ek5GrgCWxCmG4DQ2Nc8K5mZ8Bbq9ZBxOW2RzrgRSrliUf00jZzhwITlrHpJLAJx0+axupNn1LAPFL2l/549DOvDZ7tfGV75+ZhSDDY469HN+klXLMizTtX5/jeL/Vl/vTo/mPNevU9UjDN+uoEV9zq1pAue0Mr/hinzwTeJojrBN0ea8Jjw2YK8fX+e2UX5IQ+xsniuKlMW9o3cgx7zS+dHD2x5XIh9dOjwprw2ePIBV/8ReME6Ws0fVc2K2k9niRGXSWbCADtS2aT3hB1xJ14W8F1HAAtNcwigdD96ZmYD1m1/2vXBmZxHo+MHb5NfyyiYPP7sZ+3fGlm6MQ1lpzB+jvirsVg4e+CbkA4XkqHdskckFxDweUN27NUN+K5RcpTaxj4jPWAtLAMyIMbG/++JX7cLmMrX4rMN8tvMTNw0B/fEsl3OWuWDPyL97iJZ/ASuOAhXlwIpAvb6eeiSzxhH+nHHDazh6hveOPt43fN7CJTkCZ4yM9XZhd3tmsYOLca/TPen/7mG6shDiRjU3XUhk2pd02lBmkLm3LEC7LH2Ole76y/UBncmraCkLaszYmAhkANzA0dobp4yIOcn4HlNyJ+Yk5I7OxviBzQ/PTFo1dgo/Sj7t63SPcfxy4NtM16pkHhkLObqHCMOIJcRI2pAYQ23uRFYhLV6USl3ogZ9UknViBeuKhK8EUSHy3hSz9z7RDPbObcyxHuRxa0gFTfiNhMC+Y1vZmAM7mYrkU1mzdtlfwNFHyYa4Ir8PkNoCgw+4PzDCncWu8H82YzboKUi7B6pFOGgxumoZfNFd+3tnyYYKRtDwHTRzpGn9ODj1CaTMxxPMO9LDQ8bd63zqIiAfHpCD24Yjc3mI08wYVGePHxOW2Mji+5iV7Dy7/TPNa3FC3B5EVLPUDW6/OaCO5Lgj182oSxLuhcoGGOTkIx7q/2R9MycRfRBRINnLygeX/PVx5tQTXvG3ujp/xTtai02MF+tilWn5qJ8KulZ/L7V9OrKjVsQdntthVjIsGVWAl3rT5Au/pmj22fTOJmOsCHYM8VX+ed2K8PGPajQQprtNnDLfmexa+5ybv+0LP/CLrZyvHuDiPxhqbFSWGEaCScAhvozWlNEJWdvPTr1OGZrShspcpn4IoygyZTiA3/CGsIlYDbVGeGCW5D4XAhd7osqHQlI2UAMttGQiUKowckZ93RLJY3cjXt9ovooBKlamSpDf3M4PjbqsUYLua4F9JzsZmlqkxe133U3njDcpvCFQhKdII8N7Za/gFXkTB/L3/v7GCYSH0R+DivHVzuT/nE6/APK7AKXVjMnbCZVdkp/3si7Azkv1yZfm24TGJWhQ01jK+Qme6/nMAgDBVWEEG/3H2yn0qHxUJXsfEcPk4CXfWjihJjSIDBt0bLCFv/o7UmGP4ikqFM+N/UelrhVjvrlrD5VxrxcwT26A1sAPojKSmNg5jtoXTqivP2DwnXMT6SF18/HMNvIFLfXe262OHVe1AYsC9dYlSBn33Cd360Oqz/Q2W/8oh4jaFfw88fJ4uomQNbyj0gQWhU+9Chr6pKc2CvICfm4JtE8njhwpGVFTY8n3E46CjPGrDyF2Ue4p9lrHmCoQXfaSVsVg4wNrMO86XcTV2ix4wgPyY3G7U6ItX8OyPCEIh2e4PRL5XchzNfDy/zBtiW1eyfzRVZ0qVFeWrjYzaUxPhRiuVCeDPFSiV0Sz67EriwxRELPgO18aMC3/o9pqnBX3PT5Q7jbL9kaGGojgXrKxtZBEpZPrJXpELEx/3qcvxPVeqEU/zkDwmb2Z6UYyMsh0ZwTrKIi1B3B22jmRlkkqh1bbo4VsZHIAEJD+skJcavBXFFh1vVpvV/wvSW2PyOSHtnWbb+NnJgUCGzTR/2MoMY7B0RPUGBr4n/lg4a8LoRAtPp8GZtpwafwHhHtmKsdV8ulNm/2ZStpogjTvRwgaUIOGxo0VbkZGwiOdDtCr0OkDGkNT8xuduzzBopzZLfOvXMiHJDI8rCc/UkUQvsH8wG9c2PBHmpmUzKN4tVpZN066XVaBttDgAmePu8SWP/lIPiYy6SQmEiAXUIGctIDrMsPIQvI24KXsMeIPOtBkC9ez4VKlBA/9o3Jnq7xQgugqr3eBM2xtc+D9eGm2dGsJKwPqmIEeoELKnPSzVWRlkVLNbpUEBJ2abSC7fa6dl8yr8ljfXuFQiPHjV8t8aHjR1YAsCYM1Mh7wi6PMfVsy/7wQLUSSB4c5ujNQ9+mPpjclcD52xGC86z56HgdAAgkjnGuXIl5h3+EtEOkXJ7n3aoUMZCwKyolPI0fRTEPXxsyBwbGo9QTIJc35JlmKMGyw0wfakF8hZcMpHnHTlRYA68wHD4FAMoL2ScalBKdMSh0ETh2Iwyym61IK7TS0gVUugoMVVUhEYKLdafJL6u1cP5t6ahDsSijn0wiU9so62klLzKhCGcysi2hk/gLshI93kuQ5wt4Ur2uqyMRHaNnNFiK+LF5v2NJPHvoak3pG+EpAFLQsgh/fTBYvQ2kkyNLSybS/jTWv1bmbJOl/aiY5RWmGiyfgbu7vSu0cMYeEkCG1F7ZUQC0ZMB1cC1LVHqas5GQwzwDWEVtjJ+OjMfqCrNcgO8AD//nJFdevwHbWCM5ipx9KKBKBdt8PZIPAQf+zQHiPqAMgMHZiOX8cFNsqNul29gHxleQIWHKH5hdsuhmMeug7EWSpKPFW9f+MvwQs8+PTr2dPicCg0zNTUkdfxz6yScLVWWvn/4DKtKCWPEqPTYWe5zSeb/XEECsNseD/r5x+NBHyVUXp5PUNdpempY8VJWWptpopWkAQvyN2P70pRijlr+xMrhi44Le2i31lbo29fIi/iBCJQK/qI1B+TwqOWyZ1E+Lvb3YBDc3mFOJVeDAUOC21RB/Dqbv2+4SqEn9t7jDQXQjTKRZ0KmWmB8vszSPwfZqzA0Xtn1MNol6AlmUiKclWpooYroVeIzFOwJVLpl/Hgag0gHcujr98O0Fe3s1nDrSDEMYiOie5/SNW9AEWkZ920aKqf5bj0lziwEF+/cG932YFABypRTm8LocYYP4zamjfSUsnphO010/89BEhCbiXIcwpTxHNhlEazvOTViK87nJSHkva2n1L3ad8opUp+wiPX65GXPLaN5wn9M8LExdYQNEfkU6jln3DLDI88Yd2gmVhZPiPYtjCmvH7bXxKhOOV/SHmlYYlQpVA+55UJd90NYFmZ/Ls02zvq9iTJxIQNW6eR5E63B8KVt3+8NmvsHdKFD0wVc1C3UmhVxdYPQmFCN91dSxG/xSPn548TCLhJJaq1JkXtPgtRQmG19V7/6X6sLobSxGm5/w53rbbG/2tPnoIcBtOZ/5/ZNQFj6l6O8Imgn7Mxv5+qmBsFfX+58BKN2jptTQi/qTkGaauCSZjBWeYkdxuWnQMP12O57UgMXk5Vul/9FIA/cLRt+2gGuD9uBUtd9n7ZEb6QHlglvVVVMdwGBP+u4CwTDODQrg5HdAyKPmKU7vnwiskX9E7Og9yaGswdX91cpzXc5jgTWmnpcakJb0fPU0t4eCJsiE+P9A8E1wYXM02r16WWba9JpiN5B/iYwsAT+gRE2CyTFlMTM/0cTvYhqRQw/mrCQ64jGVYeL/Vr1Ga0ORYgd+7KQVPlW4CZmDdjOSiO1EY2CkfVp85J+D8KfBlGybYZr7fm2O/gdxE3s6kQDWty0CPqTa7DQgrO/Ltd5+WW62wyd1+2fm3JQItyil/A+BnVfcpE22dqOHmg8KHfWaYzy6OhAw4H7b+7OrY2qU82tbheQKPBwoLorIO2VQr6jMyMMyKw9RfSPxg+ZEuKw+w+03BJs81jdRiZ6s+mHqDbIXOO0FSV33vtBHofXYOHR7+lB6h20azmWAnikUeyoQz56G0j2s5R0eOMzAhj9TfetAyAuQzw28oRq6kBN7Xk7/1tulExQoDM3ksDF+REt60pvlJOtwkioLc2VNDjSb4Vz4S3zAKgBENPv02CIkHqjZEpI4ZTnAwptiO7B6MQshzBC1j/BkQqcogn2pQYhxBZsAi4Ie1uJHK6t+/QEWgaEJuTZhec3VVMu6LqkVxEj9jVAFN4WOpWaZR0ilfrcwjPh1eWM4kt2S6g4GdoarUcMi95AO8SXPoxoc5f/vHMfOurwLJR4Evdvwe6L7gp7PqZitG8mRjV6tghVxxl5B8JPMXT9sLBwt60E83DETmMdQBj20yjd81gcVY8Cjpqf1vxmRm6Hl7xVZzYys0jkuVuQ0TfClHr7HFF/tBsm9M4uJ8v3IPSSvA5nawH9cTngfSbA5UIkC8ugw/Wqv7BdSFyLfX4EBOsDVCEzVJ/uebYbWRhxQ1BqF1M3udYQonaW18d8/Ny8M9/rfF5sN84J9htERtM9cRfmGOQKh6pJdzuIvjMJp8PQMTgMpSLFfppOjphrgMBDw9+zpd2IY4S1WihxQ5KpJSnIB9Ov4WAFOY/I/ClzFEx2lGEONtsxptynKwzM4qPBHgmctpOCoUdi4rfNxsCldWhf9Og4zQylx23sjiMcovTJNXbm0zaGOHCtS9GfGlY5x0b0LJdEpqN0NjN36rg2faP41qktUFD83XaXf5K2OSoDyOwx38s4bYI5OnZ9Nb5XxHNLSr7NGl1qqFZOrAYZBgxRt3MgUJ7D5YUB9vlXEACJiZbjLjQbTlaVKWlwE0dYOND1rMLeleLRKF6pkCbw827Vccuiyyeft1b9ojjik7cNVcovp0qC0TJMDGdrq79t27zqgyApMQzc5AELX21wR60IqAW3B/GxJP4sHdB7E2/jpGTk2ACCln9iAoVl2k1oSynShlLeIFvRQi7SHjIrXTC+nN5N6rlK/0wzG07OlIsYJcOrzb346KXiHCLoXZ0VhxwMRZsZddbNTg7I44jg+0HkVPy8tFHcNTVzgslNECp3evKb5M+qLIyeFTVzx5+FC6jWjYaIhY0534PdedBtzZu+5xmWGRRQprbhzclVGyTeg/a+0D8fK474wXBgwOQcUxHUdqh7GxUhjcsHLWHHziR4pGuHaQOp67OyS3cDJUzZZTo7HQEy/7tWv9jWlmXCVxCMVyGhgU930MJJYF0lUHt0gBYuuCKGQrANzue/r5v/s9uA3RpmWFCwqRyxDMxn7bMXvT7bxA4Csjo72JiClsFHjC8dMHv4Q0MjRzoj0OjjKgXFx9YJfcMaohk5t+Yfm0lI1lnDtkYsfodZiSKmeI4Gj4u/Gwvze/ehQM52EEXNudMumL7MdghwhESskXERCFM1kMYIn7tgsL7NAxN5PomKOJR/0IfvmUwjn1wg9dFBKwfXWqlYM39+Ne", "slotAdmin": {"salt": "feJPecXhu+oTriHrN5xDkw==", "iv": "4awlLJrA5dsUBsqa", "ct": "+ltHDekLblCgRId8wkkEA/ue6GSAFWGwuM0nja89d8D9ImSSDJGmD36SDY9tpgih5HcMbvBup4XWmJIEYXCXSM5VLe+11Pe4yVLZxdweHG9HQYx6q0EG1g=="}, "slotStudent": {"salt": "vJFjIozjmLnE52CdoFAtKw==", "iv": "HYi5VmFxTXuHgMv5", "ct": "LgqyuTR2IZ0Zl3g6ItVdnLD4jWt4kKgA0lFEDa44On0wBJZ9ezLseML0K3F4AcYqTdXGyRaKobImZ30Bm/kTmk1EvqbZl+gXXWXMQEQOYnv3p7rWAJV1dJtV"}}</script>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-[120] flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ===================== WELCOME / LOGIN SCREEN (CLEAN & MINIMALIST) ===================== -->
+  <div id="lock-screen" class="min-h-screen flex items-center justify-center p-4 relative">
+    <div class="surface-card top-rainbow w-full max-w-[450px] rounded-3xl p-7 sm:p-9 relative z-10">
+
+      <!-- Top Bar: Brand Pill + Theme Switcher -->
+      <div class="flex items-center justify-between gap-2 mb-7 flex-wrap">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wide" style="background: var(--accent-soft); color: var(--accent); border: 1px solid var(--border-col);">
+          ✨ ФПМ ВШЭ
+        </span>
+        <div class="flex items-center gap-0.5 p-1 rounded-xl surface-input">
+          <button type="button" class="theme-pill" data-set-theme="dark">Тёмная</button>
+          <button type="button" class="theme-pill" data-set-theme="light">Светлая</button>
+          <button type="button" class="theme-pill" data-set-theme="sepia">Сепия</button>
+          <button type="button" class="theme-pill active" data-set-theme="emerald">Изумруд</button>
+        </div>
+      </div>
+
+      <!-- Brand Emblem & Title -->
+      <div class="flex items-center gap-3.5 mb-3">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg text-white shadow-lg shrink-0" style="background: linear-gradient(135deg, #10b981, #3b82f6);">
+          «к»
+        </div>
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight">«конспекты» ФПМ</h1>
+          <p class="text-xs font-medium mt-0.5" style="color: var(--text-secondary);">Единая база лекций, семинаров и коллоквиумов</p>
+        </div>
+      </div>
+
+      <p class="text-xs sm:text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+        Введите пароль из нашего чата в Telegram, чтобы открыть конспекты.
+      </p>
+
+      <form id="unlock-form" class="space-y-4">
+        <div>
+          <label for="password-input" class="block text-xs font-semibold mb-2" style="color: var(--text-secondary);">
+            Пароль доступа
+          </label>
+          <div class="relative">
+            <input
+              id="password-input"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Введите пароль..."
+              class="surface-input w-full rounded-2xl px-4 py-3.5 text-sm pr-24 font-medium"
+              required
+            />
+            <button
+              type="button"
+              id="toggle-pass-vis"
+              class="absolute right-2.5 top-1/2 -translate-y-1/2 px-3 py-1.5 text-xs font-medium rounded-xl surface-elevated hover:opacity-90"
+              style="color: var(--text-secondary);"
+            >
+              Показать
+            </button>
+          </div>
+          <p id="login-error" class="hidden text-xs text-red-400 mt-2 font-medium">
+            Неверный пароль. Проверьте раскладку клавиатуры и попробуйте снова.
+          </p>
+        </div>
+
+        <div class="flex items-center justify-between text-xs pt-0.5" style="color: var(--text-secondary);">
+          <label class="inline-flex items-center gap-2 cursor-pointer select-none">
+            <input id="remember-session" type="checkbox" checked class="rounded accent-emerald-500" />
+            <span>Запомнить вход на этом устройстве</span>
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          id="unlock-submit-btn"
+          class="btn-primary-glow w-full py-3.5 px-5 rounded-2xl font-bold text-sm text-white"
+        >
+          Войти к конспектам →
+        </button>
+      </form>
+
+      <!-- Subtle AI Warning on Welcome Screen -->
+      <div class="ai-disclaimer-banner mt-5 p-3.5 rounded-2xl flex items-start gap-2.5 text-[11px] leading-relaxed">
+        <span class="text-sm shrink-0">⚠️</span>
+        <div style="color: var(--text-secondary);">
+          <strong style="color: var(--warn-text);">Нейросети тоже ошибаются:</strong> ИИ-конспекты помогают быстрее разобраться в теме, но не являются 100% верными. Всегда сверяйтесь с прикреплёнными PDF-оригиналами преподавателей.
+        </div>
+      </div>
+
+      <!-- Quick Demo Switcher (can be hidden in 1 click before publishing) -->
+      <div id="demo-password-box" class="mt-4 p-4 rounded-2xl surface-elevated text-xs space-y-2.5">
+        <div class="font-semibold flex items-center justify-between" style="color: var(--accent);">
+          <span>💡 Быстрый тест двух режимов входа:</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <button
+            type="button"
+            id="fill-demo-pass-btn"
+            class="py-2 px-3 rounded-xl font-semibold text-white text-center transition hover:opacity-95"
+            style="background-color: var(--accent);"
+            title="Обычный пароль одногруппников: открывает только чтение конспектов"
+          >
+            Ввести и войти
+          </button>
+          <button
+            type="button"
+            id="fill-admin-pass-btn"
+            class="py-2 px-3 rounded-xl font-semibold surface-card hover:opacity-95 text-center"
+            style="color: var(--accent); border-color: var(--accent);"
+            title="Особый пароль автора: сразу открывает редактор сайта"
+          >
+            👑 Пароль автора (admin2026)
+          </button>
+        </div>
+        <p class="text-[11px] leading-relaxed" style="color: var(--text-secondary);">
+          Обычный пароль (<code class="px-1 py-0.5 rounded surface-input font-mono">hse2026</code>) ведёт к конспектам без кнопок редактирования, а ваш особый (<code class="px-1 py-0.5 rounded surface-input font-mono">admin2026</code>) — сразу в редактор сайта.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN PORTAL SHELL ===================== -->
+  <div id="app-shell" class="hidden min-h-screen flex flex-col">
+
+    <!-- STICKY TOP NAVBAR -->
+    <header class="surface-card sticky top-0 z-40 px-4 lg:px-6 py-3 border-b">
+      <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-3 flex-wrap">
+        <!-- Brand & Back to Catalog -->
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            id="nav-home-btn"
+            class="flex items-center gap-3 text-left group"
+          >
+            <span class="w-9 h-9 rounded-xl flex items-center justify-center font-black text-xs text-white shadow-md transition group-hover:scale-105" style="background: linear-gradient(135deg, #10b981, #3b82f6);">
+              «к»
+            </span>
+            <div>
+              <div class="flex items-center gap-2">
+                <span id="header-site-title" class="font-extrabold text-base leading-tight group-hover:underline">«конспекты» ФПМ</span>
+                <span id="role-badge" class="hidden px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider" style="background: var(--accent-soft); color: var(--accent);">
+                  👑 Редактор
+                </span>
+              </div>
+              <div class="text-[11px]" style="color: var(--text-secondary);">Интерактивные лекции и PDF-оригиналы ВШЭ</div>
+            </div>
+          </button>
+
+          <!-- Main Mode Switcher Pills (Admin tabs hidden for regular students!) -->
+          <div id="admin-top-tabs" class="hidden sm:flex items-center gap-1 ml-3 p-1 rounded-xl surface-input">
+            <button type="button" id="tab-catalog-btn" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition" style="background: var(--accent-soft); color: var(--accent);">
+              📚 Каталог лекций
+            </button>
+            <button type="button" id="tab-admin-btn" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition" style="color: var(--text-secondary);">
+              ⚙️ Управление сайтом
+            </button>
+            <button type="button" id="tab-guide-btn" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold transition" style="color: var(--text-secondary);">
+              🚀 Как выложить на GitHub
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Toolbar: Theme Switcher + Lock -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="flex items-center gap-0.5 p-1 rounded-xl surface-input">
+            <button type="button" class="theme-pill" data-set-theme="dark">Тёмная</button>
+            <button type="button" class="theme-pill" data-set-theme="light">Светлая</button>
+            <button type="button" class="theme-pill" data-set-theme="sepia">Сепия</button>
+            <button type="button" class="theme-pill active" data-set-theme="emerald">Изумруд</button>
+          </div>
+
+          <button
+            type="button"
+            id="lock-vault-btn"
+            class="px-3.5 py-1.5 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90"
+            title="Выйти на экран ввода пароля"
+          >
+            🔒 Выйти
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Row (Only shown when logged in with Admin password) -->
+      <div id="admin-mob-tabs" class="hidden sm:hidden items-center gap-1 mt-2.5 pt-2.5 border-t" style="border-color: var(--border-col);">
+        <button type="button" id="mob-catalog-btn" class="flex-1 py-1.5 rounded-lg text-xs font-semibold text-center" style="background: var(--accent-soft); color: var(--accent);">
+          📚 Каталог
+        </button>
+        <button type="button" id="mob-admin-btn" class="flex-1 py-1.5 rounded-lg text-xs font-semibold text-center" style="color: var(--text-secondary);">
+          ⚙️ Редактор
+        </button>
+        <button type="button" id="mob-guide-btn" class="flex-1 py-1.5 rounded-lg text-xs font-semibold text-center" style="color: var(--text-secondary);">
+          🚀 GitHub
+        </button>
+      </div>
+    </header>
+
+    <!-- ===================== VIEW 1: CATALOG + BUILT-IN LECTURE VIEWER ===================== -->
+    <div id="view-catalog" class="flex-1 max-w-[1440px] w-full mx-auto px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-[285px_1fr] gap-6 items-start">
+
+      <!-- LEFT SIDEBAR: SUBJECTS, BRANCHES & PERSONAL STUDY PROGRESS -->
+      <aside class="surface-card rounded-3xl p-5 lg:sticky lg:top-20 space-y-5">
+        <div>
+          <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider mb-3 px-1" style="color: var(--text-secondary);">
+            <span>Предметы</span>
+            <span id="sidebar-total-count" class="px-2 py-0.5 rounded-full surface-elevated text-[10px]">0</span>
+          </div>
+          <div id="subject-nav-list" class="space-y-1.5"></div>
+        </div>
+
+        <div class="pt-4 border-t" style="border-color: var(--border-col);">
+          <div class="text-[11px] font-bold uppercase tracking-wider mb-3 px-1" style="color: var(--text-secondary);">
+            Разделы и ветки
+          </div>
+          <div id="branch-nav-list" class="space-y-1.5"></div>
+        </div>
+
+        <!-- Personal Study Progress Tracker -->
+        <div class="pt-4 border-t space-y-2.5" style="border-color: var(--border-col);">
+          <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider px-1" style="color: var(--text-secondary);">
+            <span>Мой прогресс изучения</span>
+            <span id="study-progress-label" style="color: var(--accent);">0 / 0</span>
+          </div>
+          <div class="w-full h-2 rounded-full surface-input overflow-hidden">
+            <div id="study-progress-bar" class="h-full rounded-full transition-all duration-300" style="width: 0%; background: linear-gradient(90deg, #10b981, #38bdf8);"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-1 pt-1">
+            <button type="button" data-status-filter="all" class="status-filter-btn py-1.5 px-2 rounded-xl text-[11px] font-semibold surface-elevated" style="background: var(--accent-soft); color: var(--accent);">
+              Все
+            </button>
+            <button type="button" data-status-filter="fav" class="status-filter-btn py-1.5 px-2 rounded-xl text-[11px] font-semibold surface-elevated" style="color: var(--text-secondary);">
+              ⭐ Важное
+            </button>
+            <button type="button" data-status-filter="done" class="status-filter-btn py-1.5 px-2 rounded-xl text-[11px] font-semibold surface-elevated" style="color: var(--text-secondary);">
+              ✅ Изучено
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t space-y-2.5" style="border-color: var(--border-col);">
+          <button
+            type="button"
+            id="sidebar-quick-add-btn"
+            class="hidden btn-primary-glow w-full py-2.5 px-3 rounded-xl text-xs font-bold text-white items-center justify-center gap-2"
+          >
+            <span>➕ Загрузить / Изменить лекции</span>
+          </button>
+          <div class="p-3 rounded-2xl surface-elevated text-[11px] leading-relaxed" style="color: var(--text-secondary);">
+            💡 <strong>Совет:</strong> левый клик открывает конспект и PDF внутри сайта, а <strong>клик колёсиком мыши</strong> — в новой вкладке.
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN AREA: EITHER CATALOG LIST OR EMBEDDED SHELL VIEWER -->
+      <main class="min-w-0 space-y-4">
+
+        <!-- SUBVIEW A: CATALOG CARDS -->
+        <div id="catalog-list-subview" class="space-y-4">
+
+          <!-- PROMINENT AI DISCLAIMER BANNER ON MAIN PAGE -->
+          <div id="main-ai-disclaimer" class="ai-disclaimer-banner rounded-3xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-start sm:items-center gap-3.5">
+              <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-base shrink-0" style="background: rgba(245, 158, 11, 0.18);">
+                ⚠️
+              </div>
+              <div class="text-xs leading-relaxed">
+                <span class="font-extrabold" style="color: var(--warn-text);">Памятка: нейросети тоже ошибаются, поэтому конспекты не являются 100% верными.</span>
+                <span style="color: var(--text-secondary);">
+                  ИИ отлично помогает структурировать тему, но может допустить неточность в индексах или переходах доказательства. Для проверки к лекциям прикрепляются <strong>📎 PDF-оригиналы от преподавателей</strong> (доступно сравнение бок о бок).
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Banner + Search + Subject Hashtag Cloud -->
+          <div class="surface-card top-rainbow rounded-3xl p-6 sm:p-7 space-y-5">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-2.5" style="background: var(--accent-soft); color: var(--accent); border: 1px solid var(--border-col);">
+                  <span id="active-filter-badge">ВСЕ ПРЕДМЕТЫ • «КОНСПЕКТЫ» ФПМ</span>
+                </div>
+                <h2 id="catalog-heading" class="text-2xl sm:text-3xl font-extrabold tracking-tight">Все конспекты и материалы</h2>
+                <p id="catalog-subheading" class="text-xs sm:text-sm mt-1" style="color: var(--text-secondary);">
+                  ИИ-конспекты лекций с прикреплёнными PDF-оригиналами преподавателей, поиском по хештегам и личными заметками
+                </p>
+              </div>
+
+              <!-- Search & Sort Controls -->
+              <div class="flex flex-col sm:flex-row gap-2.5 md:w-auto w-full">
+                <div class="relative flex-1 sm:w-64">
+                  <input
+                    id="search-input"
+                    type="search"
+                    placeholder="Поиск по темам, теоремам, #тегам..."
+                    class="surface-input w-full rounded-2xl pl-9 pr-3.5 py-2.5 text-xs font-medium"
+                  />
+                  <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs opacity-60">🔍</span>
+                </div>
+                <select id="sort-select" class="surface-input rounded-2xl px-3.5 py-2.5 text-xs font-semibold cursor-pointer">
+                  <option value="manual">По порядку</option>
+                  <option value="date-desc">Сначала новые (по дате)</option>
+                  <option value="date-asc">Сначала старые (по дате)</option>
+                  <option value="num-asc">По номеру (1 → N)</option>
+                  <option value="num-desc">По номеру (N → 1)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- SUBJECT HASHTAG CLOUD (FILTER BY TOPIC TAGS) -->
+            <div class="pt-4 border-t space-y-2" style="border-color: var(--border-col);">
+              <div class="flex items-center justify-between gap-2">
+                <span id="hashtag-bar-title" class="text-[11px] font-bold uppercase tracking-wider" style="color: var(--text-secondary);">
+                  🏷️ Хештеги тем внутри предмета (нажмите для быстрого поиска):
+                </span>
+                <button
+                  type="button"
+                  id="clear-tag-filter-btn"
+                  class="hidden text-[11px] font-bold hover:underline"
+                  style="color: var(--accent);"
+                >
+                  ✕ Сбросить выбранный тег
+                </button>
+              </div>
+              <div id="subject-hashtags-cloud" class="flex flex-wrap gap-1.5"></div>
+            </div>
+          </div>
+
+          <!-- Cards Grid -->
+          <div id="lectures-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </div>
+
+        <!-- SUBVIEW B: EMBEDDED LECTURE SHELL VIEWER (HTML + TEACHER PDF + SIDE-BY-SIDE + NOTES) -->
+        <div id="lecture-viewer-subview" class="hidden surface-card rounded-3xl overflow-hidden flex flex-col">
+          <!-- Viewer Control Bar -->
+          <div class="px-4 py-3 border-b flex items-center justify-between gap-2 flex-wrap surface-elevated" style="border-color: var(--border-col);">
+            <div class="flex items-center gap-2 min-w-0">
+              <button
+                type="button"
+                id="viewer-back-btn"
+                class="px-3 py-1.5 rounded-xl text-xs font-bold surface-card hover:opacity-90 flex items-center gap-1.5 shrink-0"
+              >
+                ← К списку лекций
+              </button>
+              <span id="viewer-subj-pill" class="px-2.5 py-1 rounded-lg text-[11px] font-bold text-white shrink-0">ДМ</span>
+              <span id="viewer-title" class="font-bold text-xs sm:text-sm truncate">Название лекции</span>
+            </div>
+
+            <!-- Mode Switcher: AI Note vs Teacher PDF vs Side-by-Side Split -->
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <div id="viewer-mode-group" class="hidden items-center gap-1 p-1 rounded-xl surface-input">
+                <button type="button" id="mode-ai-btn" class="px-2.5 py-1 rounded-lg text-xs font-bold" style="background: var(--accent-soft); color: var(--accent);">
+                  🤖 ИИ-конспект
+                </button>
+                <button type="button" id="mode-pdf-btn" class="px-2.5 py-1 rounded-lg text-xs font-semibold" style="color: var(--text-secondary);">
+                  📎 Оригинал PDF
+                </button>
+                <button type="button" id="mode-split-btn" class="hidden lg:inline-flex px-2.5 py-1 rounded-lg text-xs font-semibold" style="color: var(--text-secondary);" title="Открыть рядом ИИ-конспект и PDF преподавателя">
+                  ◫ Сравнить бок о бок
+                </button>
+              </div>
+
+              <button
+                type="button"
+                id="viewer-download-pdf-btn"
+                class="hidden px-2.5 py-1.5 rounded-xl text-xs font-semibold surface-card hover:opacity-90"
+                style="color: var(--accent);"
+                title="Скачать прикреплённый PDF-оригинал преподавателя"
+              >
+                ⬇️ Скачать PDF лектора
+              </button>
+
+              <button
+                type="button"
+                id="viewer-notes-toggle-btn"
+                class="px-2.5 py-1.5 rounded-xl text-xs font-semibold surface-card hover:opacity-90"
+                title="Открыть личные заметки к этой лекции"
+              >
+                📝 Заметки
+              </button>
+
+              <button
+                type="button"
+                id="viewer-prev-btn"
+                class="px-2.5 py-1.5 rounded-xl text-xs font-medium surface-card hover:opacity-90"
+                title="Предыдущая лекция"
+              >
+                ◀ Пред.
+              </button>
+              <button
+                type="button"
+                id="viewer-next-btn"
+                class="px-2.5 py-1.5 rounded-xl text-xs font-medium surface-card hover:opacity-90"
+                title="Следующая лекция"
+              >
+                След. ▶
+              </button>
+              <button
+                type="button"
+                id="viewer-print-btn"
+                class="px-2.5 py-1.5 rounded-xl text-xs font-semibold surface-card hover:opacity-90"
+                style="color: var(--accent);"
+                title="Печать или сохранение ИИ-конспекта в PDF"
+              >
+                🖨️ PDF
+              </button>
+              <a
+                id="viewer-newtab-link"
+                href="#lecture"
+                target="_blank"
+                rel="noopener"
+                class="px-2.5 py-1.5 rounded-xl text-xs font-semibold surface-card hover:opacity-90 no-underline"
+                title="Открыть конспект в отдельной вкладке"
+              >
+                ↗ В новой вкладке
+              </a>
+              <button
+                type="button"
+                id="viewer-fullscreen-btn"
+                class="btn-primary-glow px-3 py-1.5 rounded-xl text-xs font-semibold text-white"
+              >
+                ⛶ На весь экран
+              </button>
+            </div>
+          </div>
+
+          <!-- Compact AI Caution Strip inside Reader -->
+          <div class="ai-disclaimer-banner px-4 py-1.5 text-[11px] flex items-center justify-between gap-2 border-t-0 border-x-0">
+            <span>⚠️ <strong>Напоминание:</strong> нейроконспект сгенерирован ИИ и может содержать неточности. Проверяйте строгие доказательства по оригиналу лектора.</span>
+            <span id="viewer-pdf-status-label" class="font-semibold shrink-0" style="color: var(--warn-text);"></span>
+          </div>
+
+          <!-- Personal Notes Drawer (Collapsible) -->
+          <div id="viewer-notes-drawer" class="hidden p-4 border-b surface-elevated space-y-2" style="border-color: var(--border-col);">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold" style="color: var(--accent);">📝 Ваши личные заметки к этой лекции (сохраняются автоматически в вашем браузере):</span>
+              <button type="button" id="close-notes-drawer-btn" class="text-xs px-2 py-0.5 rounded surface-card">Скрыть ✕</button>
+            </div>
+            <textarea
+              id="lecture-personal-notes"
+              rows="3"
+              placeholder="Запишите сюда вопросы к семинару, таймкоды или поправки по оригиналу преподавателя..."
+              class="surface-input w-full rounded-xl p-3 text-xs leading-relaxed"
+            ></textarea>
+          </div>
+
+          <!-- Viewer Body: Single or Split-Screen (AI HTML + Teacher PDF) -->
+          <div id="viewer-frames-grid" class="grid grid-cols-1">
+            <iframe id="lecture-iframe" class="viewer-iframe" title="Просмотр ИИ-конспекта лекции"></iframe>
+            <iframe id="pdf-iframe" class="viewer-iframe hidden border-l" style="border-color: var(--border-col);" title="Оригинальный PDF преподавателя"></iframe>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- ===================== VIEW 2: VISUAL ADMIN / EDITOR (AUTHOR ONLY) ===================== -->
+    <div id="view-admin" class="hidden flex-1 max-w-[1440px] w-full mx-auto px-4 lg:px-6 py-6 space-y-6">
+
+      <!-- Top Save & Encrypt Banner -->
+      <div class="surface-card top-rainbow rounded-3xl p-6 sm:p-7 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" style="background: var(--accent-soft); color: var(--accent);">
+              👑 Панель автора «конспекты» ФПМ
+            </span>
+            <button
+              type="button"
+              id="admin-go-catalog-btn"
+              class="px-3 py-1 rounded-full text-xs font-semibold surface-elevated hover:opacity-90"
+            >
+              👁️ Посмотреть как выглядит каталог →
+            </button>
+          </div>
+          <h2 class="text-2xl font-extrabold">Управление конспектами, PDF-оригиналами преподавателей и тегами</h2>
+          <p class="text-sm mt-1" style="color: var(--text-secondary);">
+            Прикрепляйте к ИИ-конспекту оригинальный <code>.pdf</code> от лектора — оба файла зашифруются вашим паролем и сохранятся по отдельности в папку <code>lectures/</code>.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+          <button
+            type="button"
+            id="export-split-zip-btn"
+            class="btn-primary-glow px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm text-white flex items-center gap-2"
+            title="Скачать ZIP-архив, где index.html лёгкий, а каждая лекция и её PDF лежат отдельно в папке lectures/"
+          >
+            📦 Скачать набор для GitHub (index.html + папка lectures/)
+          </button>
+          <button
+            type="button"
+            id="save-local-server-btn"
+            class="px-4 py-3.5 rounded-2xl font-semibold text-xs surface-elevated hover:opacity-90"
+            title="Если запущен Запустить_редактор.bat (manager.py), сам разложит файлы в папку и отправит в GitHub"
+          >
+            ⚡ Авто-сохранение в папку / GitHub
+          </button>
+          <button
+            type="button"
+            id="export-encrypted-html-btn"
+            class="px-3.5 py-3.5 rounded-2xl font-medium text-xs surface-card hover:opacity-90"
+            title="Альтернатива: скачать всё в одном файле index.html"
+          >
+            💾 Скачать обновлённый сайт (index.html)
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+
+        <!-- COLUMN 1: UPLOAD NEW HTML LECTURE + ATTACH PDF + SUBJECTS + PASSWORDS -->
+        <div class="space-y-6">
+
+          <!-- Card 1: Upload / Add New HTML Lecture + Teacher PDF -->
+          <div class="surface-card rounded-3xl p-5 sm:p-6 space-y-4">
+            <h3 class="font-bold text-base flex items-center gap-2">
+              <span>📥 1. Добавить лекцию (.HTML + оригинал .PDF)</span>
+            </h3>
+            <p class="text-xs" style="color: var(--text-secondary);">
+              Выберите ИИ-конспект (<code>.html</code>) и при желании сразу прикрепите к нему оригинальный файл преподавателя (<code>.pdf</code>).
+            </p>
+
+            <div class="space-y-3">
+              <!-- HTML File Picker -->
+              <label class="block p-3.5 rounded-2xl border-2 border-dashed text-center cursor-pointer transition hover:opacity-90" style="border-color: var(--accent); background: var(--accent-soft);">
+                <div class="font-bold text-xs mb-0.5" style="color: var(--accent);">📂 1. Выбрать .HTML файл(ы) нейроконспекта</div>
+                <div id="upload-file-status" class="text-[11px]" style="color: var(--text-secondary);">Название и описание считаются из HTML автоматически</div>
+                <input id="html-file-input" type="file" accept=".html,.htm" multiple class="hidden" />
+              </label>
+
+              <!-- PDF Teacher Original Picker -->
+              <label class="block p-3.5 rounded-2xl border border-dashed text-center cursor-pointer transition hover:opacity-90 surface-elevated" style="border-color: var(--border-col);">
+                <div class="font-bold text-xs mb-0.5">📎 2. Прикрепить PDF-оригинал преподавателя (необязательно)</div>
+                <div id="upload-pdf-status" class="text-[11px]" style="color: var(--text-secondary);">Прикрепится к этой же карточке лекции для сравнения</div>
+                <input id="pdf-file-input" type="file" accept=".pdf,application/pdf" class="hidden" />
+              </label>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[11px] font-semibold mb-1" style="color: var(--text-secondary);">Предмет</label>
+                  <select id="new-lec-subject" class="surface-input w-full rounded-xl px-2.5 py-2 text-xs"></select>
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold mb-1" style="color: var(--text-secondary);">Ветка</label>
+                  <select id="new-lec-branch" class="surface-input w-full rounded-xl px-2.5 py-2 text-xs"></select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[11px] font-semibold mb-1" style="color: var(--text-secondary);">Номер лекции</label>
+                  <input id="new-lec-number" type="number" value="6" min="1" class="surface-input w-full rounded-xl px-2.5 py-2 text-xs" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold mb-1" style="color: var(--text-secondary);">Дата проведения</label>
+                  <input id="new-lec-date" type="date" value="2026-10-15" class="surface-input w-full rounded-xl px-2.5 py-2 text-xs" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-semibold mb-1" style="color: var(--text-secondary);">Название лекции (заполнится само из файла)</label>
+                <input id="new-lec-title" type="text" placeholder="Например: Лекция 6. Производящие функции" class="surface-input w-full rounded-xl px-3 py-2 text-xs" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-semibold mb-1" style="color: var(--text-secondary);">Краткое описание / темы</label>
+                <input id="new-lec-subtitle" type="text" placeholder="Определения, теоремы и примеры..." class="surface-input w-full rounded-xl px-3 py-2 text-xs" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-semibold mb-1" style="color: var(--text-secondary);">Хештеги тем через запятую (появятся в облаке тегов предмета)</label>
+                <input id="new-lec-tags" type="text" placeholder="Производящие функции, Рекурренты, Теорема 41" class="surface-input w-full rounded-xl px-3 py-2 text-xs" />
+              </div>
+
+              <button
+                type="button"
+                id="add-lecture-btn"
+                class="btn-primary-glow w-full py-2.5 px-4 rounded-xl font-bold text-xs text-white"
+              >
+                ➕ Добавить лекцию в каталог
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2: Subjects & Branches Manager -->
+          <div class="surface-card rounded-3xl p-5 sm:p-6 space-y-4">
+            <h3 class="font-bold text-base">🗂️ 2. Предметы и разделы</h3>
+            <p class="text-xs" style="color: var(--text-secondary);">
+              Добавляйте новые предметы или используйте быстрые шаблоны:
+            </p>
+
+            <div class="flex flex-wrap gap-1.5">
+              <button type="button" id="preset-prog-btn" class="px-3 py-1.5 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90">
+                + 💻 Программирование
+              </button>
+              <button type="button" id="preset-colloq-subj-btn" class="px-3 py-1.5 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90">
+                + 🎓 Отдельный раздел «Коллоквиумы»
+              </button>
+            </div>
+
+            <div id="admin-subjects-list" class="space-y-2"></div>
+
+            <div class="pt-3 border-t space-y-2" style="border-color: var(--border-col);">
+              <div class="text-xs font-semibold">Добавить новый предмет вручную:</div>
+              <div class="grid grid-cols-[1fr_80px_42px] gap-2">
+                <input id="new-subj-name" type="text" placeholder="Название (напр. Теорвер)" class="surface-input rounded-xl px-2.5 py-1.5 text-xs" />
+                <input id="new-subj-short" type="text" placeholder="ТВИМС" class="surface-input rounded-xl px-2.5 py-1.5 text-xs" />
+                <input id="new-subj-color" type="color" value="#10b981" class="surface-input rounded-xl h-8 w-full p-0.5 cursor-pointer" />
+              </div>
+              <button type="button" id="add-subj-btn" class="w-full py-2 rounded-xl text-xs font-bold surface-elevated hover:opacity-90">
+                + Создать предмет
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: Dual Password Settings (Student + Author) -->
+          <div class="surface-card rounded-3xl p-5 sm:p-6 space-y-4">
+            <h3 class="font-bold text-base">🔑 3. Два пароля: для чата и лично для вас</h3>
+            <p class="text-xs" style="color: var(--text-secondary);">
+              Оба пароля открывают общий ключ дешифровки конспектов и PDF из папки <code>lectures/</code>, но права редактора даёт только ваш особый пароль.
+            </p>
+            <div class="space-y-3">
+              <div>
+                <label class="block text-[11px] font-semibold mb-1" style="color: var(--text-secondary);">Обычный пароль для одногруппников (только чтение)</label>
+                <input id="admin-password-input" type="text" value="hse2026" class="surface-input w-full rounded-xl px-3 py-2 text-xs font-mono" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold mb-1" style="color: var(--accent);">👑 Ваш особый пароль автора (редактирование сайта)</label>
+                <input id="master-password-input" type="text" value="admin2026" class="surface-input w-full rounded-xl px-3 py-2 text-xs font-mono" />
+              </div>
+              <label class="flex items-center gap-2 text-xs cursor-pointer select-none">
+                <input id="admin-show-hint-checkbox" type="checkbox" checked class="rounded accent-emerald-500" />
+                <span>Показывать тестовую плашку с паролями на входе (снимите галочку перед отправкой ссылки в чат!)</span>
+              </label>
+              <button type="button" id="apply-security-btn" class="w-full py-2.5 rounded-xl text-xs font-bold surface-elevated hover:opacity-90">
+                Применить настройки безопасности
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- COLUMNS 2 & 3: LECTURE LIST EDITOR (RENAME, CHANGE DATE, REORDER, ATTACH PDF) -->
+        <div class="lg:col-span-2 surface-card rounded-3xl p-5 sm:p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b" style="border-color: var(--border-col);">
+            <div>
+              <h3 class="font-bold text-base">📋 4. Список лекций: переименование, даты, теги и прикрепление PDF преподавателя</h3>
+              <p class="text-xs" style="color: var(--text-secondary);">
+                К любой существующей лекции можно в 1 клик прикрепить (или заменить) <code>.pdf</code> оригинал от преподавателя кнопкой <strong>«📎 Прикрепить PDF»</strong>.
+              </p>
+            </div>
+            <span id="admin-lectures-count" class="px-3 py-1 rounded-full text-xs font-bold surface-elevated shrink-0">5 лекций</span>
+          </div>
+
+          <div id="admin-lectures-list" class="space-y-3"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===================== VIEW 3: DETAILED STEP-BY-STEP GUIDE ===================== -->
+    <div id="view-guide" class="hidden flex-1 max-w-[1140px] w-full mx-auto px-4 lg:px-6 py-6 space-y-6">
+      <div class="surface-card top-rainbow rounded-3xl p-6 sm:p-8 space-y-6">
+        <div>
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2" style="background: var(--accent-soft); color: var(--accent);">
+            📖 Полная инструкция для автора «конспекты» ФПМ
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold">Как устроено раздельное хранение конспектов + PDF и как легко обновлять сайт</h2>
+          <p class="text-sm mt-2" style="color: var(--text-secondary);">
+            Ниже — подробная инструкция по работе с HTML-конспектами, прикреплёнными PDF от преподавателей и публикацией на GitHub Pages.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="surface-elevated rounded-2xl p-5 space-y-2">
+            <div class="font-bold text-sm" style="color: var(--accent);">1. Раздельное хранение HTML и PDF</div>
+            <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
+              В репозитории на GitHub файл <strong><code>index.html</code> весит всего ~60 КБ</strong> — в нём хранятся только оболочка сайта и список карточек. Сами тексты конспектов лежат по отдельности в <code>lectures/&lt;id&gt;.enc.json</code>, а прикреплённые PDF преподавателей — в <code>lectures/&lt;id&gt;.pdf.enc.json</code>. Они подгружаются и расшифровываются в браузере только тогда, когда студент их открывает!
+            </p>
+          </div>
+          <div class="surface-elevated rounded-2xl p-5 space-y-2">
+            <div class="font-bold text-sm" style="color: var(--accent);">2. Ваши файлы на ноутбуке не трогаются</div>
+            <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
+              Ваши исходные HTML и PDF файлы в папках на компьютере (<code>C:/Users/CTEII/Storage/HSF/...</code>) <strong>никогда не изменяются и не шифруются</strong>. Браузер просто считывает копию выбранного файла и формирует зашифрованный пакет <code>.enc.json</code> для загрузки в GitHub.
+            </p>
+          </div>
+        </div>
+
+        <div class="surface-elevated rounded-2xl p-6 space-y-4">
+          <h3 class="font-bold text-base">🚀 Первичная настройка сайта на GitHub Pages (делается 1 раз за 5 минут)</h3>
+          <ol class="list-decimal list-inside space-y-2.5 text-xs leading-relaxed" style="color: var(--text-secondary);">
+            <li><strong>Создайте аккаунт и репозиторий:</strong> зайдите на <strong>github.com</strong>, нажмите <strong>«+» → New repository</strong>. Для ссылки без лишнего «хвоста» назовите репозиторий точно как ваш логин: <code>ваш-логин.github.io</code> (либо коротко, например <code>fpm</code>). Оставьте <strong>Public</strong> и нажмите <strong>Create repository</strong>.</li>
+            <li><strong>Распакуйте скачанный архив:</strong> распакуйте архив <code>hse_fpm_github_kit.zip</code> в отдельную папку на компьютере. Внутри будут лёгкий <code>index.html</code> и папка <code>lectures/</code>.</li>
+            <li><strong>Загрузите файлы на GitHub:</strong> нажмите <strong>uploading an existing file</strong>, перетащите туда <code>index.html</code> вместе с папкой <code>lectures/</code> и нажмите <strong>Commit changes</strong>.</li>
+            <li><strong>Включите сайт:</strong> откройте <strong>Settings → Pages</strong>, в списке <strong>Branch</strong> выберите <strong><code>main</code></strong> и нажмите <strong>Save</strong>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. STATE & DUAL-PASSWORD + SPLIT-FILE CRYPTO ENGINE (HTML + PDF)
+    // =========================================================================
+    let currentRole = "student";
+    let currentDekBytes = null;
+    let currentCryptoDek = null;
+    let vaultData = null;
+    let selectedSubjectId = "all";
+    let selectedBranchId = "all";
+    let selectedTagFilter = "";
+    let selectedStatusFilter = "all"; // "all" | "fav" | "done"
+    let currentOpenLectureId = null;
+    let currentViewerMode = "ai"; // "ai" | "pdf" | "split"
+    let currentPdfBlobUrl = null;
+    let stagedHtmlFiles = [];
+    let stagedPdfFile = null; // { fileName, base64 }
+
+    function showToast(message, isError) {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+      const el = document.createElement("div");
+      el.className = "px-4 py-3 rounded-2xl shadow-xl text-xs font-semibold transition pointer-events-auto " +
+        (isError ? "bg-red-600 text-white" : "bg-emerald-600 text-white");
+      el.textContent = message;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = "0";
+        setTimeout(() => el.remove(), 250);
+      }, 3200);
+    }
+
+    function safeGetStorage(key) {
+      try {
+        return localStorage.getItem(key) || sessionStorage.getItem(key);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function safeSetStorage(key, val, persistent) {
+      try {
+        sessionStorage.setItem(key, val);
+        if (persistent) {
+          localStorage.setItem(key, val);
+        }
+      } catch (e) {}
+    }
+
+    function safeRemoveStorage(key) {
+      try {
+        sessionStorage.removeItem(key);
+        localStorage.removeItem(key);
+      } catch (e) {}
+    }
+
+    // Student local study progress & notes helpers
+    function getStudentStudyState() {
+      try {
+        const raw = safeGetStorage("hse_fpm_study_state");
+        return raw ? JSON.parse(raw) : { done: {}, fav: {}, notes: {} };
+      } catch (e) {
+        return { done: {}, fav: {}, notes: {} };
+      }
+    }
+
+    function saveStudentStudyState(st) {
+      safeSetStorage("hse_fpm_study_state", JSON.stringify(st), true);
+    }
+
+    function base64ToBytes(b64) {
+      const bin = atob(b64);
+      const arr = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+      return arr;
+    }
+
+    function bytesToBase64(bytes) {
+      let bin = "";
+      const arr = new Uint8Array(bytes);
+      const chunk = 0x8000;
+      for (let i = 0; i < arr.length; i += chunk) {
+        bin += String.fromCharCode.apply(null, arr.subarray(i, i + chunk));
+      }
+      return btoa(bin);
+    }
+
+    async function deriveKek(password, saltBytes, iterations) {
+      const enc = new TextEncoder();
+      const keyMaterial = await window.crypto.subtle.importKey(
+        "raw",
+        enc.encode(password),
+        { name: "PBKDF2" },
+        false,
+        ["deriveKey"]
+      );
+      return window.crypto.subtle.deriveKey(
+        {
+          name: "PBKDF2",
+          salt: saltBytes,
+          iterations: iterations || 100000,
+          hash: "SHA-256"
+        },
+        keyMaterial,
+        { name: "AES-GCM", length: 256 },
+        false,
+        ["encrypt", "decrypt"]
+      );
+    }
+
+    async function tryUnwrapSlot(slotObj, password, iterations) {
+      const salt = base64ToBytes(slotObj.salt);
+      const iv = base64ToBytes(slotObj.iv);
+      const ct = base64ToBytes(slotObj.ct);
+      const kek = await deriveKek(password, salt, iterations || 100000);
+      const plainBuf = await window.crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: iv },
+        kek,
+        ct
+      );
+      return JSON.parse(new TextDecoder("utf-8").decode(plainBuf));
+    }
+
+    async function wrapDekSlot(dekBytes, role, password, iterations) {
+      const salt = window.crypto.getRandomValues(new Uint8Array(16));
+      const iv = window.crypto.getRandomValues(new Uint8Array(12));
+      const kek = await deriveKek(password, salt, iterations || 100000);
+      const payload = new TextEncoder().encode(JSON.stringify({
+        dek: bytesToBase64(dekBytes),
+        role: role
+      }));
+      const ctBuf = await window.crypto.subtle.encrypt(
+        { name: "AES-GCM", iv: iv },
+        kek,
+        payload
+      );
+      return {
+        salt: bytesToBase64(salt),
+        iv: bytesToBase64(iv),
+        ct: bytesToBase64(ctBuf)
+      };
+    }
+
+    async function encryptSingleStringWithDek(plainText, cryptoDek) {
+      const iv = window.crypto.getRandomValues(new Uint8Array(12));
+      const plainBytes = new TextEncoder().encode(plainText);
+      const ctBuf = await window.crypto.subtle.encrypt(
+        { name: "AES-GCM", iv: iv },
+        cryptoDek,
+        plainBytes
+      );
+      return {
+        v: 2,
+        iv: bytesToBase64(iv),
+        ct: bytesToBase64(ctBuf)
+      };
+    }
+
+    async function decryptSingleStringWithDek(encPacket, cryptoDek) {
+      const iv = base64ToBytes(encPacket.iv);
+      const ct = base64ToBytes(encPacket.ct);
+      const plainBuf = await window.crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: iv },
+        cryptoDek,
+        ct
+      );
+      return new TextDecoder("utf-8").decode(plainBuf);
+    }
+
+    async function decryptVaultWithPassword(encryptedObj, password) {
+      const iter = encryptedObj.iter || 100000;
+      let unwrapped = null;
+
+      try {
+        unwrapped = await tryUnwrapSlot(encryptedObj.slotAdmin, password, iter);
+      } catch (e1) {
+        unwrapped = await tryUnwrapSlot(encryptedObj.slotStudent, password, iter);
+      }
+
+      const dekBytes = base64ToBytes(unwrapped.dek);
+      const cryptoDek = await window.crypto.subtle.importKey(
+        "raw",
+        dekBytes,
+        { name: "AES-GCM" },
+        false,
+        ["encrypt", "decrypt"]
+      );
+      const vaultIv = base64ToBytes(encryptedObj.vaultIv);
+      const vaultCt = base64ToBytes(encryptedObj.vaultCt);
+      const plainVaultBuf = await window.crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: vaultIv },
+        cryptoDek,
+        vaultCt
+      );
+      const parsedVault = JSON.parse(new TextDecoder("utf-8").decode(plainVaultBuf));
+      return {
+        role: unwrapped.role || "student",
+        dekBytes: dekBytes,
+        cryptoDek: cryptoDek,
+        vault: parsedVault
+      };
+    }
+
+    async function encryptDualVault(dataObj, studentPassword, adminPassword, customDekBytes) {
+      const iter = 100000;
+      const dekBytes = customDekBytes || window.crypto.getRandomValues(new Uint8Array(32));
+      const vaultIv = window.crypto.getRandomValues(new Uint8Array(12));
+      const cryptoDek = await window.crypto.subtle.importKey(
+        "raw",
+        dekBytes,
+        { name: "AES-GCM" },
+        false,
+        ["encrypt", "decrypt"]
+      );
+      const plainBytes = new TextEncoder().encode(JSON.stringify(dataObj));
+      const vaultCtBuf = await window.crypto.subtle.encrypt(
+        { name: "AES-GCM", iv: vaultIv },
+        cryptoDek,
+        plainBytes
+      );
+
+      const slotAdmin = await wrapDekSlot(dekBytes, "admin", adminPassword, iter);
+      const slotStudent = await wrapDekSlot(dekBytes, "student", studentPassword, iter);
+
+      return {
+        encryptedCatalog: {
+          v: 2,
+          iter: iter,
+          showHint: Boolean(dataObj.showPasswordHint),
+          vaultIv: bytesToBase64(vaultIv),
+          vaultCt: bytesToBase64(vaultCtBuf),
+          slotAdmin: slotAdmin,
+          slotStudent: slotStudent
+        },
+        dekBytes: dekBytes,
+        cryptoDek: cryptoDek
+      };
+    }
+
+    function getEmbeddedVaultObject() {
+      const el = document.getElementById("encrypted-vault-json");
+      return JSON.parse(el.textContent.trim());
+    }
+
+    function loadExternalLectureJson(filePath) {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", filePath, true);
+        xhr.onload = function () {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            try {
+              resolve(JSON.parse(xhr.responseText));
+            } catch (e) {
+              reject(e);
+            }
+          } else {
+            reject(new Error("HTTP " + xhr.status));
+          }
+        };
+        xhr.onerror = function () {
+          reject(new Error("Network error"));
+        };
+        xhr.send();
+      });
+    }
+
+    async function ensureLectureHtmlLoaded(item) {
+      if (item.html) return item.html;
+      const path = item.file || ("lectures/" + item.id + ".enc.json");
+      const encPacket = await loadExternalLectureJson(path);
+      const decryptedHtml = await decryptSingleStringWithDek(encPacket, currentCryptoDek);
+      item.html = decryptedHtml;
+      return decryptedHtml;
+    }
+
+    async function ensureLecturePdfLoaded(item) {
+      if (!item.hasPdf) return null;
+      if (item.pdfBase64) return item.pdfBase64;
+      const path = item.pdfFile || ("lectures/" + item.id + ".pdf.enc.json");
+      const encPacket = await loadExternalLectureJson(path);
+      const decryptedB64 = await decryptSingleStringWithDek(encPacket, currentCryptoDek);
+      item.pdfBase64 = decryptedB64;
+      return decryptedB64;
+    }
+
+    // =========================================================================
+    // 2. THEME SWITCHING
+    // =========================================================================
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      safeSetStorage("hse_fpm_theme", theme, true);
+      document.querySelectorAll("[data-set-theme]").forEach(btn => {
+        if (btn.getAttribute("data-set-theme") === theme) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+    }
+
+    // =========================================================================
+    // 3. ROLE-BASED UNLOCKING
+    // =========================================================================
+    function applyRolePermissions(role) {
+      const isAdmin = role === "admin";
+      const adminTopTabs = document.getElementById("admin-top-tabs");
+      const adminMobTabs = document.getElementById("admin-mob-tabs");
+      const quickAddBtn = document.getElementById("sidebar-quick-add-btn");
+      const roleBadge = document.getElementById("role-badge");
+
+      if (isAdmin) {
+        adminTopTabs.classList.remove("hidden");
+        adminTopTabs.classList.add("sm:flex");
+        adminMobTabs.classList.remove("hidden");
+        adminMobTabs.classList.add("flex");
+        quickAddBtn.classList.remove("hidden");
+        quickAddBtn.classList.add("flex");
+        roleBadge.classList.remove("hidden");
+      } else {
+        adminTopTabs.classList.add("hidden");
+        adminTopTabs.classList.remove("sm:flex");
+        adminMobTabs.classList.add("hidden");
+        adminMobTabs.classList.remove("flex");
+        quickAddBtn.classList.add("hidden");
+        quickAddBtn.classList.remove("flex");
+        roleBadge.classList.add("hidden");
+      }
+    }
+
+    async function tryUnlockWithPassword(password, remember) {
+      const errEl = document.getElementById("login-error");
+      errEl.classList.add("hidden");
+      try {
+        const encObj = getEmbeddedVaultObject();
+        const result = await decryptVaultWithPassword(encObj, password);
+        vaultData = result.vault;
+        currentRole = result.role;
+        currentDekBytes = result.dekBytes;
+        currentCryptoDek = result.cryptoDek;
+        safeSetStorage("hse_fpm_pass", password, remember);
+
+        document.getElementById("lock-screen").classList.add("hidden");
+        document.getElementById("app-shell").classList.remove("hidden");
+
+        document.getElementById("admin-password-input").value = vaultData.studentPassword || "hse2026";
+        document.getElementById("master-password-input").value = vaultData.adminPassword || "admin2026";
+        document.getElementById("admin-show-hint-checkbox").checked = Boolean(vaultData.showPasswordHint);
+        document.getElementById("sort-select").value = vaultData.defaultSort || "manual";
+
+        applyRolePermissions(currentRole);
+        renderAll();
+
+        const hash = window.location.hash || "";
+        if (hash.startsWith("#lecture=")) {
+          handleHashRoute();
+        } else if (currentRole === "admin") {
+          switchMainTab("admin");
+          showToast("👑 Вы вошли как автор — открыт режим редактирования сайта");
+        } else {
+          switchMainTab("catalog");
+        }
+        return true;
+      } catch (e) {
+        errEl.classList.remove("hidden");
+        return false;
+      }
+    }
+
+    function handleHashRoute() {
+      if (!vaultData) return;
+      const hash = window.location.hash || "";
+      if (hash.startsWith("#lecture=")) {
+        const lecId = decodeURIComponent(hash.replace("#lecture=", ""));
+        const found = vaultData.lectures.find(l => l.id === lecId);
+        if (found) {
+          switchMainTab("catalog");
+          openLectureInShell(found.id, "ai");
+        }
+      }
+    }
+
+    // =========================================================================
+    // 4. HASHTAGS CLOUD, PROGRESS, CATALOG & VIEWER
+    // =========================================================================
+    function renderSubjectHashtagCloud() {
+      if (!vaultData) return;
+      const cloudEl = document.getElementById("subject-hashtags-cloud");
+      const clearBtn = document.getElementById("clear-tag-filter-btn");
+      const titleEl = document.getElementById("hashtag-bar-title");
+
+      const subjObj = vaultData.subjects.find(s => s.id === selectedSubjectId);
+      titleEl.textContent = subjObj
+        ? `🏷️ Общий список тегов предмета «${subjObj.name}»:`
+        : "🏷️ Общий список хештегов по всем предметам:";
+
+      // Collect tags within the active subject & branch
+      const tagCounts = {};
+      vaultData.lectures.forEach(item => {
+        if (selectedSubjectId !== "all" && item.subjectId !== selectedSubjectId) return;
+        if (selectedBranchId !== "all" && item.branchId !== selectedBranchId) return;
+        (item.tags || []).forEach(rawTag => {
+          const t = rawTag.trim();
+          if (!t) return;
+          tagCounts[t] = (tagCounts[t] || 0) + 1;
+        });
+      });
+
+      const allTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
+
+      if (selectedTagFilter) {
+        clearBtn.classList.remove("hidden");
+      } else {
+        clearBtn.classList.add("hidden");
+      }
+
+      if (allTags.length === 0) {
+        cloudEl.innerHTML = `<span class="text-xs opacity-60">Для этого предмета пока не добавлены хештеги</span>`;
+        return;
+      }
+
+      let html = `
+        <button
+          type="button"
+          data-cloud-tag=""
+          class="hashtag-chip px-3 py-1 rounded-xl text-xs border surface-elevated ${selectedTagFilter === '' ? 'active' : ''}"
+        >
+          Все темы
+        </button>
+      `;
+
+      allTags.forEach(tag => {
+        const isActive = selectedTagFilter.toLowerCase() === tag.toLowerCase();
+        html += `
+          <button
+            type="button"
+            data-cloud-tag="${tag.replace(/"/g, '&quot;')}"
+            class="hashtag-chip px-3 py-1 rounded-xl text-xs border surface-elevated ${isActive ? 'active' : ''}"
+          >
+            #${tag} <span class="opacity-60 text-[10px] ml-0.5">${tagCounts[tag]}</span>
+          </button>
+        `;
+      });
+
+      cloudEl.innerHTML = html;
+
+      cloudEl.querySelectorAll("[data-cloud-tag]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const val = btn.getAttribute("data-cloud-tag");
+          selectedTagFilter = (selectedTagFilter === val) ? "" : val;
+          renderSubjectHashtagCloud();
+          renderCatalogCards();
+        });
+      });
+    }
+
+    function renderStudyProgress() {
+      if (!vaultData) return;
+      const st = getStudentStudyState();
+      const relevant = vaultData.lectures.filter(l =>
+        selectedSubjectId === "all" || l.subjectId === selectedSubjectId
+      );
+      const total = relevant.length;
+      const doneCount = relevant.filter(l => st.done && st.done[l.id]).length;
+      const pct = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+
+      document.getElementById("study-progress-label").textContent = `${doneCount} / ${total} (${pct}%)`;
+      document.getElementById("study-progress-bar").style.width = `${pct}%`;
+
+      document.querySelectorAll(".status-filter-btn").forEach(btn => {
+        const mode = btn.getAttribute("data-status-filter");
+        if (mode === selectedStatusFilter) {
+          btn.style.background = "var(--accent-soft)";
+          btn.style.color = "var(--accent)";
+        } else {
+          btn.style.background = "";
+          btn.style.color = "var(--text-secondary)";
+        }
+      });
+    }
+
+    function getFilteredSortedLectures() {
+      if (!vaultData) return [];
+      const query = (document.getElementById("search-input").value || "").trim().toLowerCase().replace(/^#/, "");
+      const sortMode = document.getElementById("sort-select").value || "manual";
+      const st = getStudentStudyState();
+
+      let list = vaultData.lectures.filter(item => {
+        if (selectedSubjectId !== "all" && item.subjectId !== selectedSubjectId) return false;
+        if (selectedBranchId !== "all" && item.branchId !== selectedBranchId) return false;
+        if (selectedTagFilter) {
+          const hasTag = (item.tags || []).some(t => t.toLowerCase() === selectedTagFilter.toLowerCase());
+          if (!hasTag) return false;
+        }
+        if (selectedStatusFilter === "fav" && !(st.fav && st.fav[item.id])) return false;
+        if (selectedStatusFilter === "done" && !(st.done && st.done[item.id])) return false;
+        if (query) {
+          const hay = (
+            item.title + " " +
+            (item.subtitle || "") + " " +
+            (item.dateLabel || "") + " " +
+            (item.tags || []).join(" ")
+          ).toLowerCase();
+          if (!hay.includes(query)) return false;
+        }
+        return true;
+      });
+
+      list.sort((a, b) => {
+        if (sortMode === "date-desc") return (b.date || "").localeCompare(a.date || "");
+        if (sortMode === "date-asc") return (a.date || "").localeCompare(b.date || "");
+        if (sortMode === "num-asc") return (a.number || 0) - (b.number || 0);
+        if (sortMode === "num-desc") return (b.number || 0) - (a.number || 0);
+        return (a.order || 0) - (b.order || 0);
+      });
+      return list;
+    }
+
+    function renderSidebar() {
+      const subjListEl = document.getElementById("subject-nav-list");
+      const branchListEl = document.getElementById("branch-nav-list");
+      document.getElementById("sidebar-total-count").textContent = vaultData.lectures.length + " мат.";
+
+      let subjHtml = `
+        <button type="button" data-filter-subj="all" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold transition ${selectedSubjectId === 'all' ? '' : 'opacity-80 hover:opacity-100'}" style="${selectedSubjectId === 'all' ? 'background: var(--accent-soft); color: var(--accent);' : ''}">
+          <span class="flex items-center gap-2.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span>Все предметы</span></span>
+          <span class="text-[11px] opacity-75">${vaultData.lectures.length}</span>
+        </button>
+      `;
+
+      vaultData.subjects.forEach(subj => {
+        const count = vaultData.lectures.filter(l => l.subjectId === subj.id).length;
+        const active = selectedSubjectId === subj.id;
+        subjHtml += `
+          <button type="button" data-filter-subj="${subj.id}" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold transition ${active ? '' : 'opacity-80 hover:opacity-100'}" style="${active ? 'background: var(--accent-soft); color: var(--accent);' : ''}">
+            <span class="flex items-center gap-2.5 truncate">
+              <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background:${subj.color}"></span>
+              <span class="truncate">${subj.name}</span>
+            </span>
+            <span class="text-[11px] opacity-75 ml-2">${count}</span>
+          </button>
+        `;
+      });
+      subjListEl.innerHTML = subjHtml;
+
+      let branchHtml = `
+        <button type="button" data-filter-branch="all" class="w-full flex items-center justify-between px-3.5 py-2 rounded-2xl text-xs font-semibold transition" style="${selectedBranchId === 'all' ? 'background: var(--accent-soft); color: var(--accent);' : ''}">
+          <span>Все материалы</span>
+          <span class="text-[11px] opacity-75">${vaultData.lectures.length}</span>
+        </button>
+      `;
+      vaultData.branches.forEach(br => {
+        const count = vaultData.lectures.filter(l => l.branchId === br.id).length;
+        const active = selectedBranchId === br.id;
+        branchHtml += `
+          <button type="button" data-filter-branch="${br.id}" class="w-full flex items-center justify-between px-3.5 py-2 rounded-2xl text-xs font-semibold transition" style="${active ? 'background: var(--accent-soft); color: var(--accent);' : ''}">
+            <span>${br.name}</span>
+            <span class="text-[11px] opacity-75">${count}</span>
+          </button>
+        `;
+      });
+      branchListEl.innerHTML = branchHtml;
+
+      subjListEl.querySelectorAll("[data-filter-subj]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          selectedSubjectId = btn.getAttribute("data-filter-subj");
+          selectedTagFilter = "";
+          closeLectureViewer();
+          renderSidebar();
+          renderStudyProgress();
+          renderSubjectHashtagCloud();
+          renderCatalogCards();
+        });
+      });
+
+      branchListEl.querySelectorAll("[data-filter-branch]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          selectedBranchId = btn.getAttribute("data-filter-branch");
+          selectedTagFilter = "";
+          closeLectureViewer();
+          renderSidebar();
+          renderSubjectHashtagCloud();
+          renderCatalogCards();
+        });
+      });
+    }
+
+    function renderCatalogCards() {
+      const grid = document.getElementById("lectures-grid");
+      const list = getFilteredSortedLectures();
+      const st = getStudentStudyState();
+
+      const subjObj = vaultData.subjects.find(s => s.id === selectedSubjectId);
+      const branchObj = vaultData.branches.find(b => b.id === selectedBranchId);
+      document.getElementById("active-filter-badge").textContent =
+        (subjObj ? subjObj.name.toUpperCase() : "ВСЕ ПРЕДМЕТЫ") + " • " +
+        (branchObj ? branchObj.name.toUpperCase() : "«КОНСПЕКТЫ» ФПМ");
+      document.getElementById("catalog-heading").textContent =
+        subjObj ? subjObj.name : "Все конспекты и материалы";
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full surface-card rounded-3xl p-10 text-center space-y-3">
+            <div class="text-3xl">📭</div>
+            <div class="font-bold text-base">По выбранному фильтру или хештегу конспектов не найдено</div>
+            <p class="text-xs" style="color: var(--text-secondary);">Попробуйте сбросить фильтр тегов или выбрать другой предмет слева.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = list.map(item => {
+        const subj = vaultData.subjects.find(s => s.id === item.subjectId) || { name: "Предмет", short: "КУРС", color: "#10b981" };
+        const br = vaultData.branches.find(b => b.id === item.branchId) || { name: "Лекции" };
+        const isDone = Boolean(st.done && st.done[item.id]);
+        const isFav = Boolean(st.fav && st.fav[item.id]);
+        const hasNote = Boolean(st.notes && st.notes[item.id] && st.notes[item.id].trim());
+
+        const tagsHtml = (item.tags || []).map(t => {
+          const activeTag = selectedTagFilter.toLowerCase() === t.toLowerCase();
+          return `<button type="button" data-card-tag="${t.replace(/"/g, '&quot;')}" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated ${activeTag ? 'active' : ''}" style="${activeTag ? '' : 'color: var(--text-secondary);'}">#${t}</button>`;
+        }).join("");
+
+        const pdfBadgeHtml = item.hasPdf
+          ? `<span class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider" style="background: rgba(16, 185, 129, 0.16); color: var(--accent);">📎 +PDF лектора</span>`
+          : "";
+
+        const pdfButtonHtml = item.hasPdf
+          ? `<button type="button" data-open-pdf="${item.id}" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Открыть прикреплённый PDF-оригинал от преподавателя">📎 Оригинал PDF</button>`
+          : "";
+
+        return `
+          <article class="surface-card lecture-card rounded-3xl p-6 flex flex-col justify-between gap-4" style="border-top: 3px solid ${subj.color};">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm" style="background:${subj.color}">
+                    ${subj.short}
+                  </span>
+                  <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold surface-elevated" style="color: var(--accent);">
+                    ${br.name} • №${item.number || 1}
+                  </span>
+                  ${pdfBadgeHtml}
+                  ${hasNote ? `<span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold surface-elevated" title="Есть ваша личная заметка">📝 Заметка</span>` : ""}
+                </div>
+
+                <!-- Right: Date + Bookmark & Done Toggles -->
+                <div class="flex items-center gap-1.5">
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-medium surface-elevated" style="color: var(--text-secondary);">
+                    📅 ${item.dateLabel || item.date || ""}
+                  </span>
+                  <button
+                    type="button"
+                    data-toggle-fav="${item.id}"
+                    class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90"
+                    title="Добавить в закладки (к коллоквиуму)"
+                    style="${isFav ? 'color: #fbbf24; border-color: #fbbf24;' : 'color: var(--text-secondary);'}"
+                  >
+                    ${isFav ? "★" : "☆"}
+                  </button>
+                  <button
+                    type="button"
+                    data-toggle-done="${item.id}"
+                    class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90"
+                    title="Отметить как изученное"
+                    style="${isDone ? 'background: var(--accent-soft); color: var(--accent); border-color: var(--accent);' : 'color: var(--text-secondary);'}"
+                  >
+                    ✓
+                  </button>
+                </div>
+              </div>
+
+              <h3 class="text-base sm:text-lg font-extrabold leading-snug pt-0.5">
+                <a
+                  href="#lecture=${encodeURIComponent(item.id)}"
+                  data-open-lecture="${item.id}"
+                  class="hover:underline block"
+                  title="Левый клик — открыть внутри сайта. Колёсико мыши — открыть в новой вкладке."
+                >
+                  ${item.title}
+                </a>
+              </h3>
+
+              <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
+                ${item.subtitle || ""}
+              </p>
+            </div>
+
+            <div class="space-y-3.5 pt-3 border-t" style="border-color: var(--border-col);">
+              <div class="flex flex-wrap gap-1.5">${tagsHtml}</div>
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <a
+                  href="#lecture=${encodeURIComponent(item.id)}"
+                  data-open-lecture="${item.id}"
+                  class="btn-primary-glow flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]"
+                >
+                  📖 Читать конспект
+                </a>
+                ${pdfButtonHtml}
+                <a
+                  href="#lecture=${encodeURIComponent(item.id)}"
+                  data-newtab-lecture="${item.id}"
+                  target="_blank"
+                  rel="noopener"
+                  class="py-2.5 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline"
+                  title="Открыть в новой вкладке (или нажмите колёсиком мыши)"
+                >
+                  ↗
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      grid.querySelectorAll("[data-open-lecture]").forEach(link => {
+        link.addEventListener("click", (e) => {
+          if (e.button === 0 && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+            e.preventDefault();
+            const id = link.getAttribute("data-open-lecture");
+            openLectureInShell(id, "ai");
+          }
+        });
+      });
+
+      grid.querySelectorAll("[data-open-pdf]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-open-pdf");
+          openLectureInShell(id, "pdf");
+        });
+      });
+
+      grid.querySelectorAll("[data-card-tag]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const tagVal = btn.getAttribute("data-card-tag");
+          selectedTagFilter = (selectedTagFilter === tagVal) ? "" : tagVal;
+          renderSubjectHashtagCloud();
+          renderCatalogCards();
+        });
+      });
+
+      grid.querySelectorAll("[data-toggle-fav]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-toggle-fav");
+          const s = getStudentStudyState();
+          s.fav = s.fav || {};
+          s.fav[id] = !s.fav[id];
+          saveStudentStudyState(s);
+          renderCatalogCards();
+          showToast(s.fav[id] ? "⭐ Добавлено в важное к коллоквиуму" : "Убрано из закладок");
+        });
+      });
+
+      grid.querySelectorAll("[data-toggle-done]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-toggle-done");
+          const s = getStudentStudyState();
+          s.done = s.done || {};
+          s.done[id] = !s.done[id];
+          saveStudentStudyState(s);
+          renderStudyProgress();
+          renderCatalogCards();
+          showToast(s.done[id] ? "✅ Лекция отмечена как изученная!" : "Отметка об изучении снята");
+        });
+      });
+
+      grid.querySelectorAll("[data-newtab-lecture]").forEach(link => {
+        link.addEventListener("click", async (e) => {
+          e.preventDefault();
+          const id = link.getAttribute("data-newtab-lecture");
+          const item = vaultData.lectures.find(l => l.id === id);
+          if (!item) return;
+          try {
+            const htmlStr = await ensureLectureHtmlLoaded(item);
+            const blob = new Blob([htmlStr], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            window.open(url, "_blank");
+          } catch (err) {
+            showToast("Не удалось подгрузить файл лекции: " + err.message, true);
+          }
+        });
+      });
+    }
+
+    function setViewerLayoutMode(mode) {
+      currentViewerMode = mode;
+      const gridEl = document.getElementById("viewer-frames-grid");
+      const htmlFrame = document.getElementById("lecture-iframe");
+      const pdfFrame = document.getElementById("pdf-iframe");
+      const btnAi = document.getElementById("mode-ai-btn");
+      const btnPdf = document.getElementById("mode-pdf-btn");
+      const btnSplit = document.getElementById("mode-split-btn");
+
+      [btnAi, btnPdf, btnSplit].forEach(b => {
+        b.style.background = "transparent";
+        b.style.color = "var(--text-secondary)";
+      });
+
+      if (mode === "pdf") {
+        gridEl.className = "grid grid-cols-1";
+        htmlFrame.classList.add("hidden");
+        pdfFrame.classList.remove("hidden");
+        btnPdf.style.background = "var(--accent-soft)";
+        btnPdf.style.color = "var(--accent)";
+      } else if (mode === "split") {
+        gridEl.className = "grid grid-cols-1 lg:grid-cols-2";
+        htmlFrame.classList.remove("hidden");
+        pdfFrame.classList.remove("hidden");
+        btnSplit.style.background = "var(--accent-soft)";
+        btnSplit.style.color = "var(--accent)";
+      } else {
+        gridEl.className = "grid grid-cols-1";
+        htmlFrame.classList.remove("hidden");
+        pdfFrame.classList.add("hidden");
+        btnAi.style.background = "var(--accent-soft)";
+        btnAi.style.color = "var(--accent)";
+      }
+    }
+
+    async function openLectureInShell(lectureId, initialMode) {
+      const item = vaultData.lectures.find(l => l.id === lectureId);
+      if (!item) return;
+      currentOpenLectureId = lectureId;
+
+      if (currentPdfBlobUrl) {
+        URL.revokeObjectURL(currentPdfBlobUrl);
+        currentPdfBlobUrl = null;
+      }
+
+      const subj = vaultData.subjects.find(s => s.id === item.subjectId) || { short: "КУРС", color: "#10b981" };
+      document.getElementById("viewer-subj-pill").textContent = subj.short;
+      document.getElementById("viewer-subj-pill").style.backgroundColor = subj.color;
+      document.getElementById("viewer-title").textContent = `Лекция ${item.number}: ${item.title}`;
+      document.getElementById("viewer-newtab-link").setAttribute("href", `#lecture=${encodeURIComponent(item.id)}`);
+
+      // Load personal notes for this lecture
+      const st = getStudentStudyState();
+      document.getElementById("lecture-personal-notes").value = (st.notes && st.notes[item.id]) || "";
+
+      // Configure PDF controls visibility
+      const modeGroup = document.getElementById("viewer-mode-group");
+      const dlPdfBtn = document.getElementById("viewer-download-pdf-btn");
+      const pdfStatusLabel = document.getElementById("viewer-pdf-status-label");
+
+      if (item.hasPdf) {
+        modeGroup.classList.remove("hidden");
+        modeGroup.classList.add("flex");
+        dlPdfBtn.classList.remove("hidden");
+        pdfStatusLabel.textContent = "📎 Прикреплён PDF преподавателя";
+      } else {
+        modeGroup.classList.add("hidden");
+        modeGroup.classList.remove("flex");
+        dlPdfBtn.classList.add("hidden");
+        pdfStatusLabel.textContent = "";
+      }
+
+      document.getElementById("catalog-list-subview").classList.add("hidden");
+      document.getElementById("lecture-viewer-subview").classList.remove("hidden");
+
+      const iframe = document.getElementById("lecture-iframe");
+      const pdfIframe = document.getElementById("pdf-iframe");
+
+      try {
+        const htmlStr = await ensureLectureHtmlLoaded(item);
+        iframe.srcdoc = htmlStr;
+      } catch (err) {
+        iframe.srcdoc = `<!DOCTYPE html><html lang="ru"><body style="background:#06100f;color:#f0fdf4;font-family:sans-serif;padding:40px;"><h2>Не удалось загрузить файл ${item.file || ''}</h2></body></html>`;
+      }
+
+      if (item.hasPdf) {
+        try {
+          const pdfB64 = await ensureLecturePdfLoaded(item);
+          if (pdfB64) {
+            const pdfBytes = base64ToBytes(pdfB64);
+            const pdfBlob = new Blob([pdfBytes], { type: "application/pdf" });
+            currentPdfBlobUrl = URL.createObjectURL(pdfBlob);
+            pdfIframe.src = currentPdfBlobUrl;
+          }
+        } catch (err) {
+          showToast("Не удалось расшифровать PDF: " + err.message, true);
+        }
+      } else {
+        pdfIframe.removeAttribute("src");
+      }
+
+      setViewerLayoutMode((item.hasPdf && initialMode) ? initialMode : "ai");
+    }
+
+    function closeLectureViewer() {
+      currentOpenLectureId = null;
+      if (currentPdfBlobUrl) {
+        URL.revokeObjectURL(currentPdfBlobUrl);
+        currentPdfBlobUrl = null;
+      }
+      const viewer = document.getElementById("lecture-viewer-subview");
+      viewer.classList.remove("viewer-fullscreen");
+      viewer.classList.add("hidden");
+      document.getElementById("catalog-list-subview").classList.remove("hidden");
+      if (window.location.hash.startsWith("#lecture=")) {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      }
+    }
+
+    // =========================================================================
+    // 5. VISUAL ADMIN / EDITOR RENDERING & ACTIONS (INCLUDING PDF ATTACHMENT)
+    // =========================================================================
+    function formatRussianDate(isoDate) {
+      if (!isoDate) return "";
+      const months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+      const parts = isoDate.split("-");
+      if (parts.length !== 3) return isoDate;
+      const day = parseInt(parts[2], 10);
+      const m = parseInt(parts[1], 10) - 1;
+      return `${day} ${months[m] || ""}`;
+    }
+
+    function readFileAsBase64(fileObj) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const res = reader.result || "";
+          const commaIdx = res.indexOf(",");
+          resolve(commaIdx >= 0 ? res.slice(commaIdx + 1) : res);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(fileObj);
+      });
+    }
+
+    function renderAdminPanel() {
+      if (!vaultData) return;
+
+      const subjSelect = document.getElementById("new-lec-subject");
+      subjSelect.innerHTML = vaultData.subjects.map(s => `<option value="${s.id}">${s.name}</option>`).join("");
+
+      const branchSelect = document.getElementById("new-lec-branch");
+      branchSelect.innerHTML = vaultData.branches.map(b => `<option value="${b.id}">${b.name}</option>`).join("");
+
+      const subjList = document.getElementById("admin-subjects-list");
+      subjList.innerHTML = vaultData.subjects.map(s => `
+        <div class="flex items-center justify-between gap-2 p-2.5 rounded-2xl surface-elevated text-xs">
+          <div class="flex items-center gap-2 min-w-0">
+            <input type="color" value="${s.color}" data-subj-color="${s.id}" class="w-6 h-6 rounded cursor-pointer border-0 bg-transparent shrink-0" />
+            <input type="text" value="${s.name}" data-subj-name="${s.id}" class="surface-input rounded-lg px-2.5 py-1 text-xs font-semibold w-full" />
+            <input type="text" value="${s.short}" data-subj-short="${s.id}" class="surface-input rounded-lg px-2 py-1 text-xs w-20 text-center font-bold" />
+          </div>
+          <button type="button" data-del-subj="${s.id}" class="px-2 py-1 rounded-lg text-red-400 hover:bg-red-950/40 shrink-0" title="Удалить предмет">✕</button>
+        </div>
+      `).join("");
+
+      subjList.querySelectorAll("[data-subj-name]").forEach(inp => {
+        inp.addEventListener("change", () => {
+          const s = vaultData.subjects.find(x => x.id === inp.getAttribute("data-subj-name"));
+          if (s) { s.name = inp.value.trim() || s.name; renderAll(); showToast("Название предмета обновлено"); }
+        });
+      });
+      subjList.querySelectorAll("[data-subj-short]").forEach(inp => {
+        inp.addEventListener("change", () => {
+          const s = vaultData.subjects.find(x => x.id === inp.getAttribute("data-subj-short"));
+          if (s) { s.short = inp.value.trim() || s.short; renderAll(); showToast("Сокращение обновлено"); }
+        });
+      });
+      subjList.querySelectorAll("[data-subj-color]").forEach(inp => {
+        inp.addEventListener("change", () => {
+          const s = vaultData.subjects.find(x => x.id === inp.getAttribute("data-subj-color"));
+          if (s) { s.color = inp.value; renderAll(); }
+        });
+      });
+      subjList.querySelectorAll("[data-del-subj]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-del-subj");
+          if (vaultData.subjects.length <= 1) {
+            showToast("Должен остаться хотя бы один предмет", true);
+            return;
+          }
+          vaultData.subjects = vaultData.subjects.filter(x => x.id !== id);
+          renderAll();
+          showToast("Предмет удалён");
+        });
+      });
+
+      const sortedLectures = [...vaultData.lectures].sort((a, b) => (a.order || 0) - (b.order || 0));
+      sortedLectures.forEach((l, i) => { l.order = i + 1; });
+
+      document.getElementById("admin-lectures-count").textContent = `${sortedLectures.length} мат.`;
+      const listEl = document.getElementById("admin-lectures-list");
+
+      listEl.innerHTML = sortedLectures.map((lec, idx) => {
+        const subjOpts = vaultData.subjects.map(s =>
+          `<option value="${s.id}" ${s.id === lec.subjectId ? "selected" : ""}>${s.name}</option>`
+        ).join("");
+        const branchOpts = vaultData.branches.map(b =>
+          `<option value="${b.id}" ${b.id === lec.branchId ? "selected" : ""}>${b.name}</option>`
+        ).join("");
+        const targetFile = lec.file || (`lectures/${lec.id}.enc.json`);
+
+        const pdfStatusChip = lec.hasPdf
+          ? `<span class="px-2.5 py-1 rounded-lg text-[11px] font-bold" style="background: var(--accent-soft); color: var(--accent);">📎 Прикреплён: ${lec.pdfName || 'Оригинал.pdf'}</span>
+             <button type="button" data-remove-pdf="${lec.id}" class="px-2 py-1 rounded-lg text-[11px] text-red-400 surface-card hover:bg-red-950/40" title="Открепить PDF">✕ Убрать PDF</button>`
+          : `<span class="text-[11px]" style="color: var(--text-secondary);">📎 PDF преподавателя не прикреплён</span>`;
+
+        return `
+          <div class="surface-elevated rounded-2xl p-4 space-y-3">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold surface-card" style="color: var(--accent);">#${idx + 1}</span>
+                <button type="button" data-move-up="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80" ${idx === 0 ? "disabled style='opacity:0.4'" : ""}>⬆️ Вверх</button>
+                <button type="button" data-move-down="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80" ${idx === sortedLectures.length - 1 ? "disabled style='opacity:0.4'" : ""}>⬇️ Вниз</button>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono surface-card" style="color: var(--text-secondary);">📄 ${targetFile}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" data-preview-lec="${lec.id}" class="px-3 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Открыть</button>
+                <button type="button" data-delete-lec="${lec.id}" class="px-3 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️ Удалить</button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+              <div class="sm:col-span-2">
+                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Название лекции</label>
+                <input type="text" value="${lec.title.replace(/"/g, '&quot;')}" data-edit-title="${lec.id}" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Предмет</label>
+                <select data-edit-subj="${lec.id}" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs">${subjOpts}</select>
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Ветка</label>
+                <select data-edit-branch="${lec.id}" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs">${branchOpts}</select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <div>
+                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">№ лекции</label>
+                <input type="number" value="${lec.number || 1}" data-edit-num="${lec.id}" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Дата (календарь)</label>
+                <input type="date" value="${lec.date || ''}" data-edit-date="${lec.id}" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Подпись даты</label>
+                <input type="text" value="${(lec.dateLabel || '').replace(/"/g, '&quot;')}" data-edit-datelabel="${lec.id}" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs" />
+              </div>
+              <div>
+                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Хештеги (через запятую)</label>
+                <input type="text" value="${(lec.tags || []).join(', ').replace(/"/g, '&quot;')}" data-edit-tags="${lec.id}" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs" />
+              </div>
+            </div>
+
+            <!-- Teacher PDF Attachment Row for this Lecture -->
+            <div class="pt-2 border-t flex items-center justify-between gap-2 flex-wrap" style="border-color: var(--border-col);">
+              <div class="flex items-center gap-2 flex-wrap">
+                ${pdfStatusChip}
+              </div>
+              <label class="px-3 py-1.5 rounded-xl text-xs font-bold surface-card cursor-pointer hover:opacity-90" style="color: var(--accent);">
+                📎 ${lec.hasPdf ? "Заменить PDF преподавателя" : "Прикрепить PDF преподавателя"}
+                <input type="file" accept=".pdf,application/pdf" data-attach-pdf="${lec.id}" class="hidden" />
+              </label>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      listEl.querySelectorAll("[data-move-up]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-move-up");
+          const sorted = [...vaultData.lectures].sort((a, b) => (a.order || 0) - (b.order || 0));
+          const i = sorted.findIndex(x => x.id === id);
+          if (i > 0) {
+            const tmp = sorted[i - 1].order;
+            sorted[i - 1].order = sorted[i].order;
+            sorted[i].order = tmp;
+            renderAll();
+            showToast("Порядок лекций изменён");
+          }
+        });
+      });
+
+      listEl.querySelectorAll("[data-move-down]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-move-down");
+          const sorted = [...vaultData.lectures].sort((a, b) => (a.order || 0) - (b.order || 0));
+          const i = sorted.findIndex(x => x.id === id);
+          if (i >= 0 && i < sorted.length - 1) {
+            const tmp = sorted[i + 1].order;
+            sorted[i + 1].order = sorted[i].order;
+            sorted[i].order = tmp;
+            renderAll();
+            showToast("Порядок лекций изменён");
+          }
+        });
+      });
+
+      listEl.querySelectorAll("[data-edit-title]").forEach(inp => {
+        inp.addEventListener("change", () => {
+          const lec = vaultData.lectures.find(x => x.id === inp.getAttribute("data-edit-title"));
+          if (lec) { lec.title = inp.value.trim() || lec.title; renderCatalogCards(); showToast("Название сохранено"); }
+        });
+      });
+
+      listEl.querySelectorAll("[data-edit-subj]").forEach(sel => {
+        sel.addEventListener("change", () => {
+          const lec = vaultData.lectures.find(x => x.id === sel.getAttribute("data-edit-subj"));
+          if (lec) { lec.subjectId = sel.value; renderAll(); showToast("Предмет изменён"); }
+        });
+      });
+
+      listEl.querySelectorAll("[data-edit-branch]").forEach(sel => {
+        sel.addEventListener("change", () => {
+          const lec = vaultData.lectures.find(x => x.id === sel.getAttribute("data-edit-branch"));
+          if (lec) { lec.branchId = sel.value; renderAll(); showToast("Ветка изменена"); }
+        });
+      });
+
+      listEl.querySelectorAll("[data-edit-num]").forEach(inp => {
+        inp.addEventListener("change", () => {
+          const lec = vaultData.lectures.find(x => x.id === inp.getAttribute("data-edit-num"));
+          if (lec) { lec.number = parseInt(inp.value, 10) || 1; renderCatalogCards(); showToast("Номер лекции изменён"); }
+        });
+      });
+
+      listEl.querySelectorAll("[data-edit-date]").forEach(inp => {
+        inp.addEventListener("change", () => {
+          const lec = vaultData.lectures.find(x => x.id === inp.getAttribute("data-edit-date"));
+          if (lec) {
+            lec.date = inp.value;
+            lec.dateLabel = formatRussianDate(inp.value);
+            renderAll();
+            showToast("Дата обновлена");
+          }
+        });
+      });
+
+      listEl.querySelectorAll("[data-edit-datelabel]").forEach(inp => {
+        inp.addEventListener("change", () => {
+          const lec = vaultData.lectures.find(x => x.id === inp.getAttribute("data-edit-datelabel"));
+          if (lec) { lec.dateLabel = inp.value.trim(); renderCatalogCards(); showToast("Подпись даты обновлена"); }
+        });
+      });
+
+      listEl.querySelectorAll("[data-edit-tags]").forEach(inp => {
+        inp.addEventListener("change", () => {
+          const lec = vaultData.lectures.find(x => x.id === inp.getAttribute("data-edit-tags"));
+          if (lec) {
+            lec.tags = inp.value.split(",").map(s => s.trim().replace(/^#/, "")).filter(Boolean);
+            renderSubjectHashtagCloud();
+            renderCatalogCards();
+            showToast("Хештеги обновлены");
+          }
+        });
+      });
+
+      listEl.querySelectorAll("[data-attach-pdf]").forEach(fileInp => {
+        fileInp.addEventListener("change", async () => {
+          const f = (fileInp.files || [])[0];
+          if (!f) return;
+          const id = fileInp.getAttribute("data-attach-pdf");
+          const lec = vaultData.lectures.find(x => x.id === id);
+          if (!lec) return;
+          const b64 = await readFileAsBase64(f);
+          lec.hasPdf = true;
+          lec.pdfName = f.name;
+          lec.pdfFile = `lectures/${lec.id}.pdf.enc.json`;
+          lec.pdfBase64 = b64;
+          renderAll();
+          showToast(`📎 PDF «${f.name}» прикреплён к лекции!`);
+        });
+      });
+
+      listEl.querySelectorAll("[data-remove-pdf]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-remove-pdf");
+          const lec = vaultData.lectures.find(x => x.id === id);
+          if (!lec) return;
+          lec.hasPdf = false;
+          lec.pdfName = "";
+          lec.pdfFile = "";
+          delete lec.pdfBase64;
+          renderAll();
+          showToast("PDF откреплён от лекции");
+        });
+      });
+
+      listEl.querySelectorAll("[data-preview-lec]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-preview-lec");
+          switchMainTab("catalog");
+          openLectureInShell(id, "ai");
+        });
+      });
+
+      listEl.querySelectorAll("[data-delete-lec]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-delete-lec");
+          vaultData.lectures = vaultData.lectures.filter(x => x.id !== id);
+          renderAll();
+          showToast("Лекция удалена из списка");
+        });
+      });
+    }
+
+    function renderAll() {
+      if (!vaultData) return;
+      renderSidebar();
+      renderStudyProgress();
+      renderSubjectHashtagCloud();
+      renderCatalogCards();
+      renderAdminPanel();
+    }
+
+    // =========================================================================
+    // 6. SWITCHING MAIN TABS (CATALOG / ADMIN / GUIDE)
+    // =========================================================================
+    function switchMainTab(tab) {
+      if (currentRole !== "admin" && tab !== "catalog") {
+        tab = "catalog";
+      }
+      const views = {
+        catalog: document.getElementById("view-catalog"),
+        admin: document.getElementById("view-admin"),
+        guide: document.getElementById("view-guide")
+      };
+      const btns = {
+        catalog: [document.getElementById("tab-catalog-btn"), document.getElementById("mob-catalog-btn")],
+        admin: [document.getElementById("tab-admin-btn"), document.getElementById("mob-admin-btn")],
+        guide: [document.getElementById("tab-guide-btn"), document.getElementById("mob-guide-btn")]
+      };
+
+      Object.keys(views).forEach(k => {
+        if (k === tab) {
+          views[k].classList.remove("hidden");
+          btns[k].forEach(b => {
+            b.style.background = "var(--accent-soft)";
+            b.style.color = "var(--accent)";
+          });
+        } else {
+          views[k].classList.add("hidden");
+          btns[k].forEach(b => {
+            b.style.background = "transparent";
+            b.style.color = "var(--text-secondary)";
+          });
+        }
+      });
+    }
+
+    // =========================================================================
+    // 7. BUILDING SPLIT-FILE PACKAGE (LIGHTWEIGHT index.html + lectures/*.enc.json + *.pdf.enc.json)
+    // =========================================================================
+    async function buildSplitSiteBundle() {
+      const studentPass = (document.getElementById("admin-password-input").value || "").trim() || vaultData.studentPassword || "hse2026";
+      const adminPass = (document.getElementById("master-password-input").value || "").trim() || vaultData.adminPassword || "admin2026";
+
+      vaultData.studentPassword = studentPass;
+      vaultData.adminPassword = adminPass;
+      vaultData.showPasswordHint = document.getElementById("admin-show-hint-checkbox").checked;
+      vaultData.defaultSort = document.getElementById("sort-select").value || "manual";
+
+      for (const lec of vaultData.lectures) {
+        await ensureLectureHtmlLoaded(lec);
+        lec.file = `lectures/${lec.id}.enc.json`;
+        if (lec.hasPdf) {
+          await ensureLecturePdfLoaded(lec);
+          lec.pdfFile = `lectures/${lec.id}.pdf.enc.json`;
+        }
+      }
+
+      // Create lightweight catalog copy WITHOUT inline HTML or PDF base64
+      const catalogOnlyVault = JSON.parse(JSON.stringify(vaultData));
+      catalogOnlyVault.lectures.forEach(l => {
+        delete l.html;
+        delete l.pdfBase64;
+      });
+
+      const { encryptedCatalog, dekBytes, cryptoDek } = await encryptDualVault(catalogOnlyVault, studentPass, adminPass);
+      currentDekBytes = dekBytes;
+      currentCryptoDek = cryptoDek;
+
+      // Encrypt each lecture HTML and each attached PDF separately with the same DEK
+      const encryptedLecturesMap = {};
+      for (const lec of vaultData.lectures) {
+        const encHtmlPacket = await encryptSingleStringWithDek(lec.html || "", cryptoDek);
+        encryptedLecturesMap[lec.file] = JSON.stringify(encHtmlPacket);
+        if (lec.hasPdf && lec.pdfBase64) {
+          const encPdfPacket = await encryptSingleStringWithDek(lec.pdfBase64, cryptoDek);
+          encryptedLecturesMap[lec.pdfFile] = JSON.stringify(encPdfPacket);
+        }
+      }
+
+      const demoBox = document.getElementById("demo-password-box");
+      if (vaultData.showPasswordHint) {
+        demoBox.classList.remove("hidden");
+      } else {
+        demoBox.classList.add("hidden");
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      const cloneScript = clone.querySelector("#encrypted-vault-json");
+      if (cloneScript) cloneScript.textContent = JSON.stringify(encryptedCatalog);
+      const cloneLock = clone.querySelector("#lock-screen");
+      const cloneApp = clone.querySelector("#app-shell");
+      const cloneToast = clone.querySelector("#toast-container");
+      const clonePassInput = clone.querySelector("#password-input");
+      const cloneIframe = clone.querySelector("#lecture-iframe");
+      const clonePdfIframe = clone.querySelector("#pdf-iframe");
+      if (cloneLock) cloneLock.classList.remove("hidden");
+      if (cloneApp) cloneApp.classList.add("hidden");
+      if (cloneToast) cloneToast.innerHTML = "";
+      if (clonePassInput) clonePassInput.value = "";
+      if (cloneIframe) cloneIframe.removeAttribute("srcdoc");
+      if (clonePdfIframe) clonePdfIframe.removeAttribute("src");
+
+      return {
+        indexHtml: "<!DOCTYPE html>\n" + clone.outerHTML,
+        lectures: encryptedLecturesMap
+      };
+    }
+
+    async function buildAllInOneSiteHtml() {
+      const studentPass = (document.getElementById("admin-password-input").value || "").trim() || vaultData.studentPassword || "hse2026";
+      const adminPass = (document.getElementById("master-password-input").value || "").trim() || vaultData.adminPassword || "admin2026";
+
+      vaultData.studentPassword = studentPass;
+      vaultData.adminPassword = adminPass;
+      vaultData.showPasswordHint = document.getElementById("admin-show-hint-checkbox").checked;
+      vaultData.defaultSort = document.getElementById("sort-select").value || "manual";
+
+      for (const lec of vaultData.lectures) {
+        await ensureLectureHtmlLoaded(lec);
+        if (lec.hasPdf) await ensureLecturePdfLoaded(lec);
+      }
+
+      const { encryptedCatalog, dekBytes, cryptoDek } = await encryptDualVault(vaultData, studentPass, adminPass);
+      currentDekBytes = dekBytes;
+      currentCryptoDek = cryptoDek;
+
+      const scriptEl = document.getElementById("encrypted-vault-json");
+      scriptEl.textContent = JSON.stringify(encryptedCatalog);
+
+      const clone = document.documentElement.cloneNode(true);
+      const cloneLock = clone.querySelector("#lock-screen");
+      const cloneApp = clone.querySelector("#app-shell");
+      const cloneToast = clone.querySelector("#toast-container");
+      const clonePassInput = clone.querySelector("#password-input");
+      const cloneIframe = clone.querySelector("#lecture-iframe");
+      const clonePdfIframe = clone.querySelector("#pdf-iframe");
+      if (cloneLock) cloneLock.classList.remove("hidden");
+      if (cloneApp) cloneApp.classList.add("hidden");
+      if (cloneToast) cloneToast.innerHTML = "";
+      if (clonePassInput) clonePassInput.value = "";
+      if (cloneIframe) cloneIframe.removeAttribute("srcdoc");
+      if (clonePdfIframe) clonePdfIframe.removeAttribute("src");
+
+      return "<!DOCTYPE html>\n" + clone.outerHTML;
+    }
+
+    // =========================================================================
+    // 8. INITIALIZATION & EVENT LISTENERS
+    // =========================================================================
+    window.addEventListener("DOMContentLoaded", async () => {
+      const savedTheme = safeGetStorage("hse_fpm_theme") || "emerald";
+      applyTheme(savedTheme);
+
+      try {
+        const encObj = getEmbeddedVaultObject();
+        if (encObj.showHint === false) {
+          document.getElementById("demo-password-box").classList.add("hidden");
+        }
+      } catch (e) {}
+
+      document.querySelectorAll("[data-set-theme]").forEach(btn => {
+        btn.addEventListener("click", () => applyTheme(btn.getAttribute("data-set-theme")));
+      });
+
+      const passInput = document.getElementById("password-input");
+      const toggleVisBtn = document.getElementById("toggle-pass-vis");
+      toggleVisBtn.addEventListener("click", () => {
+        if (passInput.type === "password") {
+          passInput.type = "text";
+          toggleVisBtn.textContent = "Скрыть";
+        } else {
+          passInput.type = "password";
+          toggleVisBtn.textContent = "Показать";
+        }
+      });
+
+      document.getElementById("unlock-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const pass = passInput.value;
+        const remember = document.getElementById("remember-session").checked;
+        await tryUnlockWithPassword(pass, remember);
+      });
+
+      document.getElementById("fill-demo-pass-btn").addEventListener("click", async () => {
+        passInput.value = "hse2026";
+        await tryUnlockWithPassword("hse2026", true);
+      });
+
+      document.getElementById("fill-admin-pass-btn").addEventListener("click", async () => {
+        passInput.value = "admin2026";
+        await tryUnlockWithPassword("admin2026", true);
+      });
+
+      document.getElementById("lock-vault-btn").addEventListener("click", () => {
+        safeRemoveStorage("hse_fpm_pass");
+        vaultData = null;
+        currentRole = "student";
+        currentDekBytes = null;
+        currentCryptoDek = null;
+        passInput.value = "";
+        document.getElementById("app-shell").classList.add("hidden");
+        document.getElementById("lock-screen").classList.remove("hidden");
+        showToast("Вы вышли из аккаунта");
+      });
+
+      document.getElementById("nav-home-btn").addEventListener("click", () => {
+        closeLectureViewer();
+        switchMainTab("catalog");
+      });
+      document.getElementById("admin-go-catalog-btn").addEventListener("click", () => {
+        closeLectureViewer();
+        switchMainTab("catalog");
+      });
+      document.getElementById("tab-catalog-btn").addEventListener("click", () => switchMainTab("catalog"));
+      document.getElementById("tab-admin-btn").addEventListener("click", () => switchMainTab("admin"));
+      document.getElementById("tab-guide-btn").addEventListener("click", () => switchMainTab("guide"));
+      document.getElementById("mob-catalog-btn").addEventListener("click", () => switchMainTab("catalog"));
+      document.getElementById("mob-admin-btn").addEventListener("click", () => switchMainTab("admin"));
+      document.getElementById("mob-guide-btn").addEventListener("click", () => switchMainTab("guide"));
+      document.getElementById("sidebar-quick-add-btn").addEventListener("click", () => switchMainTab("admin"));
+
+      // Status filter pills (Все / Важное / Изучено)
+      document.querySelectorAll(".status-filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          selectedStatusFilter = btn.getAttribute("data-status-filter");
+          renderStudyProgress();
+          renderCatalogCards();
+        });
+      });
+
+      // Clear hashtag filter button
+      document.getElementById("clear-tag-filter-btn").addEventListener("click", () => {
+        selectedTagFilter = "";
+        renderSubjectHashtagCloud();
+        renderCatalogCards();
+      });
+
+      document.getElementById("search-input").addEventListener("input", () => renderCatalogCards());
+      document.getElementById("sort-select").addEventListener("change", () => renderCatalogCards());
+
+      // Viewer Mode Switcher (AI HTML vs Teacher PDF vs Split-Screen)
+      document.getElementById("mode-ai-btn").addEventListener("click", () => setViewerLayoutMode("ai"));
+      document.getElementById("mode-pdf-btn").addEventListener("click", () => setViewerLayoutMode("pdf"));
+      document.getElementById("mode-split-btn").addEventListener("click", () => setViewerLayoutMode("split"));
+
+      // Download Teacher PDF button
+      document.getElementById("viewer-download-pdf-btn").addEventListener("click", async () => {
+        if (!currentOpenLectureId || !vaultData) return;
+        const item = vaultData.lectures.find(l => l.id === currentOpenLectureId);
+        if (!item || !item.hasPdf) return;
+        const b64 = await ensureLecturePdfLoaded(item);
+        if (!b64) return;
+        const bytes = base64ToBytes(b64);
+        const blob = new Blob([bytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = item.pdfName || `${item.id}_original.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        showToast("Оригинальный PDF преподавателя скачан");
+      });
+
+      // Personal Notes Drawer inside Viewer
+      const notesDrawer = document.getElementById("viewer-notes-drawer");
+      document.getElementById("viewer-notes-toggle-btn").addEventListener("click", () => {
+        notesDrawer.classList.toggle("hidden");
+      });
+      document.getElementById("close-notes-drawer-btn").addEventListener("click", () => {
+        notesDrawer.classList.add("hidden");
+      });
+      document.getElementById("lecture-personal-notes").addEventListener("input", (e) => {
+        if (!currentOpenLectureId) return;
+        const st = getStudentStudyState();
+        st.notes = st.notes || {};
+        st.notes[currentOpenLectureId] = e.target.value;
+        saveStudentStudyState(st);
+      });
+
+      document.getElementById("viewer-back-btn").addEventListener("click", () => closeLectureViewer());
+      document.getElementById("viewer-fullscreen-btn").addEventListener("click", () => {
+        const viewer = document.getElementById("lecture-viewer-subview");
+        viewer.classList.toggle("viewer-fullscreen");
+        const isFull = viewer.classList.contains("viewer-fullscreen");
+        document.getElementById("viewer-fullscreen-btn").textContent = isFull ? "✕ Свернуть в оболочку" : "⛶ На весь экран";
+      });
+      document.getElementById("viewer-print-btn").addEventListener("click", () => {
+        const iframe = document.getElementById("lecture-iframe");
+        if (iframe && iframe.contentWindow) {
+          iframe.contentWindow.focus();
+          iframe.contentWindow.print();
+        }
+      });
+      document.getElementById("viewer-newtab-link").addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (!currentOpenLectureId || !vaultData) return;
+        const item = vaultData.lectures.find(l => l.id === currentOpenLectureId);
+        if (!item) return;
+        const htmlStr = await ensureLectureHtmlLoaded(item);
+        const blob = new Blob([htmlStr], { type: "text/html;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank");
+      });
+      document.getElementById("viewer-prev-btn").addEventListener("click", () => {
+        const list = getFilteredSortedLectures();
+        const idx = list.findIndex(l => l.id === currentOpenLectureId);
+        if (idx > 0) openLectureInShell(list[idx - 1].id, "ai");
+        else showToast("Это первая лекция в текущем списке");
+      });
+      document.getElementById("viewer-next-btn").addEventListener("click", () => {
+        const list = getFilteredSortedLectures();
+        const idx = list.findIndex(l => l.id === currentOpenLectureId);
+        if (idx >= 0 && idx < list.length - 1) openLectureInShell(list[idx + 1].id, "ai");
+        else showToast("Это последняя лекция в текущем списке");
+      });
+
+      // HTML File Upload Auto-Parser
+      const fileInput = document.getElementById("html-file-input");
+      fileInput.addEventListener("change", async () => {
+        const files = Array.from(fileInput.files || []);
+        if (!files.length) return;
+        stagedHtmlFiles = [];
+        for (const f of files) {
+          const text = await f.text();
+          const doc = new DOMParser().parseFromString(text, "text/html");
+          const h1 = doc.querySelector("h1") ? doc.querySelector("h1").textContent.trim() : "";
+          const titleTag = doc.querySelector("title") ? doc.querySelector("title").textContent.trim() : "";
+          const extractedTitle = h1 || titleTag || f.name.replace(/\.html?$/i, "");
+          const subEl = doc.querySelector(".hero-sub, p");
+          const extractedSub = subEl ? subEl.textContent.trim().slice(0, 180) : "Интерактивный HTML-конспект лекции";
+          stagedHtmlFiles.push({
+            fileName: f.name,
+            title: extractedTitle,
+            subtitle: extractedSub,
+            html: text
+          });
+        }
+        document.getElementById("upload-file-status").textContent =
+          `Выбрано HTML: ${stagedHtmlFiles.length} (${stagedHtmlFiles.map(x => x.fileName).join(", ")})`;
+        if (stagedHtmlFiles.length === 1) {
+          document.getElementById("new-lec-title").value = stagedHtmlFiles[0].title;
+          document.getElementById("new-lec-subtitle").value = stagedHtmlFiles[0].subtitle;
+        }
+        showToast(`Считано HTML-конспектов: ${stagedHtmlFiles.length}`);
+      });
+
+      // Teacher PDF File Picker for New Lecture
+      const pdfInput = document.getElementById("pdf-file-input");
+      pdfInput.addEventListener("change", async () => {
+        const f = (pdfInput.files || [])[0];
+        if (!f) return;
+        const b64 = await readFileAsBase64(f);
+        stagedPdfFile = {
+          fileName: f.name,
+          base64: b64
+        };
+        document.getElementById("upload-pdf-status").textContent = `📎 Прикреплён оригинал: ${f.name}`;
+        showToast(`PDF преподавателя «${f.name}» готов к прикреплению`);
+      });
+
+      document.getElementById("add-lecture-btn").addEventListener("click", () => {
+        const subjId = document.getElementById("new-lec-subject").value;
+        const branchId = document.getElementById("new-lec-branch").value;
+        const baseNum = parseInt(document.getElementById("new-lec-number").value, 10) || (vaultData.lectures.length + 1);
+        const dateVal = document.getElementById("new-lec-date").value || "2026-10-15";
+        const customTitle = document.getElementById("new-lec-title").value.trim();
+        const customSub = document.getElementById("new-lec-subtitle").value.trim();
+        const tags = document.getElementById("new-lec-tags").value.split(",").map(s => s.trim().replace(/^#/, "")).filter(Boolean);
+
+        if (stagedHtmlFiles.length > 0) {
+          stagedHtmlFiles.forEach((fObj, idx) => {
+            const id = "lec-" + subjId + "-" + (baseNum + idx) + "-" + Date.now().toString().slice(-4);
+            const attachPdfNow = (idx === 0 && stagedPdfFile);
+            vaultData.lectures.push({
+              id: id,
+              subjectId: subjId,
+              branchId: branchId,
+              number: baseNum + idx,
+              date: dateVal,
+              dateLabel: formatRussianDate(dateVal),
+              title: (stagedHtmlFiles.length === 1 && customTitle) ? customTitle : fObj.title,
+              subtitle: (stagedHtmlFiles.length === 1 && customSub) ? customSub : fObj.subtitle,
+              tags: tags.length ? tags : ["Конспект"],
+              order: vaultData.lectures.length + 1,
+              file: `lectures/${id}.enc.json`,
+              hasPdf: Boolean(attachPdfNow),
+              pdfName: attachPdfNow ? stagedPdfFile.fileName : "",
+              pdfFile: attachPdfNow ? `lectures/${id}.pdf.enc.json` : "",
+              pdfBase64: attachPdfNow ? stagedPdfFile.base64 : "",
+              html: fObj.html
+            });
+          });
+          stagedHtmlFiles = [];
+          stagedPdfFile = null;
+          document.getElementById("upload-file-status").textContent = "Файлы добавлены! Можно выбрать новые.";
+          document.getElementById("upload-pdf-status").textContent = "Прикрепится к этой же карточке лекции для сравнения";
+          document.getElementById("new-lec-title").value = "";
+          document.getElementById("new-lec-subtitle").value = "";
+          renderAll();
+          showToast("Конспект добавлен в каталог!");
+        } else {
+          if (!customTitle) {
+            showToast("Выберите .html файл лекции или введите название", true);
+            return;
+          }
+          const id = "lec-" + subjId + "-" + baseNum + "-" + Date.now().toString().slice(-4);
+          const attachPdfNow = Boolean(stagedPdfFile);
+          vaultData.lectures.push({
+            id: id,
+            subjectId: subjId,
+            branchId: branchId,
+            number: baseNum,
+            date: dateVal,
+            dateLabel: formatRussianDate(dateVal),
+            title: customTitle,
+            subtitle: customSub || "Конспект лекции ФПМ ВШЭ",
+            tags: tags.length ? tags : ["Конспект"],
+            order: vaultData.lectures.length + 1,
+            file: `lectures/${id}.enc.json`,
+            hasPdf: attachPdfNow,
+            pdfName: attachPdfNow ? stagedPdfFile.fileName : "",
+            pdfFile: attachPdfNow ? `lectures/${id}.pdf.enc.json` : "",
+            pdfBase64: attachPdfNow ? stagedPdfFile.base64 : "",
+            html: `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><style>body{font-family:sans-serif;background:#081211;color:#f0fdf4;padding:40px;}</style></head><body><h1>${customTitle}</h1><p>${customSub}</p></body></html>`
+          });
+          stagedPdfFile = null;
+          document.getElementById("upload-pdf-status").textContent = "Прикрепится к этой же карточке лекции для сравнения";
+          document.getElementById("new-lec-title").value = "";
+          document.getElementById("new-lec-subtitle").value = "";
+          renderAll();
+          showToast("Карточка лекции добавлена!");
+        }
+      });
+
+      document.getElementById("preset-prog-btn").addEventListener("click", () => {
+        if (vaultData.subjects.some(s => s.id === "prog")) {
+          showToast("Предмет «Программирование» уже есть в списке");
+          return;
+        }
+        vaultData.subjects.push({
+          id: "prog",
+          name: "Программирование",
+          short: "ПРОГА",
+          color: "#10b981",
+          icon: "💻"
+        });
+        renderAll();
+        showToast("Добавлен предмет «Программирование»!");
+      });
+
+      document.getElementById("preset-colloq-subj-btn").addEventListener("click", () => {
+        if (vaultData.subjects.some(s => s.id === "colloq-all")) {
+          showToast("Раздел «Коллоквиумы» уже добавлен в предметы");
+          return;
+        }
+        vaultData.subjects.push({
+          id: "colloq-all",
+          name: "Коллоквиумы (все предметы)",
+          short: "КОЛЛОК",
+          color: "#6366f1",
+          icon: "🎓"
+        });
+        renderAll();
+        showToast("Добавлен раздел «Коллоквиумы»!");
+      });
+
+      document.getElementById("add-subj-btn").addEventListener("click", () => {
+        const name = document.getElementById("new-subj-name").value.trim();
+        const short = document.getElementById("new-subj-short").value.trim() || name.slice(0, 6).toUpperCase();
+        const color = document.getElementById("new-subj-color").value || "#10b981";
+        if (!name) {
+          showToast("Введите название предмета", true);
+          return;
+        }
+        vaultData.subjects.push({
+          id: "subj-" + Date.now(),
+          name: name,
+          short: short,
+          color: color,
+          icon: "📘"
+        });
+        document.getElementById("new-subj-name").value = "";
+        document.getElementById("new-subj-short").value = "";
+        renderAll();
+        showToast(`Предмет «${name}» создан!`);
+      });
+
+      document.getElementById("apply-security-btn").addEventListener("click", async () => {
+        const studentPass = document.getElementById("admin-password-input").value.trim();
+        const adminPass = document.getElementById("master-password-input").value.trim();
+        if (!studentPass || !adminPass) {
+          showToast("Оба пароля должны быть заполнены", true);
+          return;
+        }
+        if (studentPass === adminPass) {
+          showToast("Пароль автора должен отличаться от общего пароля", true);
+          return;
+        }
+        vaultData.studentPassword = studentPass;
+        vaultData.adminPassword = adminPass;
+        vaultData.showPasswordHint = document.getElementById("admin-show-hint-checkbox").checked;
+        safeSetStorage("hse_fpm_pass", adminPass, true);
+        showToast("Оба пароля сохранены!");
+      });
+
+      document.getElementById("export-split-zip-btn").addEventListener("click", async () => {
+        try {
+          showToast("Шифруем каталог, лекции и PDF-оригиналы...");
+          const bundle = await buildSplitSiteBundle();
+          if (window.JSZip) {
+            const zip = new window.JSZip();
+            zip.file("index.html", bundle.indexHtml);
+            Object.keys(bundle.lectures).forEach(relPath => {
+              zip.file(relPath, bundle.lectures[relPath]);
+            });
+            const content = await zip.generateAsync({ type: "blob", compression: "DEFLATE" });
+            const url = URL.createObjectURL(content);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "konspekty_fpm_github.zip";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            showToast("Готово! Скачан архив с лёгким index.html и папкой lectures/.");
+          } else {
+            document.getElementById("export-encrypted-html-btn").click();
+          }
+        } catch (err) {
+          showToast("Ошибка сборки архива: " + err.message, true);
+        }
+      });
+
+      document.getElementById("export-encrypted-html-btn").addEventListener("click", async () => {
+        const htmlContent = await buildAllInOneSiteHtml();
+        const blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "index.html";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        showToast("Скачан единый файл index.html.");
+      });
+
+      document.getElementById("save-local-server-btn").addEventListener("click", async () => {
+        const bundle = await buildSplitSiteBundle();
+        if (window.location.protocol.startsWith("http") && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")) {
+          try {
+            const req = new XMLHttpRequest();
+            req.open("POST", "/api/save", true);
+            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            req.onload = function () {
+              if (req.status === 200) {
+                showToast("Лёгкий index.html и папка lectures/ (HTML + PDF) сохранены и отправлены в GitHub!");
+              } else {
+                document.getElementById("export-split-zip-btn").click();
+              }
+            };
+            req.onerror = function () {
+              document.getElementById("export-split-zip-btn").click();
+            };
+            req.send(JSON.stringify({
+              indexHtml: bundle.indexHtml,
+              lectures: bundle.lectures
+            }));
+          } catch (err) {
+            document.getElementById("export-split-zip-btn").click();
+          }
+        } else {
+          document.getElementById("export-split-zip-btn").click();
+        }
+      });
+
+      window.addEventListener("hashchange", () => handleHashRoute());
+
+      const savedPass = safeGetStorage("hse_fpm_pass");
+      if (savedPass) {
+        await tryUnlockWithPassword(savedPass, true);
+      }
+    });
+  </script>
+</body>
+</html>
