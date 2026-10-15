@@ -1883,7 +1883,7 @@
       });
       if (formatted.length === 1) return formatted[0];
       if (formatted.length === 2) return `${formatted[0]} и ${formatted[1]}`;
-      return formatted.join(", ");
+      return formatted.slice(0, -1).join(", ") + " и " + formatted[formatted.length - 1];
     }
 
     function readFileAsBase64(fileObj) {
@@ -2588,9 +2588,10 @@
 
         if (stagedHtmlFiles.length > 0) {
           stagedHtmlFiles.forEach((fObj, idx) => {
-            const id = "lec-" + subjId + "-" + (baseNum + idx) + "-" + Date.now().toString().slice(-4);
-            const attachPdfNow = (idx === 0 && stagedPdfFile);
             const numForThis = (stagedHtmlFiles.length > 1 && !isNaN(parseInt(baseNumVal, 10))) ? (parseInt(baseNumVal, 10) + idx) : baseNumVal;
+            const safeNumId = String(numForThis).replace(/[^a-zA-Z0-9_-]/g, "_");
+            const id = "lec-" + subjId + "-" + safeNumId + "-" + Date.now().toString().slice(-4) + (stagedHtmlFiles.length > 1 ? ("-" + (idx + 1)) : "");
+            const attachPdfNow = (idx === 0 && stagedPdfFile);
             vaultData.lectures.push({
               id: id,
               subjectId: subjId,
@@ -2612,18 +2613,22 @@
           });
           stagedHtmlFiles = [];
           stagedPdfFile = null;
+          document.getElementById("html-file-input").value = "";
+          document.getElementById("pdf-file-input").value = "";
           document.getElementById("upload-file-status").textContent = "Файлы добавлены! Можно выбрать новые.";
           document.getElementById("upload-pdf-status").textContent = "Прикрепится к этой же карточке лекции для сравнения";
           document.getElementById("new-lec-title").value = "";
           document.getElementById("new-lec-subtitle").value = "";
+          document.getElementById("new-lec-tags").value = "";
           renderAll();
-          showToast("Конспект добавлен в каталог!");
+          showToast("Лекция успешно добавлена в каталог!");
         } else {
           if (!customTitle) {
             showToast("Выберите .html файл лекции или введите название", true);
             return;
           }
-          const id = "lec-" + subjId + "-" + baseNum + "-" + Date.now().toString().slice(-4);
+          const safeNumId = String(baseNumVal).replace(/[^a-zA-Z0-9_-]/g, "_");
+          const id = "lec-" + subjId + "-" + safeNumId + "-" + Date.now().toString().slice(-4);
           const attachPdfNow = Boolean(stagedPdfFile);
           vaultData.lectures.push({
             id: id,
@@ -2644,9 +2649,11 @@
             html: `<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><style>body{font-family:sans-serif;background:#081211;color:#f0fdf4;padding:40px;}</style></head><body><h1>${customTitle}</h1><p>${customSub}</p></body></html>`
           });
           stagedPdfFile = null;
+          document.getElementById("pdf-file-input").value = "";
           document.getElementById("upload-pdf-status").textContent = "Прикрепится к этой же карточке лекции для сравнения";
           document.getElementById("new-lec-title").value = "";
           document.getElementById("new-lec-subtitle").value = "";
+          document.getElementById("new-lec-tags").value = "";
           renderAll();
           showToast("Карточка лекции добавлена!");
         }
@@ -2740,8 +2747,10 @@
             a.download = "konspekty_fpm_github.zip";
             document.body.appendChild(a);
             a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
+            setTimeout(() => {
+              a.remove();
+              URL.revokeObjectURL(url);
+            }, 60000);
             showToast("Готово! Скачан архив с лёгким index.html и папкой lectures/.");
           } else {
             document.getElementById("export-encrypted-html-btn").click();
@@ -2760,8 +2769,10 @@
         a.download = "index.html";
         document.body.appendChild(a);
         a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
+        setTimeout(() => {
+          a.remove();
+          URL.revokeObjectURL(url);
+        }, 60000);
         showToast("Скачан единый файл index.html.");
       });
 
