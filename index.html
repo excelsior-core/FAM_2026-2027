@@ -311,12 +311,25 @@
       height: calc(100vh - 76px) !important;
       border-radius: 0 !important;
     }
+    .collapse-chevron {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .is-collapsed .collapse-chevron {
+      transform: rotate(-90deg);
+    }
+    body.reader-header-collapsed > #app-shell > header {
+      display: none !important;
+    }
+    body.reader-header-collapsed .viewer-iframe {
+      height: calc(100vh - 72px) !important;
+    }
   </style>
 </head>
 <body>
 
   <!-- ENCRYPTED VAULT CATALOG DATA -->
-  <script id="encrypted-vault-json" type="application/json">{"v":2,"gz":true,"iter":100000,"showHint":false,"vaultIv":"zo5pmN67lIanmZPz","vaultCt":"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","slotAdmin":{"salt":"NblXzFInj1ilMnrNvyt4yA==","iv":"np2OxE6W5jcoBUKH","ct":"LeOvkDjqDQMjUqz5pIecfZIRdj9c6CylhYotIEv+IGDNdvzXt0eL+DBdqwSVxIzi2LI3nRL6peNPU/h+FXkEXYyH5JWLViB/loeW9CqHFGQm2MItPg=="},"slotStudent":{"salt":"IPTGNPwgdvcKmWQ2IiKflA==","iv":"BIB/cQyMQ080f9hA","ct":"QAVMJSJI4uoeZNR6R2pcZnM7XzwMBKiiZdhIwpuHemSxAbPebZZ8A7OcV2dwJuei3ZDo5KlGy/CWNhj1NsEupcTGUvXwq1MxcqVRUlKr52dUAG2z3PPC"}}</script>
+  <script id="encrypted-vault-json" type="application/json">{"v":2,"iter":100000,"showHint":false,"vaultIv":"gUEYwbqao+mAXbCo","vaultCt":"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","slotAdmin":{"salt":"NblXzFInj1ilMnrNvyt4yA==","iv":"np2OxE6W5jcoBUKH","ct":"LeOvkDjqDQMjUqz5pIecfZIRdj9c6CylhYotIEv+IGDNdvzXt0eL+DBdqwSVxIzi2LI3nRL6peNPU/h+FXkEXYyH5JWLViB/loeW9CqHFGQm2MItPg=="},"slotStudent":{"salt":"IPTGNPwgdvcKmWQ2IiKflA==","iv":"BIB/cQyMQ080f9hA","ct":"QAVMJSJI4uoeZNR6R2pcZnM7XzwMBKiiZdhIwpuHemSxAbPebZZ8A7OcV2dwJuei3ZDo5KlGy/CWNhj1NsEupcTGUvXwq1MxcqVRUlKr52dUAG2z3PPC"}}</script>
 
   <!-- TOAST NOTIFICATION -->
   <div id="toast-container" class="fixed bottom-5 right-5 z-[120] flex flex-col gap-2 pointer-events-none"></div>
@@ -547,12 +560,18 @@
     <div id="view-catalog" class="flex-1 max-w-[1440px] w-full mx-auto px-4 lg:px-6 py-6 grid grid-cols-1 lg:grid-cols-[285px_1fr] gap-6 items-start">
 
       <!-- LEFT SIDEBAR: SUBJECTS, BRANCHES & PERSONAL STUDY PROGRESS -->
-      <aside class="surface-card rounded-3xl p-5 lg:sticky lg:top-20 space-y-5">
+      <aside id="catalog-sidebar" class="surface-card rounded-3xl p-5 lg:sticky lg:top-20 space-y-4">
+        <div class="flex items-center justify-between gap-2 pb-2.5 border-b" style="border-color: var(--border-col);">
+          <span class="text-xs font-extrabold tracking-tight flex items-center gap-1.5">🧭 Навигация</span>
+          <button type="button" id="collapse-sidebar-btn" class="px-2.5 py-1 rounded-xl text-[11px] font-semibold surface-elevated hover:opacity-90" style="color: var(--text-secondary);" title="Свернуть боковую панель">
+            ◀ Свернуть
+          </button>
+        </div>
         <div>
-          <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider mb-3 px-1" style="color: var(--text-secondary);">
-            <span>Предметы</span>
+          <button type="button" data-collapse-target="subject-nav-list" class="w-full flex items-center justify-between text-[11px] font-bold uppercase tracking-wider mb-2.5 px-1 hover:opacity-80" style="color: var(--text-secondary);">
+            <span class="flex items-center gap-1.5"><span class="collapse-chevron">▾</span><span>Предметы</span></span>
             <span id="sidebar-total-count" class="px-2 py-0.5 rounded-full surface-elevated text-[10px]">7 мат.</span>
-          </div>
+          </button>
           <div id="subject-nav-list" class="space-y-1.5">
         <button type="button" data-filter-subj="all" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-semibold transition " style="background: var(--accent-soft); color: var(--accent);">
           <span class="flex items-center gap-2.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span><span>Все предметы</span></span>
@@ -593,10 +612,10 @@
         </div>
         </div>
 
-        <div class="pt-4 border-t" style="border-color: var(--border-col);">
-          <div class="text-[11px] font-bold uppercase tracking-wider mb-3 px-1" style="color: var(--text-secondary);">
-            Разделы и ветки
-          </div>
+        <div class="pt-3.5 border-t" style="border-color: var(--border-col);">
+          <button type="button" data-collapse-target="branch-nav-list" class="w-full flex items-center justify-between text-[11px] font-bold uppercase tracking-wider mb-2.5 px-1 hover:opacity-80" style="color: var(--text-secondary);">
+            <span class="flex items-center gap-1.5"><span class="collapse-chevron">▾</span><span>Разделы и ветки</span></span>
+          </button>
           <div id="branch-nav-list" class="space-y-1.5">
         <button type="button" data-filter-branch="all" class="w-full flex items-center justify-between px-3.5 py-2 rounded-2xl text-xs font-semibold transition" style="background: var(--accent-soft); color: var(--accent);">
           <span>Все материалы</span>
@@ -621,11 +640,12 @@
         </div>
 
         <!-- Personal Study Progress Tracker -->
-        <div class="pt-4 border-t space-y-2.5" style="border-color: var(--border-col);">
-          <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider px-1" style="color: var(--text-secondary);">
-            <span>Мой прогресс изучения</span>
+        <div class="pt-3.5 border-t space-y-2.5" style="border-color: var(--border-col);">
+          <button type="button" data-collapse-target="study-progress-body" class="w-full flex items-center justify-between text-[11px] font-bold uppercase tracking-wider px-1 hover:opacity-80" style="color: var(--text-secondary);">
+            <span class="flex items-center gap-1.5"><span class="collapse-chevron">▾</span><span>Мой прогресс</span></span>
             <span id="study-progress-label" style="color: var(--accent);">0 / 7 (0%)</span>
-          </div>
+          </button>
+          <div id="study-progress-body" class="space-y-2.5">
           <div class="w-full h-2 rounded-full surface-input overflow-hidden">
             <div id="study-progress-bar" class="h-full rounded-full transition-all duration-300" style="width: 0%; background: linear-gradient(90deg, #10b981, #38bdf8);"></div>
           </div>
@@ -640,6 +660,7 @@
               ✅ Изучено
             </button>
           </div>
+          </div>
         </div>
 
         <div class="pt-4 border-t space-y-2.5" style="border-color: var(--border-col);">
@@ -648,10 +669,11 @@
           </button>
           <!-- Focus Timer (Custom Duration) & Export Notes -->
           <div class="p-3.5 rounded-2xl surface-elevated space-y-2.5">
-            <div class="flex items-center justify-between text-xs font-bold">
-              <span>⏱️ Фокус-таймер</span>
+            <button type="button" data-collapse-target="pomo-collapsible-body" class="w-full flex items-center justify-between text-xs font-bold hover:opacity-80">
+              <span class="flex items-center gap-1.5"><span class="collapse-chevron">▾</span><span>⏱️ Фокус-таймер</span></span>
               <span id="pomo-mode-badge" class="px-2 py-0.5 rounded text-[10px]" style="background: var(--accent-soft); color: var(--accent);">25 мин</span>
-            </div>
+            </button>
+            <div id="pomo-collapsible-body" class="space-y-2.5">
             <div class="flex items-center justify-between gap-2">
               <div id="pomo-time-display" class="text-xl font-black font-mono tracking-wider" style="color: var(--text-primary);">25:00</div>
               <div class="flex items-center gap-1">
@@ -671,6 +693,7 @@
                 <button type="button" data-timer-preset="60" class="py-1 rounded-lg text-[10px] font-semibold surface-card hover:opacity-90">60м</button>
               </div>
             </div>
+            </div>
           </div>
 
           <button type="button" id="export-my-notes-btn" class="w-full py-2 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 flex items-center justify-center gap-1.5" title="Скачать все ваши личные заметки ко всем лекциям одним файлом">
@@ -689,27 +712,39 @@
         <!-- SUBVIEW A: CATALOG CARDS -->
         <div id="catalog-list-subview" class="space-y-4">
 
-          <!-- UNOFFICIAL RESOURCE & AI DISCLAIMER BANNER ON MAIN PAGE -->
-          <div class="surface-card rounded-3xl px-5 py-3.5 flex items-start sm:items-center gap-3.5 text-xs leading-relaxed">
-            <div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm shrink-0 surface-elevated">
-              🎓
-            </div>
-            <div style="color: var(--text-secondary);">
-              <strong style="color: var(--text-primary);">Неофициальный студенческий архив лекций:</strong> данный сайт является частной некоммерческой инициативой студентов для обмена личными конспектами и подготовки к занятиям. Не является официальным сайтом или публикацией НИУ ВШЭ; все авторские права на исходные учебные программы и лекции принадлежат их авторам-преподавателям.
-            </div>
+          <!-- Quick Bar: Restore Sidebar Button + Collapsible Disclaimers Toggle -->
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <button type="button" id="expand-sidebar-btn" class="hidden px-3.5 py-2 rounded-2xl text-xs font-bold surface-card hover:opacity-90 flex items-center gap-2" style="color: var(--accent);">
+              ▶ Показать меню предметов
+            </button>
+            <button type="button" id="toggle-disclaimers-btn" class="ml-auto px-3 py-1.5 rounded-xl text-[11px] font-semibold surface-card hover:opacity-90 flex items-center gap-1.5" style="color: var(--text-secondary);">
+              <span id="toggle-disclaimers-label">▲ Свернуть памятки</span>
+            </button>
           </div>
 
-          <!-- PROMINENT AI DISCLAIMER BANNER ON MAIN PAGE -->
-          <div id="main-ai-disclaimer" class="ai-disclaimer-banner rounded-3xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div class="flex items-start sm:items-center gap-3.5">
-              <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-base shrink-0" style="background: rgba(245, 158, 11, 0.18);">
-                ⚠️
+          <div id="disclaimers-collapsible-wrapper" class="space-y-3">
+            <!-- UNOFFICIAL RESOURCE & AI DISCLAIMER BANNER ON MAIN PAGE -->
+            <div class="surface-card rounded-3xl px-5 py-3.5 flex items-start sm:items-center gap-3.5 text-xs leading-relaxed">
+              <div class="w-8 h-8 rounded-xl flex items-center justify-center text-sm shrink-0 surface-elevated">
+                🎓
               </div>
-              <div class="text-xs leading-relaxed">
-                <span class="font-extrabold" style="color: var(--warn-text);">Памятка: нейросети тоже ошибаются, поэтому конспекты не являются 100% верными.</span>
-                <span style="color: var(--text-secondary);">
-                  ИИ отлично помогает структурировать тему, но может допустить неточность в индексах или переходах доказательства. Для проверки к лекциям прикрепляются <strong>📎 PDF-оригиналы от преподавателей</strong> (доступно сравнение бок о бок).
-                </span>
+              <div style="color: var(--text-secondary);">
+                <strong style="color: var(--text-primary);">Неофициальный студенческий архив лекций:</strong> данный сайт является частной некоммерческой инициативой студентов для обмена личными конспектами и подготовки к занятиям. Не является официальным сайтом или публикацией НИУ ВШЭ; все авторские права на исходные учебные программы и лекции принадлежат их авторам-преподавателям.
+              </div>
+            </div>
+
+            <!-- PROMINENT AI DISCLAIMER BANNER ON MAIN PAGE -->
+            <div id="main-ai-disclaimer" class="ai-disclaimer-banner rounded-3xl px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="flex items-start sm:items-center gap-3.5">
+                <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-base shrink-0" style="background: rgba(245, 158, 11, 0.18);">
+                  ⚠️
+                </div>
+                <div class="text-xs leading-relaxed">
+                  <span class="font-extrabold" style="color: var(--warn-text);">Памятка: нейросети тоже ошибаются, поэтому конспекты не являются 100% верными.</span>
+                  <span style="color: var(--text-secondary);">
+                    ИИ отлично помогает структурировать тему, но может допустить неточность в индексах или переходах доказательства. Для проверки к лекциям прикрепляются <strong>📎 PDF-оригиналы от преподавателей</strong> (доступно сравнение бок о бок).
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -752,12 +787,21 @@
             </div>
 
             <!-- SUBJECT HASHTAG CLOUD (FILTER BY TOPIC TAGS) -->
-            <div class="pt-4 border-t space-y-2" style="border-color: var(--border-col);">
-              <div class="flex items-center justify-between gap-2">
-                <span id="hashtag-bar-title" class="text-[11px] font-bold uppercase tracking-wider" style="color: var(--text-secondary);">🏷️ Общий список хештегов по всем предметам:</span>
-                <button type="button" id="clear-tag-filter-btn" class="hidden text-[11px] font-bold hover:underline" style="color: var(--accent);">
-                  ✕ Сбросить выбранный тег
+            <div class="pt-4 border-t space-y-2 relative z-10" style="border-color: var(--border-col);">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <button type="button" id="toggle-hashtags-cloud-btn" class="flex items-center gap-1.5 text-left hover:opacity-85">
+                  <span id="hashtags-chevron" class="text-xs font-bold" style="color: var(--accent);">▾</span>
+                  <span id="hashtag-bar-title" class="text-[11px] font-bold uppercase tracking-wider" style="color: var(--text-secondary);">🏷️ Общий список хештегов по всем предметам:</span>
+                  <span id="toggle-hashtags-hint" class="text-[11px] font-semibold px-2 py-0.5 rounded-lg surface-elevated" style="color: var(--accent);">Свернуть теги</span>
                 </button>
+                <div class="flex items-center gap-2">
+                  <button type="button" id="clear-tag-filter-btn" class="hidden text-[11px] font-bold hover:underline" style="color: var(--accent);">
+                    ✕ Сбросить выбранный тег
+                  </button>
+                  <button type="button" id="toggle-all-catalog-cards-btn" class="px-2.5 py-1 rounded-xl text-[11px] font-semibold surface-elevated hover:opacity-90" style="color: var(--text-secondary);" title="Свернуть или развернуть все карточки лекций в компактный список">
+                    ▲ Свернуть карточки
+                  </button>
+                </div>
               </div>
               <div id="subject-hashtags-cloud" class="flex flex-wrap gap-1.5">
         <button type="button" data-cloud-tag="" class="hashtag-chip px-3 py-1 rounded-xl text-xs border surface-elevated active">
@@ -884,392 +928,7 @@
           </div>
 
           <!-- Cards Grid -->
-          <div id="lectures-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <article class="surface-card lecture-card rounded-3xl p-6 flex flex-col justify-between gap-4" style="background-image: radial-gradient(380px circle at 0% 0%, #0ea5e916, transparent 70%); border-top: 1px solid #0ea5e966;">
-            <div class="space-y-3 relative z-10">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm" style="background: linear-gradient(135deg, #0ea5e9, #0ea5e9dd); box-shadow: 0 4px 14px -3px #0ea5e966;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-white/90"></span>
-                    МАТАН
-                  </span>
-                  <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold surface-elevated" style="color: var(--accent);">
-                    Лекции • №10-12
-                  </span>
-                  <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider" style="background: rgba(16, 185, 129, 0.16); color: var(--accent);">📎 +PDF лектора</span>
-                  
-                </div>
-
-                <!-- Right: Date + Bookmark & Done Toggles -->
-                <div class="flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-lg text-xs font-medium surface-elevated" style="color: var(--text-secondary);">
-                    📅 5 октября, 9 октября и 12 октября
-                  </span>
-                  <button type="button" data-toggle-fav="lec-matan-10-12-2303" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Добавить в закладки (к коллоквиуму)" style="color: var(--text-secondary);">
-                    ☆
-                  </button>
-                  <button type="button" data-toggle-done="lec-matan-10-12-2303" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Отметить как изученное" style="color: var(--text-secondary);">
-                    ✓
-                  </button>
-                </div>
-              </div>
-
-              <h3 class="text-base sm:text-lg font-extrabold leading-snug pt-0.5">
-                <a href="#lecture=lec-matan-10-12-2303" data-open-lecture="lec-matan-10-12-2303" class="hover:underline block" title="Левый клик — открыть внутри сайта. Колёсико мыши — открыть в новой вкладке.">
-                  Теория пределов функций, замечательные пределы и асимптотическое сравнение функций
-                </a>
-              </h3>
-
-              <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
-                Лекции 10-12 по Математическому Анализу
-              </p>
-            </div>
-
-            <div class="space-y-3.5 pt-3.5 border-t relative z-10" style="border-color: var(--border-col);">
-              <div class="flex flex-wrap gap-1.5"><button type="button" data-card-tag="Предел Функции" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Предел Функции</button><button type="button" data-card-tag="Предел Функции По Коши" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Предел Функции По Коши</button><button type="button" data-card-tag="Предел Функции По Гейне" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Предел Функции По Гейне</button><button type="button" data-card-tag="Критерий Коши" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Критерий Коши</button><button type="button" data-card-tag="Замечательные Пределы" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Замечательные Пределы</button><button type="button" data-card-tag="Эквивалентность" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Эквивалентность</button><button type="button" data-card-tag="о-Малое" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#о-Малое</button><button type="button" data-card-tag="О-Большое" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#О-Большое</button></div>
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <a href="#lecture=lec-matan-10-12-2303" data-open-lecture="lec-matan-10-12-2303" class="btn-primary-glow flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]">
-                  📖 Читать конспект
-                </a>
-                <button type="button" data-open-pdf="lec-matan-10-12-2303" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Открыть прикреплённый PDF-оригинал от преподавателя">📎 Оригинал PDF</button>
-             <button type="button" data-dl-pdf="lec-matan-10-12-2303" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Скачать оригинальный PDF преподавателя">⬇️ PDF</button>
-                <a href="#lecture=lec-matan-10-12-2303" data-newtab-lecture="lec-matan-10-12-2303" target="_blank" rel="noopener" class="py-2.5 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline" title="Открыть в новой вкладке (или нажмите колёсиком мыши)">
-                  ↗
-                </a>
-              </div>
-            </div>
-          </article>
-        
-          <article class="surface-card lecture-card rounded-3xl p-6 flex flex-col justify-between gap-4" style="background-image: radial-gradient(380px circle at 0% 0%, #0ea5e916, transparent 70%); border-top: 1px solid #0ea5e966;">
-            <div class="space-y-3 relative z-10">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm" style="background: linear-gradient(135deg, #0ea5e9, #0ea5e9dd); box-shadow: 0 4px 14px -3px #0ea5e966;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-white/90"></span>
-                    МАТАН
-                  </span>
-                  <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold surface-elevated" style="color: var(--accent);">
-                    Лекции • №13
-                  </span>
-                  <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider" style="background: rgba(16, 185, 129, 0.16); color: var(--accent);">📎 +PDF лектора</span>
-                  
-                </div>
-
-                <!-- Right: Date + Bookmark & Done Toggles -->
-                <div class="flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-lg text-xs font-medium surface-elevated" style="color: var(--text-secondary);">
-                    📅 16 октября
-                  </span>
-                  <button type="button" data-toggle-fav="lec-matan-13-9209" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Добавить в закладки (к коллоквиуму)" style="color: var(--text-secondary);">
-                    ☆
-                  </button>
-                  <button type="button" data-toggle-done="lec-matan-13-9209" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Отметить как изученное" style="color: var(--text-secondary);">
-                    ✓
-                  </button>
-                </div>
-              </div>
-
-              <h3 class="text-base sm:text-lg font-extrabold leading-snug pt-0.5">
-                <a href="#lecture=lec-matan-13-9209" data-open-lecture="lec-matan-13-9209" class="hover:underline block" title="Левый клик — открыть внутри сайта. Колёсико мыши — открыть в новой вкладке.">
-                  Односторонние пределы функции. Непрерывность функции в точке. Точки разрыва и их классификация
-                </a>
-              </h3>
-
-              <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
-                Лекция 13 по Математическому Анализу
-              </p>
-            </div>
-
-            <div class="space-y-3.5 pt-3.5 border-t relative z-10" style="border-color: var(--border-col);">
-              <div class="flex flex-wrap gap-1.5"><button type="button" data-card-tag="Односторонние Пределы" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Односторонние Пределы</button><button type="button" data-card-tag="Сужение Функции" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Сужение Функции</button><button type="button" data-card-tag="Непрерывность Функции" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Непрерывность Функции</button><button type="button" data-card-tag="Точки разрыва" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Точки разрыва</button></div>
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <a href="#lecture=lec-matan-13-9209" data-open-lecture="lec-matan-13-9209" class="btn-primary-glow flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]">
-                  📖 Читать конспект
-                </a>
-                <button type="button" data-open-pdf="lec-matan-13-9209" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Открыть прикреплённый PDF-оригинал от преподавателя">📎 Оригинал PDF</button>
-             <button type="button" data-dl-pdf="lec-matan-13-9209" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Скачать оригинальный PDF преподавателя">⬇️ PDF</button>
-                <a href="#lecture=lec-matan-13-9209" data-newtab-lecture="lec-matan-13-9209" target="_blank" rel="noopener" class="py-2.5 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline" title="Открыть в новой вкладке (или нажмите колёсиком мыши)">
-                  ↗
-                </a>
-              </div>
-            </div>
-          </article>
-        
-          <article class="surface-card lecture-card rounded-3xl p-6 flex flex-col justify-between gap-4" style="background-image: radial-gradient(380px circle at 0% 0%, #8b5cf616, transparent 70%); border-top: 1px solid #8b5cf666;">
-            <div class="space-y-3 relative z-10">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm" style="background: linear-gradient(135deg, #8b5cf6, #8b5cf6dd); box-shadow: 0 4px 14px -3px #8b5cf666;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-white/90"></span>
-                    ДМ
-                  </span>
-                  <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold surface-elevated" style="color: var(--accent);">
-                    Лекции • №1
-                  </span>
-                  <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider" style="background: rgba(16, 185, 129, 0.16); color: var(--accent);">📎 +PDF лектора</span>
-                  
-                </div>
-
-                <!-- Right: Date + Bookmark & Done Toggles -->
-                <div class="flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-lg text-xs font-medium surface-elevated" style="color: var(--text-secondary);">
-                    📅 8 сентября
-                  </span>
-                  <button type="button" data-toggle-fav="lec-dm-1-6787" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Добавить в закладки (к коллоквиуму)" style="color: var(--text-secondary);">
-                    ☆
-                  </button>
-                  <button type="button" data-toggle-done="lec-dm-1-6787" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Отметить как изученное" style="color: var(--text-secondary);">
-                    ✓
-                  </button>
-                </div>
-              </div>
-
-              <h3 class="text-base sm:text-lg font-extrabold leading-snug pt-0.5">
-                <a href="#lecture=lec-dm-1-6787" data-open-lecture="lec-dm-1-6787" class="hover:underline block" title="Левый клик — открыть внутри сайта. Колёсико мыши — открыть в новой вкладке.">
-                  Основы теории множеств, Булева алгебра множеств и Булеан
-                </a>
-              </h3>
-
-              <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
-                Лекция 1 по Дискретной Математике
-              </p>
-            </div>
-
-            <div class="space-y-3.5 pt-3.5 border-t relative z-10" style="border-color: var(--border-col);">
-              <div class="flex flex-wrap gap-1.5"><button type="button" data-card-tag="Множества" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Множества</button><button type="button" data-card-tag="Подмножества" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Подмножества</button><button type="button" data-card-tag="Универс" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Универс</button><button type="button" data-card-tag="Базовые Операции Над Множествами" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Базовые Операции Над Множествами</button><button type="button" data-card-tag="Мощность" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Мощность</button><button type="button" data-card-tag="Булеан" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Булеан</button></div>
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <a href="#lecture=lec-dm-1-6787" data-open-lecture="lec-dm-1-6787" class="btn-primary-glow flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]">
-                  📖 Читать конспект
-                </a>
-                <button type="button" data-open-pdf="lec-dm-1-6787" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Открыть прикреплённый PDF-оригинал от преподавателя">📎 Оригинал PDF</button>
-             <button type="button" data-dl-pdf="lec-dm-1-6787" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Скачать оригинальный PDF преподавателя">⬇️ PDF</button>
-                <a href="#lecture=lec-dm-1-6787" data-newtab-lecture="lec-dm-1-6787" target="_blank" rel="noopener" class="py-2.5 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline" title="Открыть в новой вкладке (или нажмите колёсиком мыши)">
-                  ↗
-                </a>
-              </div>
-            </div>
-          </article>
-        
-          <article class="surface-card lecture-card rounded-3xl p-6 flex flex-col justify-between gap-4" style="background-image: radial-gradient(380px circle at 0% 0%, #8b5cf616, transparent 70%); border-top: 1px solid #8b5cf666;">
-            <div class="space-y-3 relative z-10">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm" style="background: linear-gradient(135deg, #8b5cf6, #8b5cf6dd); box-shadow: 0 4px 14px -3px #8b5cf666;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-white/90"></span>
-                    ДМ
-                  </span>
-                  <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold surface-elevated" style="color: var(--accent);">
-                    Лекции • №2
-                  </span>
-                  <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider" style="background: rgba(16, 185, 129, 0.16); color: var(--accent);">📎 +PDF лектора</span>
-                  
-                </div>
-
-                <!-- Right: Date + Bookmark & Done Toggles -->
-                <div class="flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-lg text-xs font-medium surface-elevated" style="color: var(--text-secondary);">
-                    📅 15 сентября
-                  </span>
-                  <button type="button" data-toggle-fav="lec-dm-2-8647" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Добавить в закладки (к коллоквиуму)" style="color: var(--text-secondary);">
-                    ☆
-                  </button>
-                  <button type="button" data-toggle-done="lec-dm-2-8647" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Отметить как изученное" style="color: var(--text-secondary);">
-                    ✓
-                  </button>
-                </div>
-              </div>
-
-              <h3 class="text-base sm:text-lg font-extrabold leading-snug pt-0.5">
-                <a href="#lecture=lec-dm-2-8647" data-open-lecture="lec-dm-2-8647" class="hover:underline block" title="Левый клик — открыть внутри сайта. Колёсико мыши — открыть в новой вкладке.">
-                  Лекция 2: Критерий равенства множеств, Типы и Диаграммы Венна, Кардинальные операции и Декартово произведение
-                </a>
-              </h3>
-
-              <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
-                Лекция 2 по Дискретной Математике
-              </p>
-            </div>
-
-            <div class="space-y-3.5 pt-3.5 border-t relative z-10" style="border-color: var(--border-col);">
-              <div class="flex flex-wrap gap-1.5"><button type="button" data-card-tag="Типы" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Типы</button><button type="button" data-card-tag="Диаграмма Венна" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Диаграмма Венна</button><button type="button" data-card-tag="Декартово Произведение" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Декартово Произведение</button><button type="button" data-card-tag="Мощность" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Мощность</button></div>
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <a href="#lecture=lec-dm-2-8647" data-open-lecture="lec-dm-2-8647" class="btn-primary-glow flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]">
-                  📖 Читать конспект
-                </a>
-                <button type="button" data-open-pdf="lec-dm-2-8647" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Открыть прикреплённый PDF-оригинал от преподавателя">📎 Оригинал PDF</button>
-             <button type="button" data-dl-pdf="lec-dm-2-8647" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Скачать оригинальный PDF преподавателя">⬇️ PDF</button>
-                <a href="#lecture=lec-dm-2-8647" data-newtab-lecture="lec-dm-2-8647" target="_blank" rel="noopener" class="py-2.5 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline" title="Открыть в новой вкладке (или нажмите колёсиком мыши)">
-                  ↗
-                </a>
-              </div>
-            </div>
-          </article>
-        
-          <article class="surface-card lecture-card rounded-3xl p-6 flex flex-col justify-between gap-4" style="background-image: radial-gradient(380px circle at 0% 0%, #8b5cf616, transparent 70%); border-top: 1px solid #8b5cf666;">
-            <div class="space-y-3 relative z-10">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm" style="background: linear-gradient(135deg, #8b5cf6, #8b5cf6dd); box-shadow: 0 4px 14px -3px #8b5cf666;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-white/90"></span>
-                    ДМ
-                  </span>
-                  <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold surface-elevated" style="color: var(--accent);">
-                    Лекции • №3
-                  </span>
-                  <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider" style="background: rgba(16, 185, 129, 0.16); color: var(--accent);">📎 +PDF лектора</span>
-                  
-                </div>
-
-                <!-- Right: Date + Bookmark & Done Toggles -->
-                <div class="flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-lg text-xs font-medium surface-elevated" style="color: var(--text-secondary);">
-                    📅 22 сентября
-                  </span>
-                  <button type="button" data-toggle-fav="lec-dm-3-9075" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Добавить в закладки (к коллоквиуму)" style="color: var(--text-secondary);">
-                    ☆
-                  </button>
-                  <button type="button" data-toggle-done="lec-dm-3-9075" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Отметить как изученное" style="color: var(--text-secondary);">
-                    ✓
-                  </button>
-                </div>
-              </div>
-
-              <h3 class="text-base sm:text-lg font-extrabold leading-snug pt-0.5">
-                <a href="#lecture=lec-dm-3-9075" data-open-lecture="lec-dm-3-9075" class="hover:underline block" title="Левый клик — открыть внутри сайта. Колёсико мыши — открыть в новой вкладке.">
-                  Лекция 3: Множество всех подмножеств 2A, Формула включений-исключений и Метод характеристических функций
-                </a>
-              </h3>
-
-              <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
-                Лекция 3 по Дискретной Математике
-              </p>
-            </div>
-
-            <div class="space-y-3.5 pt-3.5 border-t relative z-10" style="border-color: var(--border-col);">
-              <div class="flex flex-wrap gap-1.5"><button type="button" data-card-tag="Формула Включений-Исключений" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Формула Включений-Исключений</button><button type="button" data-card-tag="Характеристическая Функция" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Характеристическая Функция</button></div>
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <a href="#lecture=lec-dm-3-9075" data-open-lecture="lec-dm-3-9075" class="btn-primary-glow flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]">
-                  📖 Читать конспект
-                </a>
-                <button type="button" data-open-pdf="lec-dm-3-9075" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Открыть прикреплённый PDF-оригинал от преподавателя">📎 Оригинал PDF</button>
-             <button type="button" data-dl-pdf="lec-dm-3-9075" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Скачать оригинальный PDF преподавателя">⬇️ PDF</button>
-                <a href="#lecture=lec-dm-3-9075" data-newtab-lecture="lec-dm-3-9075" target="_blank" rel="noopener" class="py-2.5 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline" title="Открыть в новой вкладке (или нажмите колёсиком мыши)">
-                  ↗
-                </a>
-              </div>
-            </div>
-          </article>
-        
-          <article class="surface-card lecture-card rounded-3xl p-6 flex flex-col justify-between gap-4" style="background-image: radial-gradient(380px circle at 0% 0%, #8b5cf616, transparent 70%); border-top: 1px solid #8b5cf666;">
-            <div class="space-y-3 relative z-10">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm" style="background: linear-gradient(135deg, #8b5cf6, #8b5cf6dd); box-shadow: 0 4px 14px -3px #8b5cf666;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-white/90"></span>
-                    ДМ
-                  </span>
-                  <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold surface-elevated" style="color: var(--accent);">
-                    Лекции • №4
-                  </span>
-                  <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider" style="background: rgba(16, 185, 129, 0.16); color: var(--accent);">📎 +PDF лектора</span>
-                  
-                </div>
-
-                <!-- Right: Date + Bookmark & Done Toggles -->
-                <div class="flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-lg text-xs font-medium surface-elevated" style="color: var(--text-secondary);">
-                    📅 29 сентября
-                  </span>
-                  <button type="button" data-toggle-fav="lec-dm-4-5006" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Добавить в закладки (к коллоквиуму)" style="color: var(--text-secondary);">
-                    ☆
-                  </button>
-                  <button type="button" data-toggle-done="lec-dm-4-5006" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Отметить как изученное" style="color: var(--text-secondary);">
-                    ✓
-                  </button>
-                </div>
-              </div>
-
-              <h3 class="text-base sm:text-lg font-extrabold leading-snug pt-0.5">
-                <a href="#lecture=lec-dm-4-5006" data-open-lecture="lec-dm-4-5006" class="hover:underline block" title="Левый клик — открыть внутри сайта. Колёсико мыши — открыть в новой вкладке.">
-                  Алгоритм решения уравнений в алгебре множеств и Теория бинарных отношений
-                </a>
-              </h3>
-
-              <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
-                Лекция 4 по Дискретной Математике
-              </p>
-            </div>
-
-            <div class="space-y-3.5 pt-3.5 border-t relative z-10" style="border-color: var(--border-col);">
-              <div class="flex flex-wrap gap-1.5"><button type="button" data-card-tag="Уравнения" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Уравнения</button><button type="button" data-card-tag="Бинарные Отношения" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Бинарные Отношения</button><button type="button" data-card-tag="Операции Над Отношениями" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Операции Над Отношениями</button><button type="button" data-card-tag="Типы Отношений" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Типы Отношений</button></div>
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <a href="#lecture=lec-dm-4-5006" data-open-lecture="lec-dm-4-5006" class="btn-primary-glow flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]">
-                  📖 Читать конспект
-                </a>
-                <button type="button" data-open-pdf="lec-dm-4-5006" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Открыть прикреплённый PDF-оригинал от преподавателя">📎 Оригинал PDF</button>
-             <button type="button" data-dl-pdf="lec-dm-4-5006" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Скачать оригинальный PDF преподавателя">⬇️ PDF</button>
-                <a href="#lecture=lec-dm-4-5006" data-newtab-lecture="lec-dm-4-5006" target="_blank" rel="noopener" class="py-2.5 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline" title="Открыть в новой вкладке (или нажмите колёсиком мыши)">
-                  ↗
-                </a>
-              </div>
-            </div>
-          </article>
-        
-          <article class="surface-card lecture-card rounded-3xl p-6 flex flex-col justify-between gap-4" style="background-image: radial-gradient(380px circle at 0% 0%, #8b5cf616, transparent 70%); border-top: 1px solid #8b5cf666;">
-            <div class="space-y-3 relative z-10">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm" style="background: linear-gradient(135deg, #8b5cf6, #8b5cf6dd); box-shadow: 0 4px 14px -3px #8b5cf666;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-white/90"></span>
-                    ДМ
-                  </span>
-                  <span class="px-2.5 py-1 rounded-lg text-[11px] font-semibold surface-elevated" style="color: var(--accent);">
-                    Лекции • №5
-                  </span>
-                  <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold uppercase tracking-wider" style="background: rgba(16, 185, 129, 0.16); color: var(--accent);">📎 +PDF лектора</span>
-                  
-                </div>
-
-                <!-- Right: Date + Bookmark & Done Toggles -->
-                <div class="flex items-center gap-1.5">
-                  <span class="px-2.5 py-1 rounded-lg text-xs font-medium surface-elevated" style="color: var(--text-secondary);">
-                    📅 6 октября
-                  </span>
-                  <button type="button" data-toggle-fav="lec-dm-5-5060" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Добавить в закладки (к коллоквиуму)" style="color: var(--text-secondary);">
-                    ☆
-                  </button>
-                  <button type="button" data-toggle-done="lec-dm-5-5060" class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90" title="Отметить как изученное" style="color: var(--text-secondary);">
-                    ✓
-                  </button>
-                </div>
-              </div>
-
-              <h3 class="text-base sm:text-lg font-extrabold leading-snug pt-0.5">
-                <a href="#lecture=lec-dm-5-5060" data-open-lecture="lec-dm-5-5060" class="hover:underline block" title="Левый клик — открыть внутри сайта. Колёсико мыши — открыть в новой вкладке.">
-                  Бинарные отношения, эквивалентность, фактор-множества и отношения порядка
-                </a>
-              </h3>
-
-              <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
-                Лекция 5 по Дискретной Математике
-              </p>
-            </div>
-
-            <div class="space-y-3.5 pt-3.5 border-t relative z-10" style="border-color: var(--border-col);">
-              <div class="flex flex-wrap gap-1.5"><button type="button" data-card-tag="Бинарные Отношения" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Бинарные Отношения</button><button type="button" data-card-tag="Свойства Бинарных Отношений" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Свойства Бинарных Отношений</button><button type="button" data-card-tag="Эквивалентность" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Эквивалентность</button><button type="button" data-card-tag="Отношения Порядка" class="hashtag-chip px-2.5 py-0.5 rounded-lg text-[11px] font-medium border surface-elevated " style="color: var(--text-secondary);">#Отношения Порядка</button></div>
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <a href="#lecture=lec-dm-5-5060" data-open-lecture="lec-dm-5-5060" class="btn-primary-glow flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]">
-                  📖 Читать конспект
-                </a>
-                <button type="button" data-open-pdf="lec-dm-5-5060" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Открыть прикреплённый PDF-оригинал от преподавателя">📎 Оригинал PDF</button>
-             <button type="button" data-dl-pdf="lec-dm-5-5060" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Скачать оригинальный PDF преподавателя">⬇️ PDF</button>
-                <a href="#lecture=lec-dm-5-5060" data-newtab-lecture="lec-dm-5-5060" target="_blank" rel="noopener" class="py-2.5 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline" title="Открыть в новой вкладке (или нажмите колёсиком мыши)">
-                  ↗
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
+          <div id="lectures-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </div>
 
         <!-- SUBVIEW B: EMBEDDED LECTURE SHELL VIEWER (HTML + TEACHER PDF + SIDE-BY-SIDE + NOTES) -->
@@ -1318,6 +977,9 @@
               <a id="viewer-newtab-link" href="#lecture=lec-dm-2-8647" target="_blank" rel="noopener" class="px-2.5 py-1.5 rounded-xl text-xs font-semibold surface-card hover:opacity-90 no-underline" title="Открыть конспект в отдельной вкладке">
                 ↗ В новой вкладке
               </a>
+              <button type="button" id="viewer-collapse-top-btn" class="px-2.5 py-1.5 rounded-xl text-xs font-semibold surface-card hover:opacity-90" title="Свернуть верхнюю шапку сайта и памятку для максимального обзора">
+                ▲ Свернуть шапку
+              </button>
               <button type="button" id="viewer-fullscreen-btn" class="btn-primary-glow px-3 py-1.5 rounded-xl text-xs font-semibold text-white">
                 ⛶ На весь экран
               </button>
@@ -1325,7 +987,7 @@
           </div>
 
           <!-- Compact AI Caution Strip inside Reader -->
-          <div class="ai-disclaimer-banner px-4 py-1.5 text-[11px] flex items-center justify-between gap-2 border-t-0 border-x-0">
+          <div id="viewer-caution-strip" class="ai-disclaimer-banner px-4 py-1.5 text-[11px] flex items-center justify-between gap-2 border-t-0 border-x-0">
             <span>⚠️ <strong>Напоминание:</strong> нейроконспект сгенерирован ИИ и может содержать неточности. Проверяйте строгие доказательства по оригиналу лектора.</span>
             <span id="viewer-pdf-status-label" class="font-semibold shrink-0" style="color: var(--warn-text);">📎 Прикреплён PDF преподавателя</span>
           </div>
@@ -1416,9 +1078,11 @@
 
           <!-- Card 1: Upload / Add New HTML Lecture + Teacher PDF -->
           <div class="surface-card rounded-3xl p-5 sm:p-6 space-y-4">
-            <h3 class="font-bold text-base flex items-center gap-2">
+            <button type="button" data-collapse-target="admin-card-1-body" class="w-full font-bold text-base flex items-center justify-between gap-2 text-left hover:opacity-85">
               <span>📥 1. Добавить лекцию (.HTML + оригинал .PDF)</span>
-            </h3>
+              <span class="collapse-chevron text-xs px-2 py-0.5 rounded-lg surface-elevated">▾</span>
+            </button>
+            <div id="admin-card-1-body" class="space-y-4">
             <p class="text-xs" style="color: var(--text-secondary);">
               Выберите ИИ-конспект (<code>.html</code>) и при желании сразу прикрепите к нему оригинальный файл преподавателя (<code>.pdf</code>).
             </p>
@@ -1482,6 +1146,7 @@
               <button type="button" id="add-lecture-btn" class="btn-primary-glow w-full py-2.5 px-4 rounded-xl font-bold text-xs text-white">
                 ➕ Добавить лекцию в каталог
               </button>
+            </div>
             </div>
           </div>
 
@@ -1588,458 +1253,15 @@
                 К любой существующей лекции можно в 1 клик прикрепить (или заменить) <code>.pdf</code> оригинал от преподавателя кнопкой <strong>«📎 Прикрепить PDF»</strong>.
               </p>
             </div>
-            <span id="admin-lectures-count" class="px-3 py-1 rounded-full text-xs font-bold surface-elevated shrink-0">7 мат.</span>
-          </div>
-
-          <div id="admin-lectures-list" class="space-y-3">
-          <div class="surface-elevated rounded-2xl p-4 space-y-3">
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold surface-card" style="color: var(--accent);">#1</span>
-                <button type="button" data-move-up="lec-matan-10-12-2303" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80" disabled="" style="opacity:0.4">⬆️ Вверх</button>
-                <button type="button" data-move-down="lec-matan-10-12-2303" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬇️ Вниз</button>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono surface-card" style="color: var(--text-secondary);">📄 lectures/lec-matan-10-12-2303.enc.json</span>
-              </div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <button type="button" data-preview-lec="lec-matan-10-12-2303" class="px-3 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Открыть конспект</button>
-                <button type="button" data-preview-pdf="lec-matan-10-12-2303" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">📎 Открыть PDF</button>
-                <button type="button" data-admin-dl-pdf="lec-matan-10-12-2303" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">⬇️ Скачать PDF</button>
-                <button type="button" data-admin-repair-pdf="lec-matan-10-12-2303" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: #fbbf24;" title="Пересобрать уже прикреплённый PDF в чистый формат PDF 1.4 и сохранить в каталоге">🛠️ Починить PDF</button>
-                <button type="button" data-delete-lec="lec-matan-10-12-2303" class="px-3 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️ Удалить</button>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-              <div class="sm:col-span-2">
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Название лекции</label>
-                <input type="text" value="Теория пределов функций, замечательные пределы и асимптотическое сравнение функций" data-edit-title="lec-matan-10-12-2303" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Предмет</label>
-                <select data-edit-subj="lec-matan-10-12-2303" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="dm">Дискретная Математика</option><option value="matan" selected="">Математический Анализ</option><option value="algebra">Алгебра</option><option value="angem">Аналитическая Геометрия</option></select>
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Ветка</label>
-                <select data-edit-branch="lec-matan-10-12-2303" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="lectures" selected="">Лекции</option><option value="colloquia">Коллоквиумы</option><option value="seminars">Семинары и шпаргалки</option></select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">№ лекции / тем (напр. 4, 5)</label>
-                <input type="text" value="10-12" data-edit-num="lec-matan-10-12-2303" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Дата(ы) (ДД ММ ГГГГ через запятую)</label>
-                <input type="text" value="05.10.2026, 09.10.2026, 12.10.2026" data-edit-date="lec-matan-10-12-2303" placeholder="05 10 2026, 09 10 2026" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Подпись дат(ы)</label>
-                <input type="text" value="5 октября, 9 октября и 12 октября" data-edit-datelabel="lec-matan-10-12-2303" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Хештеги (через запятую)</label>
-                <input type="text" value="Предел Функции, Предел Функции По Коши, Предел Функции По Гейне, Критерий Коши, Замечательные Пределы, Эквивалентность, о-Малое, О-Большое" data-edit-tags="lec-matan-10-12-2303" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs">
-              </div>
-            </div>
-
-            <!-- Teacher PDF Attachment Row for this Lecture -->
-            <div class="pt-2 border-t flex items-center justify-between gap-2 flex-wrap" style="border-color: var(--border-col);">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold" style="background: var(--accent-soft); color: var(--accent);">📎 Прикреплён: МА26ФПМ_Лекции 10-12.pdf</span>
-             <button type="button" data-remove-pdf="lec-matan-10-12-2303" class="px-2 py-1 rounded-lg text-[11px] text-red-400 surface-card hover:bg-red-950/40" title="Открепить PDF">✕ Убрать PDF</button>
-              </div>
-              <label class="px-3 py-1.5 rounded-xl text-xs font-bold surface-card cursor-pointer hover:opacity-90" style="color: var(--accent);">
-                📎 Заменить PDF преподавателя
-                <input type="file" accept=".pdf,application/pdf" data-attach-pdf="lec-matan-10-12-2303" class="hidden">
-              </label>
+            <div class="flex items-center gap-2 shrink-0">
+              <button type="button" id="admin-collapse-all-btn" class="px-3 py-1 rounded-full text-xs font-semibold surface-elevated hover:opacity-90" style="color: var(--accent);">
+                ▲ Свернуть все
+              </button>
+              <span id="admin-lectures-count" class="px-3 py-1 rounded-full text-xs font-bold surface-elevated shrink-0">7 мат.</span>
             </div>
           </div>
-        
-          <div class="surface-elevated rounded-2xl p-4 space-y-3">
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold surface-card" style="color: var(--accent);">#2</span>
-                <button type="button" data-move-up="lec-matan-13-9209" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬆️ Вверх</button>
-                <button type="button" data-move-down="lec-matan-13-9209" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬇️ Вниз</button>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono surface-card" style="color: var(--text-secondary);">📄 lectures/lec-matan-13-9209.enc.json</span>
-              </div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <button type="button" data-preview-lec="lec-matan-13-9209" class="px-3 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Открыть конспект</button>
-                <button type="button" data-preview-pdf="lec-matan-13-9209" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">📎 Открыть PDF</button>
-                <button type="button" data-admin-dl-pdf="lec-matan-13-9209" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">⬇️ Скачать PDF</button>
-                <button type="button" data-admin-repair-pdf="lec-matan-13-9209" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: #fbbf24;" title="Пересобрать уже прикреплённый PDF в чистый формат PDF 1.4 и сохранить в каталоге">🛠️ Починить PDF</button>
-                <button type="button" data-delete-lec="lec-matan-13-9209" class="px-3 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️ Удалить</button>
-              </div>
-            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-              <div class="sm:col-span-2">
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Название лекции</label>
-                <input type="text" value="Односторонние пределы функции. Непрерывность функции в точке. Точки разрыва и их классификация" data-edit-title="lec-matan-13-9209" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Предмет</label>
-                <select data-edit-subj="lec-matan-13-9209" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="dm">Дискретная Математика</option><option value="matan" selected="">Математический Анализ</option><option value="algebra">Алгебра</option><option value="angem">Аналитическая Геометрия</option></select>
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Ветка</label>
-                <select data-edit-branch="lec-matan-13-9209" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="lectures" selected="">Лекции</option><option value="colloquia">Коллоквиумы</option><option value="seminars">Семинары и шпаргалки</option></select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">№ лекции / тем (напр. 4, 5)</label>
-                <input type="text" value="13" data-edit-num="lec-matan-13-9209" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Дата(ы) (ДД ММ ГГГГ через запятую)</label>
-                <input type="text" value="16.10.2026" data-edit-date="lec-matan-13-9209" placeholder="05 10 2026, 09 10 2026" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Подпись дат(ы)</label>
-                <input type="text" value="16 октября" data-edit-datelabel="lec-matan-13-9209" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Хештеги (через запятую)</label>
-                <input type="text" value="Односторонние Пределы, Сужение Функции, Непрерывность Функции, Точки разрыва" data-edit-tags="lec-matan-13-9209" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs">
-              </div>
-            </div>
-
-            <!-- Teacher PDF Attachment Row for this Lecture -->
-            <div class="pt-2 border-t flex items-center justify-between gap-2 flex-wrap" style="border-color: var(--border-col);">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold" style="background: var(--accent-soft); color: var(--accent);">📎 Прикреплён: МА26ФПМ_Лекция 13.pdf</span>
-             <button type="button" data-remove-pdf="lec-matan-13-9209" class="px-2 py-1 rounded-lg text-[11px] text-red-400 surface-card hover:bg-red-950/40" title="Открепить PDF">✕ Убрать PDF</button>
-              </div>
-              <label class="px-3 py-1.5 rounded-xl text-xs font-bold surface-card cursor-pointer hover:opacity-90" style="color: var(--accent);">
-                📎 Заменить PDF преподавателя
-                <input type="file" accept=".pdf,application/pdf" data-attach-pdf="lec-matan-13-9209" class="hidden">
-              </label>
-            </div>
-          </div>
-        
-          <div class="surface-elevated rounded-2xl p-4 space-y-3">
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold surface-card" style="color: var(--accent);">#3</span>
-                <button type="button" data-move-up="lec-dm-1-6787" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬆️ Вверх</button>
-                <button type="button" data-move-down="lec-dm-1-6787" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬇️ Вниз</button>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono surface-card" style="color: var(--text-secondary);">📄 lectures/lec-dm-1-6787.enc.json</span>
-              </div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <button type="button" data-preview-lec="lec-dm-1-6787" class="px-3 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Открыть конспект</button>
-                <button type="button" data-preview-pdf="lec-dm-1-6787" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">📎 Открыть PDF</button>
-                <button type="button" data-admin-dl-pdf="lec-dm-1-6787" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">⬇️ Скачать PDF</button>
-                <button type="button" data-admin-repair-pdf="lec-dm-1-6787" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: #fbbf24;" title="Пересобрать уже прикреплённый PDF в чистый формат PDF 1.4 и сохранить в каталоге">🛠️ Починить PDF</button>
-                <button type="button" data-delete-lec="lec-dm-1-6787" class="px-3 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️ Удалить</button>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-              <div class="sm:col-span-2">
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Название лекции</label>
-                <input type="text" value="Основы теории множеств, Булева алгебра множеств и Булеан" data-edit-title="lec-dm-1-6787" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Предмет</label>
-                <select data-edit-subj="lec-dm-1-6787" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="dm" selected="">Дискретная Математика</option><option value="matan">Математический Анализ</option><option value="algebra">Алгебра</option><option value="angem">Аналитическая Геометрия</option></select>
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Ветка</label>
-                <select data-edit-branch="lec-dm-1-6787" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="lectures" selected="">Лекции</option><option value="colloquia">Коллоквиумы</option><option value="seminars">Семинары и шпаргалки</option></select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">№ лекции / тем (напр. 4, 5)</label>
-                <input type="text" value="1" data-edit-num="lec-dm-1-6787" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Дата(ы) (ДД ММ ГГГГ через запятую)</label>
-                <input type="text" value="08.09.2026" data-edit-date="lec-dm-1-6787" placeholder="05 10 2026, 09 10 2026" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Подпись дат(ы)</label>
-                <input type="text" value="8 сентября" data-edit-datelabel="lec-dm-1-6787" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Хештеги (через запятую)</label>
-                <input type="text" value="Множества, Подмножества, Универс, Базовые Операции Над Множествами, Мощность, Булеан" data-edit-tags="lec-dm-1-6787" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs">
-              </div>
-            </div>
-
-            <!-- Teacher PDF Attachment Row for this Lecture -->
-            <div class="pt-2 border-t flex items-center justify-between gap-2 flex-wrap" style="border-color: var(--border-col);">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold" style="background: var(--accent-soft); color: var(--accent);">📎 Прикреплён: Лекция 1.pdf</span>
-             <button type="button" data-remove-pdf="lec-dm-1-6787" class="px-2 py-1 rounded-lg text-[11px] text-red-400 surface-card hover:bg-red-950/40" title="Открепить PDF">✕ Убрать PDF</button>
-              </div>
-              <label class="px-3 py-1.5 rounded-xl text-xs font-bold surface-card cursor-pointer hover:opacity-90" style="color: var(--accent);">
-                📎 Заменить PDF преподавателя
-                <input type="file" accept=".pdf,application/pdf" data-attach-pdf="lec-dm-1-6787" class="hidden">
-              </label>
-            </div>
-          </div>
-        
-          <div class="surface-elevated rounded-2xl p-4 space-y-3">
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold surface-card" style="color: var(--accent);">#4</span>
-                <button type="button" data-move-up="lec-dm-2-8647" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬆️ Вверх</button>
-                <button type="button" data-move-down="lec-dm-2-8647" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬇️ Вниз</button>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono surface-card" style="color: var(--text-secondary);">📄 lectures/lec-dm-2-8647.enc.json</span>
-              </div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <button type="button" data-preview-lec="lec-dm-2-8647" class="px-3 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Открыть конспект</button>
-                <button type="button" data-preview-pdf="lec-dm-2-8647" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">📎 Открыть PDF</button>
-                <button type="button" data-admin-dl-pdf="lec-dm-2-8647" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">⬇️ Скачать PDF</button>
-                <button type="button" data-admin-repair-pdf="lec-dm-2-8647" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: #fbbf24;" title="Пересобрать уже прикреплённый PDF в чистый формат PDF 1.4 и сохранить в каталоге">🛠️ Починить PDF</button>
-                <button type="button" data-delete-lec="lec-dm-2-8647" class="px-3 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️ Удалить</button>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-              <div class="sm:col-span-2">
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Название лекции</label>
-                <input type="text" value="Лекция 2: Критерий равенства множеств, Типы и Диаграммы Венна, Кардинальные операции и Декартово произведение" data-edit-title="lec-dm-2-8647" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Предмет</label>
-                <select data-edit-subj="lec-dm-2-8647" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="dm" selected="">Дискретная Математика</option><option value="matan">Математический Анализ</option><option value="algebra">Алгебра</option><option value="angem">Аналитическая Геометрия</option></select>
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Ветка</label>
-                <select data-edit-branch="lec-dm-2-8647" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="lectures" selected="">Лекции</option><option value="colloquia">Коллоквиумы</option><option value="seminars">Семинары и шпаргалки</option></select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">№ лекции / тем (напр. 4, 5)</label>
-                <input type="text" value="2" data-edit-num="lec-dm-2-8647" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Дата(ы) (ДД ММ ГГГГ через запятую)</label>
-                <input type="text" value="15.09.2026" data-edit-date="lec-dm-2-8647" placeholder="05 10 2026, 09 10 2026" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Подпись дат(ы)</label>
-                <input type="text" value="15 сентября" data-edit-datelabel="lec-dm-2-8647" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Хештеги (через запятую)</label>
-                <input type="text" value="Типы, Диаграмма Венна, Декартово Произведение, Мощность" data-edit-tags="lec-dm-2-8647" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs">
-              </div>
-            </div>
-
-            <!-- Teacher PDF Attachment Row for this Lecture -->
-            <div class="pt-2 border-t flex items-center justify-between gap-2 flex-wrap" style="border-color: var(--border-col);">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold" style="background: var(--accent-soft); color: var(--accent);">📎 Прикреплён: Лекция 2.pdf</span>
-             <button type="button" data-remove-pdf="lec-dm-2-8647" class="px-2 py-1 rounded-lg text-[11px] text-red-400 surface-card hover:bg-red-950/40" title="Открепить PDF">✕ Убрать PDF</button>
-              </div>
-              <label class="px-3 py-1.5 rounded-xl text-xs font-bold surface-card cursor-pointer hover:opacity-90" style="color: var(--accent);">
-                📎 Заменить PDF преподавателя
-                <input type="file" accept=".pdf,application/pdf" data-attach-pdf="lec-dm-2-8647" class="hidden">
-              </label>
-            </div>
-          </div>
-        
-          <div class="surface-elevated rounded-2xl p-4 space-y-3">
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold surface-card" style="color: var(--accent);">#5</span>
-                <button type="button" data-move-up="lec-dm-3-9075" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬆️ Вверх</button>
-                <button type="button" data-move-down="lec-dm-3-9075" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬇️ Вниз</button>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono surface-card" style="color: var(--text-secondary);">📄 lectures/lec-dm-3-9075.enc.json</span>
-              </div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <button type="button" data-preview-lec="lec-dm-3-9075" class="px-3 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Открыть конспект</button>
-                <button type="button" data-preview-pdf="lec-dm-3-9075" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">📎 Открыть PDF</button>
-                <button type="button" data-admin-dl-pdf="lec-dm-3-9075" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">⬇️ Скачать PDF</button>
-                <button type="button" data-admin-repair-pdf="lec-dm-3-9075" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: #fbbf24;" title="Пересобрать уже прикреплённый PDF в чистый формат PDF 1.4 и сохранить в каталоге">🛠️ Починить PDF</button>
-                <button type="button" data-delete-lec="lec-dm-3-9075" class="px-3 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️ Удалить</button>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-              <div class="sm:col-span-2">
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Название лекции</label>
-                <input type="text" value="Лекция 3: Множество всех подмножеств 2A, Формула включений-исключений и Метод характеристических функций" data-edit-title="lec-dm-3-9075" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Предмет</label>
-                <select data-edit-subj="lec-dm-3-9075" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="dm" selected="">Дискретная Математика</option><option value="matan">Математический Анализ</option><option value="algebra">Алгебра</option><option value="angem">Аналитическая Геометрия</option></select>
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Ветка</label>
-                <select data-edit-branch="lec-dm-3-9075" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="lectures" selected="">Лекции</option><option value="colloquia">Коллоквиумы</option><option value="seminars">Семинары и шпаргалки</option></select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">№ лекции / тем (напр. 4, 5)</label>
-                <input type="text" value="3" data-edit-num="lec-dm-3-9075" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Дата(ы) (ДД ММ ГГГГ через запятую)</label>
-                <input type="text" value="22.09.2026" data-edit-date="lec-dm-3-9075" placeholder="05 10 2026, 09 10 2026" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Подпись дат(ы)</label>
-                <input type="text" value="22 сентября" data-edit-datelabel="lec-dm-3-9075" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Хештеги (через запятую)</label>
-                <input type="text" value="Формула Включений-Исключений, Характеристическая Функция" data-edit-tags="lec-dm-3-9075" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs">
-              </div>
-            </div>
-
-            <!-- Teacher PDF Attachment Row for this Lecture -->
-            <div class="pt-2 border-t flex items-center justify-between gap-2 flex-wrap" style="border-color: var(--border-col);">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold" style="background: var(--accent-soft); color: var(--accent);">📎 Прикреплён: Лекция 3.pdf</span>
-             <button type="button" data-remove-pdf="lec-dm-3-9075" class="px-2 py-1 rounded-lg text-[11px] text-red-400 surface-card hover:bg-red-950/40" title="Открепить PDF">✕ Убрать PDF</button>
-              </div>
-              <label class="px-3 py-1.5 rounded-xl text-xs font-bold surface-card cursor-pointer hover:opacity-90" style="color: var(--accent);">
-                📎 Заменить PDF преподавателя
-                <input type="file" accept=".pdf,application/pdf" data-attach-pdf="lec-dm-3-9075" class="hidden">
-              </label>
-            </div>
-          </div>
-        
-          <div class="surface-elevated rounded-2xl p-4 space-y-3">
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold surface-card" style="color: var(--accent);">#6</span>
-                <button type="button" data-move-up="lec-dm-4-5006" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬆️ Вверх</button>
-                <button type="button" data-move-down="lec-dm-4-5006" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬇️ Вниз</button>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono surface-card" style="color: var(--text-secondary);">📄 lectures/lec-dm-4-5006.enc.json</span>
-              </div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <button type="button" data-preview-lec="lec-dm-4-5006" class="px-3 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Открыть конспект</button>
-                <button type="button" data-preview-pdf="lec-dm-4-5006" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">📎 Открыть PDF</button>
-                <button type="button" data-admin-dl-pdf="lec-dm-4-5006" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">⬇️ Скачать PDF</button>
-                <button type="button" data-admin-repair-pdf="lec-dm-4-5006" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: #fbbf24;" title="Пересобрать уже прикреплённый PDF в чистый формат PDF 1.4 и сохранить в каталоге">🛠️ Починить PDF</button>
-                <button type="button" data-delete-lec="lec-dm-4-5006" class="px-3 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️ Удалить</button>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-              <div class="sm:col-span-2">
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Название лекции</label>
-                <input type="text" value="Алгоритм решения уравнений в алгебре множеств и Теория бинарных отношений" data-edit-title="lec-dm-4-5006" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Предмет</label>
-                <select data-edit-subj="lec-dm-4-5006" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="dm" selected="">Дискретная Математика</option><option value="matan">Математический Анализ</option><option value="algebra">Алгебра</option><option value="angem">Аналитическая Геометрия</option></select>
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Ветка</label>
-                <select data-edit-branch="lec-dm-4-5006" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="lectures" selected="">Лекции</option><option value="colloquia">Коллоквиумы</option><option value="seminars">Семинары и шпаргалки</option></select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">№ лекции / тем (напр. 4, 5)</label>
-                <input type="text" value="4" data-edit-num="lec-dm-4-5006" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Дата(ы) (ДД ММ ГГГГ через запятую)</label>
-                <input type="text" value="29.09.2026" data-edit-date="lec-dm-4-5006" placeholder="05 10 2026, 09 10 2026" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Подпись дат(ы)</label>
-                <input type="text" value="29 сентября" data-edit-datelabel="lec-dm-4-5006" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Хештеги (через запятую)</label>
-                <input type="text" value="Уравнения, Бинарные Отношения, Операции Над Отношениями, Типы Отношений" data-edit-tags="lec-dm-4-5006" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs">
-              </div>
-            </div>
-
-            <!-- Teacher PDF Attachment Row for this Lecture -->
-            <div class="pt-2 border-t flex items-center justify-between gap-2 flex-wrap" style="border-color: var(--border-col);">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold" style="background: var(--accent-soft); color: var(--accent);">📎 Прикреплён: Лекция 4  (1).pdf</span>
-             <button type="button" data-remove-pdf="lec-dm-4-5006" class="px-2 py-1 rounded-lg text-[11px] text-red-400 surface-card hover:bg-red-950/40" title="Открепить PDF">✕ Убрать PDF</button>
-              </div>
-              <label class="px-3 py-1.5 rounded-xl text-xs font-bold surface-card cursor-pointer hover:opacity-90" style="color: var(--accent);">
-                📎 Заменить PDF преподавателя
-                <input type="file" accept=".pdf,application/pdf" data-attach-pdf="lec-dm-4-5006" class="hidden">
-              </label>
-            </div>
-          </div>
-        
-          <div class="surface-elevated rounded-2xl p-4 space-y-3">
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold surface-card" style="color: var(--accent);">#7</span>
-                <button type="button" data-move-up="lec-dm-5-5060" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80">⬆️ Вверх</button>
-                <button type="button" data-move-down="lec-dm-5-5060" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80" disabled="" style="opacity:0.4">⬇️ Вниз</button>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono surface-card" style="color: var(--text-secondary);">📄 lectures/lec-dm-5-5060.enc.json</span>
-              </div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <button type="button" data-preview-lec="lec-dm-5-5060" class="px-3 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Открыть конспект</button>
-                <button type="button" data-preview-pdf="lec-dm-5-5060" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">📎 Открыть PDF</button>
-                <button type="button" data-admin-dl-pdf="lec-dm-5-5060" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">⬇️ Скачать PDF</button>
-                <button type="button" data-admin-repair-pdf="lec-dm-5-5060" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: #fbbf24;" title="Пересобрать уже прикреплённый PDF в чистый формат PDF 1.4 и сохранить в каталоге">🛠️ Починить PDF</button>
-                <button type="button" data-delete-lec="lec-dm-5-5060" class="px-3 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️ Удалить</button>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-              <div class="sm:col-span-2">
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Название лекции</label>
-                <input type="text" value="Бинарные отношения, эквивалентность, фактор-множества и отношения порядка" data-edit-title="lec-dm-5-5060" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Предмет</label>
-                <select data-edit-subj="lec-dm-5-5060" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="dm" selected="">Дискретная Математика</option><option value="matan">Математический Анализ</option><option value="algebra">Алгебра</option><option value="angem">Аналитическая Геометрия</option></select>
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Ветка</label>
-                <select data-edit-branch="lec-dm-5-5060" class="surface-input w-full rounded-xl px-2 py-1.5 text-xs"><option value="lectures" selected="">Лекции</option><option value="colloquia">Коллоквиумы</option><option value="seminars">Семинары и шпаргалки</option></select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">№ лекции / тем (напр. 4, 5)</label>
-                <input type="text" value="5" data-edit-num="lec-dm-5-5060" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Дата(ы) (ДД ММ ГГГГ через запятую)</label>
-                <input type="text" value="06.10.2026" data-edit-date="lec-dm-5-5060" placeholder="05 10 2026, 09 10 2026" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Подпись дат(ы)</label>
-                <input type="text" value="6 октября" data-edit-datelabel="lec-dm-5-5060" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs font-semibold">
-              </div>
-              <div>
-                <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Хештеги (через запятую)</label>
-                <input type="text" value="Бинарные Отношения, Свойства Бинарных Отношений, Эквивалентность, Отношения Порядка" data-edit-tags="lec-dm-5-5060" class="surface-input w-full rounded-xl px-2.5 py-1.5 text-xs">
-              </div>
-            </div>
-
-            <!-- Teacher PDF Attachment Row for this Lecture -->
-            <div class="pt-2 border-t flex items-center justify-between gap-2 flex-wrap" style="border-color: var(--border-col);">
-              <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-2.5 py-1 rounded-lg text-[11px] font-bold" style="background: var(--accent-soft); color: var(--accent);">📎 Прикреплён: Лекция 5 (1).pdf</span>
-             <button type="button" data-remove-pdf="lec-dm-5-5060" class="px-2 py-1 rounded-lg text-[11px] text-red-400 surface-card hover:bg-red-950/40" title="Открепить PDF">✕ Убрать PDF</button>
-              </div>
-              <label class="px-3 py-1.5 rounded-xl text-xs font-bold surface-card cursor-pointer hover:opacity-90" style="color: var(--accent);">
-                📎 Заменить PDF преподавателя
-                <input type="file" accept=".pdf,application/pdf" data-attach-pdf="lec-dm-5-5060" class="hidden">
-              </label>
-            </div>
-          </div>
-        </div>
+          <div id="admin-lectures-list" class="space-y-3"></div>
         </div>
 
       </div>
@@ -2111,6 +1333,10 @@
     let isReadingPdfFile = false;
     let stagedHtmlFiles = [];
     let stagedPdfFile = null; // { fileName, base64 }
+    let collapsedCatalogCards = {};
+    let allCatalogCardsCollapsed = false;
+    let collapsedAdminCards = {};
+    let allAdminCardsCollapsed = false;
 
     const IDB_NAME = "hse_fpm_portal_db_v4";
     const IDB_STORE = "vault_store";
@@ -2305,13 +1531,12 @@
 
       const numPages = pdfDoc.numPages;
       const pagesData = [];
+      const renderScale = 2.0; // crisp 144 DPI for lecture notes
 
       for (let p = 1; p <= numPages; p++) {
         if (onProgress) onProgress(p, numPages);
         const page = await pdfDoc.getPage(p);
         const vp1 = page.getViewport({ scale: 1.0 });
-        const maxPt = Math.max(vp1.width, vp1.height, 1);
-        const renderScale = Math.min(1.5, 1280 / maxPt);
         const vpRender = page.getViewport({ scale: renderScale });
         const canvas = document.createElement("canvas");
         canvas.width = Math.floor(vpRender.width);
@@ -2320,7 +1545,7 @@
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         await page.render({ canvasContext: ctx, viewport: vpRender }).promise;
-        const dataUrl = canvas.toDataURL("image/jpeg", 0.62);
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
         const jpgBytes = base64ToBytes(dataUrl);
         pagesData.push({
           ptWidth: Math.round(vp1.width * 100) / 100,
@@ -2479,67 +1704,19 @@
       };
     }
 
-    async function compressBytesGzip(uint8Arr) {
-      if (typeof CompressionStream === "undefined") return null;
-      try {
-        const cs = new CompressionStream("gzip");
-        const writer = cs.writable.getWriter();
-        writer.write(uint8Arr);
-        writer.close();
-        const buf = await new Response(cs.readable).arrayBuffer();
-        return new Uint8Array(buf);
-      } catch (e) {
-        return null;
-      }
-    }
-
-    async function decompressBytesGzip(uint8Arr) {
-      const ds = new DecompressionStream("gzip");
-      const writer = ds.writable.getWriter();
-      writer.write(uint8Arr);
-      writer.close();
-      const buf = await new Response(ds.readable).arrayBuffer();
-      return new Uint8Array(buf);
-    }
-
     async function encryptSingleStringWithDek(plainText, cryptoDek) {
       const iv = window.crypto.getRandomValues(new Uint8Array(12));
-      const utf8Bytes = new TextEncoder().encode(plainText);
-      const gzBytes = await compressBytesGzip(utf8Bytes);
-      const useGz = Boolean(gzBytes && gzBytes.length < utf8Bytes.length);
-      const plainBytes = useGz ? gzBytes : utf8Bytes;
+      const plainBytes = new TextEncoder().encode(plainText);
       const ctBuf = await window.crypto.subtle.encrypt(
         { name: "AES-GCM", iv: iv },
         cryptoDek,
         plainBytes
       );
-      const pkt = {
+      return {
         v: 2,
         iv: bytesToBase64(iv),
         ct: bytesToBase64(ctBuf)
       };
-      if (useGz) pkt.gz = true;
-      return pkt;
-    }
-
-    async function encryptSingleBinaryWithDek(rawBytes, cryptoDek) {
-      const iv = window.crypto.getRandomValues(new Uint8Array(12));
-      const gzBytes = await compressBytesGzip(rawBytes);
-      const useGz = Boolean(gzBytes && gzBytes.length + 64 < rawBytes.length);
-      const payload = useGz ? gzBytes : rawBytes;
-      const ctBuf = await window.crypto.subtle.encrypt(
-        { name: "AES-GCM", iv: iv },
-        cryptoDek,
-        payload
-      );
-      const pkt = {
-        v: 2,
-        bin: true,
-        iv: bytesToBase64(iv),
-        ct: bytesToBase64(ctBuf)
-      };
-      if (useGz) pkt.gz = true;
-      return pkt;
     }
 
     async function decryptSingleStringWithDek(encPacket, cryptoDek) {
@@ -2550,14 +1727,7 @@
         cryptoDek,
         ct
       );
-      let outBytes = new Uint8Array(plainBuf);
-      if (encPacket.gz) {
-        outBytes = await decompressBytesGzip(outBytes);
-      }
-      if (encPacket.bin) {
-        return bytesToBase64(outBytes);
-      }
-      return new TextDecoder("utf-8").decode(outBytes);
+      return new TextDecoder("utf-8").decode(plainBuf);
     }
 
     async function decryptVaultWithPassword(encryptedObj, password) {
@@ -2585,11 +1755,7 @@
         cryptoDek,
         vaultCt
       );
-      let vaultBytes = new Uint8Array(plainVaultBuf);
-      if (encryptedObj.gz) {
-        vaultBytes = await decompressBytesGzip(vaultBytes);
-      }
-      const parsedVault = JSON.parse(new TextDecoder("utf-8").decode(vaultBytes));
+      const parsedVault = JSON.parse(new TextDecoder("utf-8").decode(plainVaultBuf));
       return {
         role: unwrapped.role || "student",
         dekBytes: dekBytes,
@@ -2609,10 +1775,7 @@
         false,
         ["encrypt", "decrypt"]
       );
-      const utf8Bytes = new TextEncoder().encode(JSON.stringify(dataObj));
-      const gzBytes = await compressBytesGzip(utf8Bytes);
-      const useGz = Boolean(gzBytes && gzBytes.length < utf8Bytes.length);
-      const plainBytes = useGz ? gzBytes : utf8Bytes;
+      const plainBytes = new TextEncoder().encode(JSON.stringify(dataObj));
       const vaultCtBuf = await window.crypto.subtle.encrypt(
         { name: "AES-GCM", iv: vaultIv },
         cryptoDek,
@@ -2625,7 +1788,6 @@
       return {
         encryptedCatalog: {
           v: 2,
-          gz: useGz,
           iter: iter,
           showHint: Boolean(dataObj.showPasswordHint),
           vaultIv: bytesToBase64(vaultIv),
@@ -2787,36 +1949,27 @@
         // Only restore from local IndexedDB if it belongs to this exact index.html (same vaultIv) or is newer,
         // and never lose embedded PDFs or lectures from a newly downloaded index.html!
         const localDraft = await loadVaultFromLocalIdb();
-        if (localDraft && Array.isArray(localDraft.lectures) && localDraft.lectures.length > 0) {
-          const draftMap = {};
-          localDraft.lectures.forEach(l => { draftMap[l.id] = l; });
-          if (localDraft._sourceVaultIv === currentBaseVaultIv) {
-            const embeddedMap = {};
-            (vaultData.lectures || []).forEach(l => { embeddedMap[l.id] = l; });
-            localDraft.lectures.forEach(l => {
-              const emb = embeddedMap[l.id];
-              if (emb) {
-                if (!l.html && emb.html) l.html = emb.html;
-                if (!l.pdfBase64 && emb.pdfBase64) {
-                  l.pdfBase64 = emb.pdfBase64;
-                  l.hasPdf = Boolean(l.hasPdf || emb.hasPdf);
-                  l.pdfName = l.pdfName || emb.pdfName;
-                  l.pdfFile = l.pdfFile || emb.pdfFile;
-                }
+        if (
+          localDraft &&
+          localDraft._sourceVaultIv === currentBaseVaultIv &&
+          Array.isArray(localDraft.lectures) &&
+          localDraft.lectures.length > 0
+        ) {
+          const embeddedMap = {};
+          (vaultData.lectures || []).forEach(l => { embeddedMap[l.id] = l; });
+          localDraft.lectures.forEach(l => {
+            const emb = embeddedMap[l.id];
+            if (emb) {
+              if (!l.html && emb.html) l.html = emb.html;
+              if (!l.pdfBase64 && emb.pdfBase64) {
+                l.pdfBase64 = emb.pdfBase64;
+                l.hasPdf = Boolean(l.hasPdf || emb.hasPdf);
+                l.pdfName = l.pdfName || emb.pdfName;
+                l.pdfFile = l.pdfFile || emb.pdfFile;
               }
-            });
-            vaultData = localDraft;
-          } else {
-            (vaultData.lectures || []).forEach(l => {
-              const dr = draftMap[l.id];
-              if (dr) {
-                if (!l.html && dr.html) l.html = dr.html;
-                if (!l.pdfBase64 && dr.pdfBase64) l.pdfBase64 = dr.pdfBase64;
-              }
-            });
-            vaultData._sourceVaultIv = currentBaseVaultIv;
-            await saveVaultToLocalIdb(vaultData);
-          }
+            }
+          });
+          vaultData = localDraft;
         } else {
           vaultData._sourceVaultIv = currentBaseVaultIv;
           await saveVaultToLocalIdb(vaultData);
@@ -3118,9 +2271,10 @@
              <button type="button" data-dl-pdf="${item.id}" class="py-2.5 px-3 rounded-xl text-xs font-bold surface-elevated hover:opacity-90" style="color: var(--accent);" title="Скачать оригинальный PDF преподавателя">⬇️ PDF</button>`
           : "";
 
+        const isCardCollapsed = Boolean(collapsedCatalogCards[item.id]);
         return `
-          <article class="surface-card lecture-card rounded-3xl p-6 flex flex-col justify-between gap-4" style="background-image: radial-gradient(380px circle at 0% 0%, ${subj.color}16, transparent 70%); border-top: 1px solid ${subj.color}66;">
-            <div class="space-y-3 relative z-10">
+          <article class="surface-card lecture-card rounded-3xl ${isCardCollapsed ? 'p-4' : 'p-6'} flex flex-col justify-between gap-3" style="background-image: radial-gradient(380px circle at 0% 0%, ${subj.color}16, transparent 70%); border-top: 1px solid ${subj.color}66;">
+            <div class="space-y-2.5 relative z-10">
               <div class="flex items-center justify-between gap-2 flex-wrap">
                 <div class="flex items-center gap-1.5 flex-wrap">
                   <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-extrabold text-white uppercase tracking-wider shadow-sm" style="background: linear-gradient(135deg, ${subj.color}, ${subj.color}dd); box-shadow: 0 4px 14px -3px ${subj.color}66;">
@@ -3134,7 +2288,7 @@
                   ${hasNote ? `<span class="px-2 py-0.5 rounded-lg text-[10px] font-semibold surface-elevated" title="Есть ваша личная заметка">📝 Заметка</span>` : ""}
                 </div>
 
-                <!-- Right: Date + Bookmark & Done Toggles -->
+                <!-- Right: Date + Bookmark, Done & Collapse Toggles -->
                 <div class="flex items-center gap-1.5">
                   <span class="px-2.5 py-1 rounded-lg text-xs font-medium surface-elevated" style="color: var(--text-secondary);">
                     📅 ${item.dateLabel || item.date || ""}
@@ -3157,6 +2311,15 @@
                   >
                     ✓
                   </button>
+                  <button
+                    type="button"
+                    data-collapse-card="${item.id}"
+                    class="w-7 h-7 rounded-lg flex items-center justify-center text-xs surface-elevated hover:opacity-90"
+                    title="${isCardCollapsed ? 'Развернуть карточку' : 'Свернуть карточку'}"
+                    style="color: var(--text-secondary);"
+                  >
+                    ${isCardCollapsed ? "▸" : "▾"}
+                  </button>
                 </div>
               </div>
 
@@ -3171,18 +2334,18 @@
                 </a>
               </h3>
 
-              <p class="text-xs leading-relaxed" style="color: var(--text-secondary);">
+              <p class="text-xs leading-relaxed ${isCardCollapsed ? 'hidden' : ''}" style="color: var(--text-secondary);">
                 ${item.subtitle || ""}
               </p>
             </div>
 
-            <div class="space-y-3.5 pt-3.5 border-t relative z-10" style="border-color: var(--border-col);">
-              <div class="flex flex-wrap gap-1.5">${tagsHtml}</div>
+            <div class="space-y-3 pt-3 border-t relative z-10" style="border-color: var(--border-col);">
+              <div class="flex flex-wrap gap-1.5 ${isCardCollapsed ? 'hidden' : ''}">${tagsHtml}</div>
               <div class="flex items-center justify-between gap-2 flex-wrap">
                 <a
                   href="#lecture=${encodeURIComponent(item.id)}"
                   data-open-lecture="${item.id}"
-                  class="btn-primary-glow flex-1 py-2.5 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]"
+                  class="btn-primary-glow flex-1 py-2 px-3.5 rounded-xl text-xs font-bold text-center text-white no-underline min-w-[135px]"
                 >
                   📖 Читать конспект
                 </a>
@@ -3192,7 +2355,7 @@
                   data-newtab-lecture="${item.id}"
                   target="_blank"
                   rel="noopener"
-                  class="py-2.5 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline"
+                  class="py-2 px-3 rounded-xl text-xs font-semibold surface-elevated hover:opacity-90 no-underline"
                   title="Открыть в новой вкладке (или нажмите колёсиком мыши)"
                 >
                   ↗
@@ -3202,6 +2365,14 @@
           </article>
         `;
       }).join("");
+
+      grid.querySelectorAll("[data-collapse-card]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-collapse-card");
+          collapsedCatalogCards[id] = !collapsedCatalogCards[id];
+          renderCatalogCards();
+        });
+      });
 
       grid.querySelectorAll("[data-open-lecture]").forEach(link => {
         link.addEventListener("click", (e) => {
@@ -3595,7 +2766,7 @@
       const rawBytes = new Uint8Array(buf);
       let finalBytes = normalizePdfBytes(rawBytes);
       const autoRebuildEl = document.getElementById("auto-rebuild-pdf-checkbox");
-      const forceRebuild = autoRebuildEl ? autoRebuildEl.checked : false;
+      const forceRebuild = autoRebuildEl ? autoRebuildEl.checked : true;
       if ((forceRebuild || checkPdfNeedsRebuild(finalBytes)) && window.pdfjsLib) {
         try {
           finalBytes = await rebuildCleanPdfFromPdfJs(finalBytes, onProgress);
@@ -3678,24 +2849,28 @@
              <button type="button" data-remove-pdf="${lec.id}" class="px-2 py-1 rounded-lg text-[11px] text-red-400 surface-card hover:bg-red-950/40" title="Открепить PDF">✕ Убрать PDF</button>`
           : `<span class="text-[11px]" style="color: var(--text-secondary);">📎 PDF преподавателя не прикреплён</span>`;
 
+        const isAdmCollapsed = Boolean(collapsedAdminCards[lec.id]);
         return `
           <div class="surface-elevated rounded-2xl p-4 space-y-3">
             <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="px-2.5 py-0.5 rounded-lg text-[11px] font-bold surface-card" style="color: var(--accent);">#${idx + 1}</span>
-                <button type="button" data-move-up="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80" ${idx === 0 ? "disabled style='opacity:0.4'" : ""}>⬆️ Вверх</button>
-                <button type="button" data-move-down="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80" ${idx === sortedLectures.length - 1 ? "disabled style='opacity:0.4'" : ""}>⬇️ Вниз</button>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono surface-card" style="color: var(--text-secondary);">📄 ${targetFile}</span>
+              <div class="flex items-center gap-1.5 flex-wrap min-w-0">
+                <button type="button" data-admin-collapse-lec="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-90 flex items-center gap-1" style="color: var(--accent);" title="${isAdmCollapsed ? 'Развернуть поля редактирования' : 'Свернуть карточку'}">
+                  <span>${isAdmCollapsed ? "▸" : "▾"}</span><span>#${idx + 1}</span>
+                </button>
+                <span class="text-xs font-bold truncate max-w-[260px] sm:max-w-[380px]">${lec.title}</span>
+                <button type="button" data-move-up="${lec.id}" class="px-2 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80" ${idx === 0 ? "disabled style='opacity:0.4'" : ""}>⬆️</button>
+                <button type="button" data-move-down="${lec.id}" class="px-2 py-1 rounded-lg text-xs font-bold surface-card hover:opacity-80" ${idx === sortedLectures.length - 1 ? "disabled style='opacity:0.4'" : ""}>⬇️</button>
               </div>
-              <div class="flex items-center gap-2 flex-wrap">
-                <button type="button" data-preview-lec="${lec.id}" class="px-3 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Открыть конспект</button>
-                ${lec.hasPdf ? `<button type="button" data-preview-pdf="${lec.id}" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">📎 Открыть PDF</button>
-                <button type="button" data-admin-dl-pdf="${lec.id}" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">⬇️ Скачать PDF</button>
-                <button type="button" data-admin-repair-pdf="${lec.id}" class="px-3 py-1 rounded-lg text-xs font-bold surface-card" style="color: #fbbf24;" title="Пересобрать уже прикреплённый PDF в чистый формат PDF 1.4 и сохранить в каталоге">🛠️ Починить PDF</button>` : ""}
-                <button type="button" data-delete-lec="${lec.id}" class="px-3 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️ Удалить</button>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button type="button" data-preview-lec="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-semibold surface-card" style="color: var(--accent);">👁️ Конспект</button>
+                ${lec.hasPdf ? `<button type="button" data-preview-pdf="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">📎 PDF</button>
+                <button type="button" data-admin-dl-pdf="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card" style="color: var(--accent);">⬇️</button>
+                <button type="button" data-admin-repair-pdf="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-bold surface-card" style="color: #fbbf24;" title="Пересобрать уже прикреплённый PDF в чистый формат PDF 1.4 и сохранить в каталоге">🛠️</button>` : ""}
+                <button type="button" data-delete-lec="${lec.id}" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-red-400 surface-card hover:bg-red-950/40">🗑️</button>
               </div>
             </div>
 
+            <div class="space-y-3 ${isAdmCollapsed ? 'hidden' : ''}">
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
               <div class="sm:col-span-2">
                 <label class="block text-[10px] uppercase font-bold mb-1" style="color: var(--text-secondary);">Название лекции</label>
@@ -3740,9 +2915,18 @@
                 <input type="file" accept=".pdf,application/pdf" data-attach-pdf="${lec.id}" class="hidden" />
               </label>
             </div>
+            </div>
           </div>
         `;
       }).join("");
+
+      listEl.querySelectorAll("[data-admin-collapse-lec]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-admin-collapse-lec");
+          collapsedAdminCards[id] = !collapsedAdminCards[id];
+          renderAdminPanel();
+        });
+      });
 
       listEl.querySelectorAll("[data-move-up]").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -3949,12 +3133,37 @@
       });
     }
 
+    function buildCatalogOnlyVaultObject(sourceVault) {
+      const copy = Object.assign({}, sourceVault);
+      copy.lectures = (sourceVault.lectures || []).map(lec => {
+        const item = Object.assign({}, lec);
+        item.file = item.file || `lectures/${item.id}.enc.json`;
+        if (item.hasPdf) {
+          item.pdfFile = item.pdfFile || `lectures/${item.id}.pdf.enc.json`;
+        }
+        delete item.html;
+        delete item.pdfBase64;
+        return item;
+      });
+      return copy;
+    }
+
     let syncVaultTimer = null;
     function syncLiveDomVault() {
       if (!vaultData) return;
       if (syncVaultTimer) clearTimeout(syncVaultTimer);
       syncVaultTimer = setTimeout(async () => {
         try {
+          const studentPass = (document.getElementById("admin-password-input")?.value || "").trim() || vaultData.studentPassword || "welovemath";
+          const adminPass = (document.getElementById("master-password-input")?.value || "").trim() || vaultData.adminPassword || "3xcelsiorc4tharsis";
+          const lightCatalogVault = buildCatalogOnlyVaultObject(vaultData);
+          const { encryptedCatalog, dekBytes, cryptoDek } = await encryptDualVault(lightCatalogVault, studentPass, adminPass, currentDekBytes);
+          currentDekBytes = dekBytes;
+          currentCryptoDek = cryptoDek;
+          currentBaseVaultIv = encryptedCatalog.vaultIv;
+          vaultData._sourceVaultIv = currentBaseVaultIv;
+          const liveScriptEl = document.getElementById("encrypted-vault-json");
+          if (liveScriptEl) liveScriptEl.textContent = JSON.stringify(encryptedCatalog);
           await saveVaultToLocalIdb(vaultData);
         } catch (e) {
           console.warn("Live DOM sync warning:", e);
@@ -4014,10 +3223,11 @@
       const cloneScript = clone.querySelector("#encrypted-vault-json");
       if (cloneScript) cloneScript.textContent = JSON.stringify(encryptedCatalog);
 
-      // Remove runtime-injected style tags (e.g. from Tailwind CDN) so exported HTML stays clean
+      // Remove runtime-injected style tags (e.g. from Tailwind CDN) and temporary download links so exported HTML stays clean
       clone.querySelectorAll("head style").forEach(st => {
         if (st.id !== "portal-core-styles") st.remove();
       });
+      clone.querySelectorAll('a[href^="blob:"]').forEach(a => a.remove());
 
       const cloneLock = clone.querySelector("#lock-screen");
       const cloneApp = clone.querySelector("#app-shell");
@@ -4064,6 +3274,10 @@
       }
       if (cloneDlPdfBtn) cloneDlPdfBtn.classList.add("hidden");
       if (cloneNotesDrawer) cloneNotesDrawer.classList.add("hidden");
+      ["#lectures-grid", "#admin-lectures-list", "#subject-nav-list", "#branch-nav-list", "#subject-hashtags-cloud", "#admin-subjects-list"].forEach(sel => {
+        const el = clone.querySelector(sel);
+        if (el) el.innerHTML = "";
+      });
     }
 
     // =========================================================================
@@ -4087,27 +3301,9 @@
         }
       }
 
-      // Create lightweight catalog for index.html (without inline HTML/PDF bloat; lectures and PDFs live in lectures/)
-      const lightVault = Object.assign({}, vaultData, {
-        lectures: vaultData.lectures.map(lec => ({
-          id: lec.id,
-          subjectId: lec.subjectId,
-          branchId: lec.branchId,
-          number: lec.number,
-          date: lec.date,
-          dateLabel: lec.dateLabel,
-          title: lec.title,
-          subtitle: lec.subtitle,
-          tags: lec.tags,
-          order: lec.order,
-          file: lec.file,
-          hasPdf: Boolean(lec.hasPdf),
-          pdfName: lec.pdfName || "",
-          pdfFile: lec.pdfFile || ""
-        }))
-      });
-
-      const { encryptedCatalog, dekBytes, cryptoDek } = await encryptDualVault(lightVault, studentPass, adminPass, currentDekBytes);
+      // Encrypt ONLY lightweight catalog metadata into index.html (~300 KB); heavy HTML and PDF go strictly into lectures/*.enc.json
+      const lightCatalogVault = buildCatalogOnlyVaultObject(vaultData);
+      const { encryptedCatalog, dekBytes, cryptoDek } = await encryptDualVault(lightCatalogVault, studentPass, adminPass, currentDekBytes);
       currentDekBytes = dekBytes;
       currentCryptoDek = cryptoDek;
       currentBaseVaultIv = encryptedCatalog.vaultIv;
@@ -4115,16 +3311,20 @@
 
       await saveVaultToLocalIdb(vaultData);
 
-      // Encrypt each lecture HTML (gzipped) and each attached PDF (raw binary, no double-base64) into lectures/ folder
+      const liveScriptEl = document.getElementById("encrypted-vault-json");
+      if (liveScriptEl) liveScriptEl.textContent = JSON.stringify(encryptedCatalog);
+
+      // Also encrypt each lecture HTML and each attached PDF separately into lectures/ folder (.enc.json only — no .js files so Windows Explorer never blocks ZIP extraction)
       const encryptedLecturesMap = {};
       for (const lec of vaultData.lectures) {
         const encHtmlPacket = await encryptSingleStringWithDek(lec.html || "", cryptoDek);
-        encryptedLecturesMap[lec.file] = JSON.stringify(encHtmlPacket);
+        const htmlJsonStr = JSON.stringify(encHtmlPacket);
+        encryptedLecturesMap[lec.file] = htmlJsonStr;
 
         if (lec.hasPdf && lec.pdfBase64) {
-          const rawPdfBytes = base64ToBytes(lec.pdfBase64);
-          const encPdfPacket = await encryptSingleBinaryWithDek(rawPdfBytes, cryptoDek);
-          encryptedLecturesMap[lec.pdfFile] = JSON.stringify(encPdfPacket);
+          const encPdfPacket = await encryptSingleStringWithDek(lec.pdfBase64, cryptoDek);
+          const pdfJsonStr = JSON.stringify(encPdfPacket);
+          encryptedLecturesMap[lec.pdfFile] = pdfJsonStr;
         }
       }
 
@@ -4265,6 +3465,115 @@
         renderSubjectHashtagCloud();
         renderCatalogCards();
       });
+
+      // Universal section collapse buttons ([data-collapse-target])
+      document.querySelectorAll("[data-collapse-target]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const targetId = btn.getAttribute("data-collapse-target");
+          const targetEl = document.getElementById(targetId);
+          if (!targetEl) return;
+          const isHidden = targetEl.classList.toggle("hidden");
+          btn.classList.toggle("is-collapsed", isHidden);
+        });
+      });
+
+      // Sidebar full collapse / expand
+      const sidebarEl = document.getElementById("catalog-sidebar");
+      const viewCatalogEl = document.getElementById("view-catalog");
+      const expandSidebarBtn = document.getElementById("expand-sidebar-btn");
+      const collapseSidebarBtn = document.getElementById("collapse-sidebar-btn");
+      function setSidebarCollapsed(collapsed) {
+        if (!sidebarEl || !viewCatalogEl || !expandSidebarBtn) return;
+        if (collapsed) {
+          sidebarEl.classList.add("hidden");
+          viewCatalogEl.classList.remove("lg:grid-cols-[285px_1fr]");
+          viewCatalogEl.classList.add("lg:grid-cols-1");
+          expandSidebarBtn.classList.remove("hidden");
+        } else {
+          sidebarEl.classList.remove("hidden");
+          viewCatalogEl.classList.add("lg:grid-cols-[285px_1fr]");
+          viewCatalogEl.classList.remove("lg:grid-cols-1");
+          expandSidebarBtn.classList.add("hidden");
+        }
+        safeSetStorage("hse_fpm_sidebar_collapsed", collapsed ? "1" : "0", true);
+      }
+      if (collapseSidebarBtn) collapseSidebarBtn.addEventListener("click", () => setSidebarCollapsed(true));
+      if (expandSidebarBtn) expandSidebarBtn.addEventListener("click", () => setSidebarCollapsed(false));
+      if (safeGetStorage("hse_fpm_sidebar_collapsed") === "1") setSidebarCollapsed(true);
+
+      // Disclaimers collapse / expand
+      const disclaimersWrapper = document.getElementById("disclaimers-collapsible-wrapper");
+      const toggleDisclaimersBtn = document.getElementById("toggle-disclaimers-btn");
+      const toggleDisclaimersLabel = document.getElementById("toggle-disclaimers-label");
+      function setDisclaimersCollapsed(collapsed) {
+        if (!disclaimersWrapper || !toggleDisclaimersLabel) return;
+        disclaimersWrapper.classList.toggle("hidden", collapsed);
+        toggleDisclaimersLabel.textContent = collapsed ? "▼ Показать памятки и дисклеймер" : "▲ Свернуть памятки";
+        safeSetStorage("hse_fpm_disclaimers_collapsed", collapsed ? "1" : "0", true);
+      }
+      if (toggleDisclaimersBtn) {
+        toggleDisclaimersBtn.addEventListener("click", () => {
+          const isCurrentlyHidden = disclaimersWrapper.classList.contains("hidden");
+          setDisclaimersCollapsed(!isCurrentlyHidden);
+        });
+      }
+      if (safeGetStorage("hse_fpm_disclaimers_collapsed") === "1") setDisclaimersCollapsed(true);
+
+      // Hashtag cloud collapse / expand
+      const toggleHashtagsBtn = document.getElementById("toggle-hashtags-cloud-btn");
+      const hashtagsCloudEl = document.getElementById("subject-hashtags-cloud");
+      const hashtagsChevron = document.getElementById("hashtags-chevron");
+      const hashtagsHint = document.getElementById("toggle-hashtags-hint");
+      function setHashtagsCollapsed(collapsed) {
+        if (!hashtagsCloudEl) return;
+        hashtagsCloudEl.classList.toggle("hidden", collapsed);
+        if (hashtagsChevron) hashtagsChevron.textContent = collapsed ? "▸" : "▾";
+        if (hashtagsHint) hashtagsHint.textContent = collapsed ? "Развернуть теги" : "Свернуть теги";
+        safeSetStorage("hse_fpm_hashtags_collapsed", collapsed ? "1" : "0", true);
+      }
+      if (toggleHashtagsBtn) {
+        toggleHashtagsBtn.addEventListener("click", () => {
+          setHashtagsCollapsed(!hashtagsCloudEl.classList.contains("hidden"));
+        });
+      }
+      if (safeGetStorage("hse_fpm_hashtags_collapsed") === "1") setHashtagsCollapsed(true);
+
+      // Collapse / Expand all catalog lecture cards
+      const toggleAllCatalogCardsBtn = document.getElementById("toggle-all-catalog-cards-btn");
+      if (toggleAllCatalogCardsBtn) {
+        toggleAllCatalogCardsBtn.addEventListener("click", () => {
+          allCatalogCardsCollapsed = !allCatalogCardsCollapsed;
+          if (vaultData && Array.isArray(vaultData.lectures)) {
+            vaultData.lectures.forEach(l => { collapsedCatalogCards[l.id] = allCatalogCardsCollapsed; });
+          }
+          toggleAllCatalogCardsBtn.textContent = allCatalogCardsCollapsed ? "▼ Развернуть карточки" : "▲ Свернуть карточки";
+          renderCatalogCards();
+        });
+      }
+
+      // Collapse / Expand all admin lecture cards
+      const adminCollapseAllBtn = document.getElementById("admin-collapse-all-btn");
+      if (adminCollapseAllBtn) {
+        adminCollapseAllBtn.addEventListener("click", () => {
+          allAdminCardsCollapsed = !allAdminCardsCollapsed;
+          if (vaultData && Array.isArray(vaultData.lectures)) {
+            vaultData.lectures.forEach(l => { collapsedAdminCards[l.id] = allAdminCardsCollapsed; });
+          }
+          adminCollapseAllBtn.textContent = allAdminCardsCollapsed ? "▼ Развернуть все" : "▲ Свернуть все";
+          renderAdminPanel();
+        });
+      }
+
+      // Reader top header & caution strip collapse button
+      const viewerCollapseTopBtn = document.getElementById("viewer-collapse-top-btn");
+      const viewerCautionStrip = document.getElementById("viewer-caution-strip");
+      if (viewerCollapseTopBtn) {
+        viewerCollapseTopBtn.addEventListener("click", () => {
+          const isCollapsed = document.body.classList.toggle("reader-header-collapsed");
+          if (viewerCautionStrip) viewerCautionStrip.classList.toggle("hidden", isCollapsed);
+          viewerCollapseTopBtn.textContent = isCollapsed ? "▼ Показать шапку" : "▲ Свернуть шапку";
+        });
+      }
 
       document.getElementById("search-input").addEventListener("input", () => renderCatalogCards());
       document.getElementById("sort-select").addEventListener("change", () => renderCatalogCards());
@@ -4904,4 +4213,4 @@
     });
   </script>
 
-<a href="blob:null/4c1b2669-5dd3-41fb-9ac7-939e2d9ec572" download="МА26ФПМ_Лекции 10-12.pdf" style="display: none;"></a></body></html>
+</body></html>
